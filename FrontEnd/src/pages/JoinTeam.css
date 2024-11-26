@@ -1,0 +1,249 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.jointeam{
+    /* Section1 */
+    .section1 {
+        padding-top: 11vh !important;
+        padding: 1vh;
+        background-color: #ebecec;
+    }
+
+    .section1 .container {
+        max-width: 1200px;
+        background: url(https://www.movebeyond.com.au/wp-content/uploads/2020/07/Beyond-icon-dark-1.svg);
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: auto;
+    }
+
+    .section1 .heading1 {
+        color: #2B2E34;
+        font-size: 2rem;
+        line-height: 1.25;
+    }
+
+    .section1 .buttons a {
+        color: #2b2e34;
+        text-decoration: none;
+        margin-right: 5px;
+        font-size: 1rem;
+    }
+
+    @media screen and (max-width: 527px) {
+        .section1 .buttons {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .section1 .buttons .btn1 a {
+            padding: 3px 10px;
+            font-size: small;
+        }
+
+        .section1 .buttons .btn2 a {
+            padding: 3px 10px;
+            font-size: small;
+        }
+    }
+
+    /* Section2 */
+
+    .section2 .sub-container1 {
+        padding: 8vmin;
+    }
+
+    .section2 p {
+        font-size: 1.05rem;
+    }
+
+    .section2 .heading {
+        font-size: 1.5rem;
+    }
+
+    .section2 .sub-container2 img {
+        width: 100%;
+    }
+
+    .section2 a {
+        letter-spacing: .03em;
+        padding: 0.4em;
+        background: #e0f2fc;
+        color: #2b2e34;
+        text-decoration: none;
+    }
+
+    @media screen and (max-width: 527px) {
+        .section2 a {
+            padding: 3px 5px;
+            font-size: small;
+        }
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1020px) {
+
+        .section2 .sub-container1 {
+            text-align: center;
+            padding: 1vmin;
+        }
+
+        .section2 .heading {
+            font-size: 1.2rem;
+        }
+
+        .section2 a {
+            font-size: 0.6rem;
+        }
+
+        .section2 p {
+            font-size: 0.8rem;
+        }
+    }
+
+    .section3 .sub-container1 img {
+        width: 100%;
+    }
+
+    .section3 .sub-container2 {
+        padding: 8vmin;
+    }
+
+    .section3 .sub-container2 .heading {
+        font-size: 1.2rem;
+    }
+
+    .section3 .sub-container2 p {
+        font-size: 1.05rem;
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 1020px) {
+        .section3 .sub-container2 {
+            padding: 2vmin;
+        }
+
+        .section3 .sub-container2 .heading {
+            font-size: 1rem;
+        }
+
+        .section3 .sub-container2 p {
+            font-size: 0.8rem;
+        }
+    }
+
+
+    /* Section4 */
+    .section4 {
+        padding: 20vmin 5vmin;
+        text-align: center;
+    }
+
+    .section4 .heading1 {
+        font-size: 1.6rem;
+    }
+
+    .section4 .heading2 {
+        font-size: 1.4rem;
+    }
+
+    .section4 .buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .section4 .buttons #first {
+        background: #ebecec;
+    }
+
+    .section4 .buttons .btn {
+        padding: 0.8rem 3.5rem;
+        font-weight: 500;
+    }
+
+    .section4 .buttons .btn:hover {
+        background: #ebecec;
+    }
+
+    /* ShowHide */
+
+    .section4 #content1 {
+        display: block;
+    }
+
+    .section4 #content2 {
+        display: none;
+    }
+
+    .section4 #content3 {
+        display: none;
+    }
+
+    .section4 #content4 {
+        display: none;
+    }
+
+    .section4 #content5 {
+        display: none;
+    }
+
+    /* Section5 */
+    .section5 {
+        text-align: center;
+        background: #ebecec;
+        color: #2b2e34;
+        font-size: 1.3rem;
+        padding: 5vmax 1vmax;
+    }
+
+
+    /* Section6 */   
+    .section6 .reqd_star{
+        color: #e80000;
+    }
+
+    /* Section7 */
+    .section7 {
+        text-align: center;
+        background-color: #ebecec;
+        padding: 59.5px;
+    }
+
+    .section7 h5 {
+        color: #2B2E34;
+        font-size: 28px;
+    }
+
+    .section7 p {
+        color: #2B2E34;
+        font-size: 20px;
+        margin: 12px 0px 0px;
+    }
+
+    .section7 .btn {
+        margin: 24px 0px 0px;
+    }
+
+    .section7 .btn a {
+        background-color: #2b2e34;
+        color: white;
+        text-decoration: none;
+        padding: 7px 20px;
+        font-size: medium;
+    }
+
+
+    /* Footer */
+    footer {
+        background: #2b2e34;
+        color: #ffffff;
+    }
+
+    footer .nav-link {
+        color: #ffffff !important;
+        text-decoration: none;
+    }
+}

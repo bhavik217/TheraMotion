@@ -1,0 +1,131 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.meetteam{
+    
+    .section1 {
+        padding-top: 11vh !important;
+        padding: 1vh;
+        background-color: #ebecec;
+    }
+
+    .section1 .container {
+        max-width: 1200px;
+        background: url(https://www.movebeyond.com.au/wp-content/uploads/2020/07/Beyond-icon-dark-1.svg);
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: auto;
+    }
+
+    .section1 .heading1 {
+        color: #2B2E34;
+        font-size: 2rem;
+        line-height: 1.25;
+    }
+
+    .section1 .buttons a {
+        color: #2b2e34;
+        text-decoration: none;
+        margin-right: 5px;
+        font-size: 1rem;
+    }
+
+    @media screen and (max-width: 527px) {
+        .section1 .buttons {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+        
+        .section1 .buttons .btn1 a {
+            padding: 3px 10px;
+            font-size: small;
+        }
+
+        .section1 .buttons .btn2 a {
+            padding: 3px 10px;
+            font-size: small;
+        }
+    }
+
+    /* Section2 */
+    .section2 {
+        background-color: #2b2e34;
+        color: #ffffff;
+        padding: 4vh;
+    }
+
+    .section2 .heading {
+        font-size: 1.4rem;
+        margin-bottom: 2vh;
+    }
+
+    .section2 .btn {
+        border: none;
+        color: #ffffff;
+    }
+
+    /* Section 3 */
+    .section3 .card-container {
+        padding: 0.9rem;
+    }
+
+    .section3 .btn {
+        background-color: lightgrey;
+        width: 100%;
+    }
+
+    .section3 .card:hover {
+        transform: scale(1.10);
+        transition: 0.5s;
+    }
+
+    .section3 .card-container{
+        display: block;
+    }
+
+    /* Section8 */
+    .section4 {
+        text-align: center;
+        background-color: #ebecec;
+        padding: 59.5px;
+    }
+
+    .section4 h5 {
+        color: #2B2E34;
+        font-size: 28px;
+    }
+
+    .section4 p {
+        color: #2B2E34;
+        font-size: 20px;
+        margin: 12px 0px 0px;
+    }
+
+    .section4 .btn1 {
+        margin: 24px 0px 0px;
+    }
+
+    .section4 .btn1 a {
+        background-color: #2b2e34;
+        color: white;
+        text-decoration: none;
+        padding: 7px 20px;
+        font-size: medium;
+    }
+
+
+    /* Footer */
+    footer {
+        background: #2b2e34;
+        color: #ffffff;
+    }
+
+    footer .nav-link {
+        color: #ffffff !important;
+        text-decoration: none;
+    }
+}

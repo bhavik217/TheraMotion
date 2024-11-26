@@ -11,7 +11,7 @@ function MainPage(){
             <section className="row mx-0 section1">
                 <div style={{height: "10.4vh"}}></div>
                 <div className="col-sm-6 first-container">
-                    <h1 className="heading1">Welcome To MoveMend</h1>
+                    <h1 className="heading1">Welcome To Site</h1>
                     <div className="heading2">Helping You Move Through Life.</div>
                     <div style={{height:"3vh"}}></div>
                     <div className="links">
@@ -46,7 +46,7 @@ function MainPage(){
             <section className="row mx-0 section3">
                 <div className="col-sm-6 sub-container1">
                     <div className="content1">
-                    <p>At MoveMend we believe in a patient focused care model, by offering a range of services under the one roof
+                    <p>At Site we believe in a patient focused care model, by offering a range of services under the one roof
                         and a team approach we want to help you 'Move Through Life'.
                     </p>
                     </div>
@@ -78,7 +78,7 @@ function MainPage(){
             <section className="row mx-0 section5">
                 <div className="col-sm-6 sub-container1">
                     <div className="content1">
-                    <p>Our core mission at MoveMend is to help our team 'Move Through Life'. We have a dedicated part of our
+                    <p>Our core mission at Site is to help our team 'Move Through Life'. We have a dedicated part of our
                         business that works on team recruitment and team development so that our team is full of like-minded allied
                         health professionals committed to helping their clients achieve their health goals.
                     </p>
@@ -87,7 +87,7 @@ function MainPage(){
                     <Link to="/meet-team"><span>Meet the whole team</span></Link>
                     </div>
                     <div className="content2">
-                    <Link to="/join-team"><span>Join the MoveMend team</span></Link>
+                    <Link to="/join-team"><span>Join the Site team</span></Link>
                     </div>
                 </div>
                 <div className="col-sm-6 p-0 sub-container2">
