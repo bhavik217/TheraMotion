@@ -3,29 +3,30 @@ import { Link } from "react-router-dom";
 
 import Carousel from '../components/elements/Carousel';
 import Carousel2 from "../components/elements/Carousel2";
+import IntroSection from "../components/IntroSection";
 // import Bookappoint from "../Components/Bookappoint";
 
 function MainPage(){
+    const carouselProps = {
+        img1: "/Services-imgs/Car1-1.jpg",
+        img2: "/Services-imgs/Car1-2.jpg",
+        img3: "/Services-imgs/Car1-3.jpg",
+        num: "1",
+        h1: "Exercise Physiology",
+        h2: "Myotherapy",
+        h3: "Physiotherapy",
+    };
     return(
         <div className="mainpage">
-            <section className="row mx-0 section1">
-                <div style={{height: "10.4vh"}}></div>
-                <div className="col-sm-6 first-container">
-                    <h1 className="heading1">Welcome To Site</h1>
-                    <div className="heading2">Helping You Move Through Life.</div>
-                    <div style={{height:"3vh"}}></div>
-                    <div className="links">
-                        <p>
-                            <Link to="/book-appointment">Book an Appointment &gt;</Link><br/>
-                            <Link to="/meet-team">Meet the Team &gt;</Link><br/>
-                            <Link to="/join-team">Join our Team &gt;</Link>
-                        </p>
-                    </div>
-                </div>
-                <div className="col-sm-6 p-0 second-container">
-                    <img src="/Mainpage.jpg" alt=""/>
-                </div>
-            </section>
+            <div style={{height: "10.4vh"}}></div>
+            <IntroSection 
+                hd1="Welcome To MoveMend"
+                hd2="Helping You Move Through Life."
+                links={["/book-appointment", "/meet-team", "/join-team"]}
+                linksName={["Book an Appointment", "Meet the Team", "Join our Team"]}
+                content = "At Site we believe in a patient focused care model, by offering a range of services under the one roof and a team approach we want to help you 'Move Through Life'."
+                img="/Mainpage.jpg"
+            />
 
             <section className="section2">
                 <div className="container">
@@ -43,19 +44,25 @@ function MainPage(){
                 </div>
             </section>
 
+            <IntroSection
+                content={"At MoveMend we believe in a patient focused care model, by offering a range of services under the one roof and a team approach we want to help you 'Move Through Life'."}
+                links={["/services"]}
+                linksNames={["See our Services"]}
+                carousel={<Carousel {...carouselProps} />}
+            />
             <section className="row mx-0 section3">
                 <div className="col-sm-6 sub-container1">
                     <div className="content1">
-                    <p>At Site we believe in a patient focused care model, by offering a range of services under the one roof
-                        and a team approach we want to help you 'Move Through Life'.
-                    </p>
+                        <p>At Site we believe in a patient focused care model, by offering a range of services under the one roof
+                            and a team approach we want to help you 'Move Through Life'.
+                        </p>
                     </div>
                     <div className="content2">
                         <Link to="/services"><span>See all of our Services</span></Link>
                     </div>
                 </div>
                 <div className="col-sm-6 p-0 sub-container2">
-                    <Carousel img1="/Services-imgs/Car1-1.jpg" img2="/Services-imgs/Car1-2.jpg" img3="/Services-imgs/Car1-3.jpg" num={"1"} h1={"Exercise physiology"} h2={"Myotherapy"} h3={"Physiotherapy"}/>
+                    
                 </div>
             </section>
 

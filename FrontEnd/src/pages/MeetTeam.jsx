@@ -2,7 +2,7 @@ import './MeetTeam.css'
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import Card from '../components/elements/Card'
-import meetData from '../pages/data/meetData';
+import meetData from './data/meetTeamData';
 
 function MeetTeam(){
     const [filter, setFilter] = useState('all');

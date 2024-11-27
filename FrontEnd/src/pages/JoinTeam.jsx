@@ -1,18 +1,15 @@
 import './JoinTeam.css'
-// import joinData from '../Data/JoinData'
-// import Content from "../Components/Content";
+import joinTeamData from './data/JoinTeamData'
 import { Link } from "react-router-dom"; 
 
 function JoinTeam(){
-    function showhide(num) {
-        for (let i = 1; i <= 5; i++) {
-            var which = "content" + i;
-            var content = document.getElementById(which);
-            if (i === parseInt(num)) {
+    function showhide(num){
+        for(let i = 1; i <= joinTeamData.length; i++){
+            let which = "content" + i;
+            let content = document.getElementById(which);
+            content.style.display = "none";
+            if(i === parseInt(num)){
                 content.style.display = "block";
-            }
-            else {
-                content.style.display = "none";
             }
         }
     }
@@ -22,7 +19,7 @@ function JoinTeam(){
                 <div className="container">
                     <div className="heading1"><span>Our Team</span></div>
                     <div className="buttons">
-                        <Link to="/"><span className="w-btn-label">Home <i class="fa-solid fa-chevron-right"></i></span></Link>
+                        <Link to="/"><span className="w-btn-label">Home <i className="fa-solid fa-chevron-right"></i></span></Link>
                         <Link to="/meet-team"><span className="w-btn-label"> Our Team</span></Link>
                     </div>
                 </div>
@@ -78,8 +75,15 @@ function JoinTeam(){
                 </div>
                 <div style={{marginTop: "7vh"}}>
                     {
-                        joinData.map((data, index) => {
-                            return <Content h={data.h} p={data.p} index={index+1} key={index}/>
+                        joinTeamData.map((data, index) => {
+                            return(
+                                <div id={`content${data.key}`}>
+                                    <div style={{marginTop: "5vh"}}>
+                                        <span className="heading2">{data.h}</span>
+                                    </div>
+                                    <p style={{marginTop: "2vh"}}>{data.p}</p>
+                                </div>
+                            );
                         })
                     }
                 </div>
@@ -103,8 +107,6 @@ function JoinTeam(){
                     <Link to="/book-appointment"><span>Book an Appointment</span></Link>
                 </div>
             </section>
-
-            <Footer/>
         </div>
     );
 }
