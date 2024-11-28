@@ -1,16 +1,16 @@
 function Footer(){
     return(
-        <footer className="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 mx-0 border-top">
+        <footer className="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 mx-0 border-top" style={{background: "#2b2e34", color: "#ffffff"}}>
             <div className="container-fluid col-lg-4 mb-3">
-                <div><span>MoveMend</span></div>
+                <div><span>Site</span></div>
                 <div>
                     <span>Our Commitment:</span>
-                    <p>MoveMend acknowledges the Traditional Owners of country throughout Australia, in particular the
+                    <p>Site acknowledges the Traditional Owners of country throughout Australia, in particular the
                         Wathaurong
                         &
                         Wurundjeri land in which we work. We pay our respect to their Elders past, present and emerging.
                     </p>
-                    <p>MoveMend is an allied health clinic that provides quality healthcare in an environment that is safe
+                    <p>Site is an allied health clinic that provides quality healthcare in an environment that is safe
                         and
                         inclusive for people of all genders.
                     </p>
