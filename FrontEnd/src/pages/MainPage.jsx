@@ -20,11 +20,10 @@ function MainPage(){
         <div className="mainpage">
             <div style={{height: "10.4vh"}}></div>
             <IntroSection 
-                hd1="Welcome To MoveMend"
+                hd1="Welcome To Site"
                 hd2="Helping You Move Through Life."
                 links={["/book-appointment", "/meet-team", "/join-team"]}
-                linksName={["Book an Appointment", "Meet the Team", "Join our Team"]}
-                content = "At Site we believe in a patient focused care model, by offering a range of services under the one roof and a team approach we want to help you 'Move Through Life'."
+                linksNames={["Book an Appointment", "Meet the Team", "Join our Team"]}
                 img="/Mainpage.jpg"
             />
 
@@ -45,26 +44,11 @@ function MainPage(){
             </section>
 
             <IntroSection
-                content={"At MoveMend we believe in a patient focused care model, by offering a range of services under the one roof and a team approach we want to help you 'Move Through Life'."}
+                content="At Site we believe in a patient focused care model, by offering a range of services under the one roof and a team approach we want to help you 'Move Through Life'."
                 links={["/services"]}
                 linksNames={["See our Services"]}
                 carousel={<Carousel {...carouselProps} />}
             />
-            <section className="row mx-0 section3">
-                <div className="col-sm-6 sub-container1">
-                    <div className="content1">
-                        <p>At Site we believe in a patient focused care model, by offering a range of services under the one roof
-                            and a team approach we want to help you 'Move Through Life'.
-                        </p>
-                    </div>
-                    <div className="content2">
-                        <Link to="/services"><span>See all of our Services</span></Link>
-                    </div>
-                </div>
-                <div className="col-sm-6 p-0 sub-container2">
-                    
-                </div>
-            </section>
 
             <section className="section4">
                 <div className="container">

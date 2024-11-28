@@ -14,6 +14,14 @@ export const routes = [
                 element: <MainPage />
             },
             {
+                path: "/login",
+                element: <SignUpLoginPage initialMode="login" />
+            },
+            {
+                path: "/signup",
+                element: <SignUpLoginPage initialMode="signup" />
+            },
+            {
                 path: "/meet-team",
                 element: <MeetTeam />
             },
@@ -21,14 +29,6 @@ export const routes = [
                 path: "/join-team",
                 element: <JoinTeam/>
             },
-            {
-                path: "/login",
-                element: <SignUpLoginPage initialMode="login" />
-            },
-            {
-                path: "/signup",
-                element: <SignUpLoginPage initialMode="signup" />
-            }
         ]
     }
 ];
