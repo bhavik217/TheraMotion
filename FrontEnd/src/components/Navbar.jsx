@@ -1,6 +1,19 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 function Navbar({ logo }) {
+    useEffect(() => {
+        import("bootstrap/dist/js/bootstrap.bundle.min");
+    }, []);
+
+    const handleNavItemClick = () => {
+        const offcanvasElement = document.getElementById("offcanvasNavbar");
+        const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
+        if (offcanvasInstance) {
+            offcanvasInstance.hide(); 
+        }
+    };
+
     return (
         <nav className="navbar bg-body-tertiary border-bottom fixed-top">
             <div className="container-sm">
@@ -19,19 +32,19 @@ function Navbar({ logo }) {
                     <div className="offcanvas-body">
                         <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li className="nav-item">
-                                <Link to="/" className="nav-link active" aria-current="page" >Home</Link>
+                                <Link to="/" className="nav-link active" aria-current="page" onClick={handleNavItemClick}>Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/meet-team">Meet Our Team</Link>
+                                <Link className="nav-link" to="/meet-team" onClick={handleNavItemClick}>Meet Our Team</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/join-team">Join Our Team</Link>
+                                <Link className="nav-link" to="/join-team" onClick={handleNavItemClick}>Join Our Team</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/services">Service</Link>
+                                <Link className="nav-link" to="/services" onClick={handleNavItemClick}>Service</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/blog">Blog</Link>
+                                <Link className="nav-link" to="/blog" onClick={handleNavItemClick}>Blog</Link>
                             </li>
                         </ul>
                     </div>
@@ -40,4 +53,5 @@ function Navbar({ logo }) {
         </nav>
     );
 }
+
 export default Navbar;
