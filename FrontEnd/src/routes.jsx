@@ -1,8 +1,9 @@
 import Layout from "./layout"
+import SignUpLoginPage from "./pages/SignUpLoginPage";
 import JoinTeam from "./pages/JoinTeam";
 import MainPage from "./pages/MainPage";
 import MeetTeam from "./pages/MeetTeam";
-import SignUpLoginPage from "./pages/SignUpLoginPage";
+import Blog from "./pages/Blog";
 
 export const routes = [
     {
@@ -28,6 +29,10 @@ export const routes = [
             {
                 path: "/join-team",
                 element: <JoinTeam/>
+            },
+            {
+                path: "/blog",
+                element: <Blog/>
             },
         ]
     }

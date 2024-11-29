@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import IntroSection from "../components/IntroSection";
 
 function JoinTeam() {
+    const scrollFactor = window.innerWidth < 768 ? 3 : 2.25;
     const buttonProps = {
         text: "Get in contact with us",
-        onClick: () => window.scrollBy(0, 1350),
+        onClick: () => window.scrollBy(0, window.innerHeight * scrollFactor),
         color: "btn-dark"
     };
     function showhide(num) {
