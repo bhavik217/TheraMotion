@@ -1,11 +1,6 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
 
 function Navbar({ logo }) {
-    useEffect(() => {
-        import("bootstrap/dist/js/bootstrap.bundle.min");
-    }, []);
-
     const handleNavItemClick = () => {
         const offcanvasElement = document.getElementById("offcanvasNavbar");
         const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
