@@ -1,11 +1,12 @@
+import "./Carousel2.css"
+
 function Carousel2({ img1, img2, img3, num, h1, h2, h3, p1, p2, p3 }) {
   return (
     <div
       id={`carousel${num}`}
-      className="carousel slide newclass"
+      className="carousel slide newclass carousel2"
       data-bs-ride="carousel"
       data-bs-interval="3000"
-      style={{ width: "70%", float: "right" }}
     >
       <div className="carousel-indicators">
         <button

@@ -1,0 +1,11 @@
+.carousel2{
+    width: 70%;
+    float: right;
+}
+
+@media screen and (max-width : 576px){
+    .carousel2{
+        width: 100%;
+        float: right;
+    }
+};

@@ -1,7 +1,16 @@
 import './IntroSection.css'
 import { Link } from "react-router-dom";
 
-function IntroSection({hd1=null, hd2=null, hd3=null, content=null, links=[], linksNames=[], img=null, carousel=null }) {
+function IntroSection({
+    hd1 = null,
+    hd2 = null,
+    hd3 = null,
+    content = null,
+    links = [],
+    linksNames = [],
+    img = null,
+    carousel = null,
+    buttonProps = null }) {
     return (
         <section className="row mx-0 section1">
             <div className="col-sm-6 first-container">
@@ -12,15 +21,19 @@ function IntroSection({hd1=null, hd2=null, hd3=null, content=null, links=[], lin
                     <p>{content}</p>
                 </div>}
                 <div style={{ height: "3vh" }}></div>
-                {links.length > 0 && <div className="links">
-                    <p>
-                        {links.map((link, index) =>
-                            <>
-                                <Link to={link}>{linksNames[index]} &gt;</Link><br />
-                            </>
-                        )}
-                    </p>
-                </div>}
+                {links.length > 0 && (
+                    <div className="links">
+                        <p>
+                            {links.map((link, index) => (
+                                <div key={index}>
+                                    <Link to={link}>{linksNames[index]} &gt;</Link>
+                                    <br />
+                                </div>
+                            ))}
+                        </p>
+                    </div>
+                )}
+                {buttonProps && <button className={`btn ${buttonProps.color}`} onClick={buttonProps.onClick}>{buttonProps.text}</button>}
             </div>
             <div className="col-sm-6 p-0 second-container">
                 {img && <img src={img} alt="" />}

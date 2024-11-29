@@ -1,8 +1,14 @@
 import './JoinTeam.css'
 import joinTeamData from './data/JoinTeamData'
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
+import IntroSection from '../components/IntroSection';
 
 function JoinTeam(){
+    const buttonProps = {
+        text: "Get in contact with us",
+        onClick: () => window.scrollBy(0, 1400),
+        color: "btn-dark"
+    };
     function showhide(num){
         for(let i = 1; i <= joinTeamData.length; i++){
             let which = "content" + i;
@@ -25,6 +31,12 @@ function JoinTeam(){
                 </div>
             </section>
 
+            <IntroSection 
+                hd2="Hi! Can we help you Move Through Life?"
+                content="Are you looking for a career and not just a job? If you are then MoveMend could provide you with the perfect opportunity. Just by landing on this page you have taken the first step, but let us tell you a bit about ourselves so we can make sure we're right for each other, We're always on the lookout for smart, talented people, so if you like what you see here, reach out for a chat. We love going for a coffee."
+                img="/Join-team-imgs/Sec1.jpg"
+                {...buttonProps}
+            />
             <section className="row mx-0 section2">
                 <div className="col-md-6 sub-container1">
                     <span className="heading">Hi! Can we help you Move Through Life?</span>

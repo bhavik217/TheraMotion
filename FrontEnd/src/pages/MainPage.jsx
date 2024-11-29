@@ -16,6 +16,28 @@ function MainPage(){
         h2: "Myotherapy",
         h3: "Physiotherapy",
     };
+    const carouselProps2 = {
+        img1: "/Meet-team-imgs/Ashleigh.jpg",
+        img2: "/Meet-team-imgs/Holly.jpg",
+        img3: "/Meet-team-imgs/Lachlan.jpg",
+        num: "2",
+        h1: "Ashleigh Podolak",
+        h2: "Holly Eckert",
+        h3: "Lachlan White",
+        p1: "Physiotherapist",
+        p2: "Exercise Physiologist",
+        p3: "Osteopath"
+    };
+    const carouselProps3 = {
+        img1: "/Services-imgs/Car3-1.jpg",
+        img2: "/Services-imgs/Car3-2.jpg",
+        img3: "/Services-imgs/Car3-3.jpg",
+        num: "3",
+        h1: "Healthy Bones at Every Age",
+        h2: "Arthritis of Lower Back",
+        h3: "Back Pain Relief"
+      };
+      
     return(
         <div className="mainpage">
             <div style={{height: "10.4vh"}}></div>
@@ -66,25 +88,12 @@ function MainPage(){
                 </div>
             </section>
 
-            <section className="row mx-0 section5">
-                <div className="col-sm-6 sub-container1">
-                    <div className="content1">
-                    <p>Our core mission at Site is to help our team 'Move Through Life'. We have a dedicated part of our
-                        business that works on team recruitment and team development so that our team is full of like-minded allied
-                        health professionals committed to helping their clients achieve their health goals.
-                    </p>
-                    </div>
-                    <div className="content2">
-                    <Link to="/meet-team"><span>Meet the whole team</span></Link>
-                    </div>
-                    <div className="content2">
-                    <Link to="/join-team"><span>Join the Site team</span></Link>
-                    </div>
-                </div>
-                <div className="col-sm-6 p-0 sub-container2">
-                    <Carousel2 img1="/Meet-team-imgs/Ashleigh.jpg" img2="/Meet-team-imgs/Holly.jpg" img3="/Meet-team-imgs/Lachlan.jpg" num={"2"} h1={"Ashleigh Podolak"} h2={"Holly Eckert"} h3={"Lachlan White"} p1={"Physiotherapist"} p2={"Exercise Physiologist"} p3={"Osteopath"}/>
-                </div>
-            </section>
+            <IntroSection
+                content="Our core mission at Site is to help our team 'Move Through Life'. We have a dedicated part of our business that works on team recruitment and team development so that our team is full of like-minded allied health professionals committed to helping their clients achieve their health goals."
+                links={["/meet-team", "/join-team"]}
+                linksNames={["Meet the whole team", "Join the Site team"]}
+                carousel={<Carousel2 {...carouselProps2} />}
+            />
 
             <section className="section6">
                 <div className="container">
@@ -102,18 +111,15 @@ function MainPage(){
                 </div>
             </section>
 
-            <section className="row mx-0 section7">
-                <div className="col-sm-6 sub-container1">
-                    <div className="content1">
-                    <p>Feel free to dive deep into our back catalogue of blogs. We love providing relevant and easily digestible
+            <IntroSection
+                content="Feel free to dive deep into our back catalogue of blogs. We love providing relevant and easily digestible
                         blog posts to help educate our community. Feel free to use the search bar in our blog section to look for a
-                        post that may interest you.
-                    </p>
-                    </div>
-                    <div className="content2">
-                    <Link to="/blog"><span>Search our Blog Posts & Resources</span></Link>
-                    </div>
-                </div>
+                        post that may interest you."
+                links={["/blog"]}
+                linksNames={["Search our Blog Posts & Resources"]}
+                carousel={<Carousel {...carouselProps3} />}
+            />
+            <section className="row mx-0 section7">
                 <div className="col-sm-6 p-0 sub-container2">
                     {/* <Carousel img1="/Services-imgs/Car3-1.jpg" img2="/Services-imgs/Car3-2.jpg" img3="/Services-imgs/Car3-3.jpg" num={"3"} h1={"Healthy Bones at Every Age"} h2={"Arthritis of Lower Back"} h3={"Back Pain Relief"}/> */}
                 </div>
