@@ -17,7 +17,7 @@ function MeetTeam(){
                 <div className="container">
                 <div className="heading1"><span>Our Team</span></div>
                     <div className="buttons">
-                        <Link to="/"><span className="w-btn-label">Home <i class="fa-solid fa-chevron-right"></i></span></Link>
+                        <Link to="/"><span className="w-btn-label">Home <i className="fa-solid fa-chevron-right"></i></span></Link>
                         <Link to="/meet-team"><span className="w-btn-label"> Our Team</span></Link>
                     </div>
                 </div>

@@ -80,7 +80,10 @@ function JoinTeam() {
             </section>
 
             <section className="section5">
-                <span>If you have any questions about joining the team please email: <Link to="/meet-team">adminmovemend@gmail.com</Link></span>
+                <span>If you have any questions about joining the team please email: </span>
+                <span>
+                    <a href="mailto:admin@movemend.com">admin@movemend.com</a>
+                </span>
             </section>
             <hr />
 
