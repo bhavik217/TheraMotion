@@ -66,7 +66,7 @@ function MainPage(){
             </section>
 
             <IntroSection
-                content="At Site we believe in a patient focused care model, by offering a range of services under the one roof and a team approach we want to help you 'Move Through Life'."
+                content1="At Site we believe in a patient focused care model, by offering a range of services under the one roof and a team approach we want to help you 'Move Through Life'."
                 links={["/services"]}
                 linksNames={["See our Services"]}
                 carousel={<Carousel {...carouselProps} />}
@@ -89,7 +89,7 @@ function MainPage(){
             </section>
 
             <IntroSection
-                content="Our core mission at Site is to help our team 'Move Through Life'. We have a dedicated part of our business that works on team recruitment and team development so that our team is full of like-minded allied health professionals committed to helping their clients achieve their health goals."
+                content1="Our core mission at Site is to help our team 'Move Through Life'. We have a dedicated part of our business that works on team recruitment and team development so that our team is full of like-minded allied health professionals committed to helping their clients achieve their health goals."
                 links={["/meet-team", "/join-team"]}
                 linksNames={["Meet the whole team", "Join the Site team"]}
                 carousel={<Carousel2 {...carouselProps2} />}
@@ -112,7 +112,7 @@ function MainPage(){
             </section>
 
             <IntroSection
-                content="Feel free to dive deep into our back catalogue of blogs. We love providing relevant and easily digestible
+                content1="Feel free to dive deep into our back catalogue of blogs. We love providing relevant and easily digestible
                         blog posts to help educate our community. Feel free to use the search bar in our blog section to look for a
                         post that may interest you."
                 links={["/blog"]}

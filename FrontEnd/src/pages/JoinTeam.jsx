@@ -1,25 +1,25 @@
 import './JoinTeam.css'
 import joinTeamData from './data/JoinTeamData'
 import { Link } from "react-router-dom";
-import IntroSection from '../components/IntroSection';
+import IntroSection from "../components/IntroSection";
 
-function JoinTeam(){
+function JoinTeam() {
     const buttonProps = {
         text: "Get in contact with us",
-        onClick: () => window.scrollBy(0, 1400),
+        onClick: () => window.scrollBy(0, 1350),
         color: "btn-dark"
     };
-    function showhide(num){
-        for(let i = 1; i <= joinTeamData.length; i++){
+    function showhide(num) {
+        for (let i = 1; i <= joinTeamData.length; i++) {
             let which = "content" + i;
             let content = document.getElementById(which);
             content.style.display = "none";
-            if(i === parseInt(num)){
+            if (i === parseInt(num)) {
                 content.style.display = "block";
             }
         }
     }
-    return(
+    return (
         <div className="jointeam">
             <section className="section1">
                 <div className="container">
@@ -31,52 +31,30 @@ function JoinTeam(){
                 </div>
             </section>
 
-            <IntroSection 
+            <IntroSection
                 hd2="Hi! Can we help you Move Through Life?"
-                content="Are you looking for a career and not just a job? If you are then MoveMend could provide you with the perfect opportunity. Just by landing on this page you have taken the first step, but let us tell you a bit about ourselves so we can make sure we're right for each other, We're always on the lookout for smart, talented people, so if you like what you see here, reach out for a chat. We love going for a coffee."
+                content1="Are you looking for a career and not just a job? If you are then MoveMend could provide you with the perfect opportunity. Just by landing on this page you have taken the first step, but let us tell you a bit about ourselves so we can make sure we're right for each other, We're always on the lookout for smart, talented people, so if you like what you see here, reach out for a chat. We love going for a coffee."
+
                 img="/Join-team-imgs/Sec1.jpg"
-                {...buttonProps}
+                buttonProps={buttonProps}
             />
-            <section className="row mx-0 section2">
-                <div className="col-md-6 sub-container1">
-                    <span className="heading">Hi! Can we help you Move Through Life?</span>
-                    <p>Are you looking for a career and not just a job? If you are then MoveMend could provide you with the
-                        perfect opportunity. Just by landing on this page you have taken the first step, but let us tell you a
-                        bit about ourselves so we can make sure we're right for each other!</p>
-                    <p>We're always on the lookout for smart, talented people, so if you like what you see here, reach out for a
-                        chat. We love going for a coffee.</p>
-                    <button className="btn btn-dark" onClick={() => window.scrollBy(0, 1400)}>Get in contact with us</button>
-                </div>
-                <div className="col-md-6 p-0 sub-container2">
-                    <img src="/Join-team-imgs/Sec1.jpg" alt=""/>
-                </div>
-            </section>
 
-            <section className="row mx-0 flex-sm-row-reverse section3">
-                <div className="col-md-6 sub-container2">
-                    <span className="heading">"We redefine the modern healthcare experience whilst empowering our team and
-                        supporting
-                        our community to move through life."</span>
-                    <div style={{height: "1.5vh"}}></div>
-                    <p>What does that mean? It means the latest technology in the clinic, including VALD force measurement
-                        systems for our team members to have objective measures to demonstrate success with clients. It also
-                        means pathways and career progressions (see below). It means we have an all inclusive, non gendered Paid
-                        Parental Leave Policy, which supports parents to both go on leave and return to work.</p>
-                    <p>Our team includes: Physiotherapists, Pelvic Health Physiotherapists, Exercise Physiologists, Osteopaths,
-                        Podiatrists, Dieticians, Myotherapists and Remedial Massage Therapists!</p>
-                    <span className="heading">"We Go MoveMend, We are Good People, We Level up & We have fun!"</span>
-                </div>
-                <div className="col-md-6 p-0 sub-container1">
-                    <img src="/Join-team-imgs/Sec2.jpg" alt=""/>
-                </div>
-            </section>
+            <IntroSection
+                hd3="We redefine the modern healthcare experience whilst empowering our team and supporting our community to move through life."
 
+                content1="What does that mean? It means the latest technology in the clinic, including VALD force measurement systems for our team members to have objective measures to demonstrate success with clients. It also means pathways and career progressions (see below). It means we have an all inclusive, non gendered Paid Parental Leave Policy, which supports parents to both go on leave and return to work."
+            
+                content2="Our team includes: Physiotherapists, Pelvic Health Physiotherapists, Exercise Physiologists, Osteopaths, Podiatrists, Dieticians, Myotherapists and Remedial Massage Therapists! We Go MoveMend, We are Good People, We Level up & We have fun!"
+
+                img="/Join-team-imgs/Sec2.jpg"
+                toReverse="flex-sm-row-reverse"
+            />
             <section className="section4">
                 <div>
                     <span className="heading1">What does the interview process look like at MoveMend?</span>
                 </div>
-                <div style={{margin: "1vw 35vw"}}>
-                    <hr/>
+                <div style={{ margin: "1vw 35vw" }}>
+                    <hr />
                 </div>
                 <div className="buttons">
                     <button className="btn" onClick={() => showhide('1')}>Step 1</button>
@@ -85,15 +63,15 @@ function JoinTeam(){
                     <button className="btn" onClick={() => showhide('4')}>Step 4</button>
                     <button className="btn" onClick={() => showhide('5')}>Step 5</button>
                 </div>
-                <div style={{marginTop: "7vh"}}>
+                <div style={{ marginTop: "7vh" }}>
                     {
                         joinTeamData.map((data, index) => {
-                            return(
-                                <div id={`content${data.key}`}>
-                                    <div style={{marginTop: "5vh"}}>
+                            return (
+                                <div key={data.key} id={`content${data.key}`}>
+                                    <div style={{ marginTop: "5vh" }}>
                                         <span className="heading2">{data.h}</span>
                                     </div>
-                                    <p style={{marginTop: "2vh"}}>{data.p}</p>
+                                    <p style={{ marginTop: "2vh" }}>{data.p}</p>
                                 </div>
                             );
                         })
@@ -104,7 +82,7 @@ function JoinTeam(){
             <section className="section5">
                 <span>If you have any questions about joining the team please email: <Link to="/meet-team">adminmovemend@gmail.com</Link></span>
             </section>
-            <hr/>
+            <hr />
 
             <section className="section7">
                 <div>
