@@ -7,8 +7,7 @@
 .meetteam{
     
     .section1 {
-        padding-top: 11vh !important;
-        padding: 1vh;
+        padding: 4.5vh;
         background-color: #ebecec;
     }
 
@@ -127,5 +126,9 @@
     footer .nav-link {
         color: #ffffff !important;
         text-decoration: none;
+    }
+    .dropdown {
+        margin: 0 auto;
+        display: block;
     }
 }

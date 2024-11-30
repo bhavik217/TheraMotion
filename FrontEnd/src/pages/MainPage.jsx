@@ -40,7 +40,6 @@ function MainPage(){
       
     return(
         <div className="mainpage">
-            <div style={{height: "10.4vh"}}></div>
             <IntroSection 
                 hd1="Welcome To Site"
                 hd2="Helping You Move Through Life."
