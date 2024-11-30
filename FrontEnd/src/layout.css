@@ -1,9 +1,9 @@
 .main-content {
-    padding-top: 70px;
+    padding-top: 10.4vh;
 }
 
 @media (max-width: 768px) {
     .main-content {
-        padding-top: 66px;
+        padding-top: 15.4vh;
     }
 }
