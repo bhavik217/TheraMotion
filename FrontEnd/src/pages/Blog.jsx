@@ -49,9 +49,6 @@ function Blog() {
                                     <span className="full-text">
                                         <h5>Filter By Category</h5>
                                     </span>
-                                    <span className="short-text">
-                                        <h5>Filter &nbsp;</h5>
-                                    </span>
                                 </a>
                                 <ul className="dropdown-menu">
                                     {[
