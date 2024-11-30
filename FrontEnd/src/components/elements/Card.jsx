@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
 // data - img, key, person, service, category, p
-function Card({data}){
-    return(
+function Card({ data }) {
+    return (
         <div className={`card-container`}>
             <div className="col p-0 card text-center">
                 <Link to={`/meet-team/person${data.index}`}>

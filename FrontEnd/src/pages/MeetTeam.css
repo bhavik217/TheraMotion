@@ -128,4 +128,8 @@
         color: #ffffff !important;
         text-decoration: none;
     }
+    .dropdown {
+        margin: 0 auto;
+        display: block;
+    }
 }
