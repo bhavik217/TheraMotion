@@ -26,12 +26,16 @@ export const routes = [
             {
                 path: "/meet-team",
                 element: <MeetTeam />,
-                children: [
-                    {
-                        path: "person1",
-                        element: <Person1 />,
-                    }
-                ]
+                // children: [
+                //     {
+                //         path: "person1",
+                //         element: <Person1 />,
+                //     }
+                // ]
+            },
+            {
+                path: "/meet-team/person1",
+                element: <Person1 />,
             },
             {
                 path: "/join-team",

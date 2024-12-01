@@ -5,7 +5,7 @@ function Card({ data }) {
     return (
         <div className={`card-container`}>
             <div className="col p-0 card text-center">
-                <Link to={`/meet-team/person${data.index}`}>
+                <Link to={`/meet-team/person${data.key}`}>
                     <img className="card-img-top" src={data.img} alt="Image not found" />
                 </Link>
                 <div className="card-body p-0 mt-2">
@@ -13,7 +13,7 @@ function Card({ data }) {
                     <hr />
                     <span><strong>{data.service}</strong></span>
                     <p className="card-text">{data.p}</p>
-                    <Link to={`/meet-team/person${data.index}`} className="btn">See Profile</Link>
+                    <Link to={`/meet-team/person${data.key}`} className="btn">See Profile</Link>
                 </div>
             </div>
         </div>
