@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './SignUpLoginPage.css';
+import './SignUpSignInPage.css';
 
-function SignUpLoginPage({ initialMode = 'login' }) {
+function SignUpSigninPage({ initialMode = 'Signin' }) {
     const navigate = useNavigate();
-    const [loginData, setLoginData] = useState({
+    const [SigninData, setSigninData] = useState({
         email: '',
         password: ''
     });
@@ -16,11 +16,11 @@ function SignUpLoginPage({ initialMode = 'login' }) {
         password: ''
     });
 
-    const isLogin = initialMode === 'login';
+    const isSignin = initialMode === 'Signin';
 
-    const handleLoginChange = (e) => {
+    const handleSigninChange = (e) => {
         const { name, value } = e.target;
-        setLoginData((prevState) => ({
+        setSigninData((prevState) => ({
             ...prevState,
             [name]: value
         }));
@@ -34,9 +34,9 @@ function SignUpLoginPage({ initialMode = 'login' }) {
         }));
     };
 
-    const handleLoginSubmit = (e) => {
+    const handleSigninSubmit = (e) => {
         e.preventDefault();
-        console.log('Login Data:', loginData);
+        console.log('Signin Data:', SigninData);
     };
 
     const handleSignupSubmit = (e) => {
@@ -45,29 +45,29 @@ function SignUpLoginPage({ initialMode = 'login' }) {
     };
 
     const handleModeSwitch = () => {
-        setLoginData({ email: '', password: '' });
+        setSigninData({ email: '', password: '' });
         setSignupData({ firstName: '', lastName: '', email: '', password: '' });
-        navigate(isLogin ? '/signup' : '/login');
+        navigate(isSignin ? '/signup' : '/Signin');
     };
 
     return (
-        <div className="signup-login-page">
+        <div className="signup-Signin-page">
             <div style={{ height: "10.4vh" }}></div>
 
-            <section className="signup-login-section">
+            <section className="signup-Signin-section">
                 <div className="container">
-                    <div className="signup-login-card">
+                    <div className="signup-Signin-card">
                         <div className="card-header">
                             <div className="heading-primary">
-                                <span>{isLogin ? 'Login to' : 'Sign Up for'} MoveMend</span>
+                                <span>{isSignin ? 'Signin to' : 'Sign Up for'} MoveMend</span>
                             </div>
                             <div className="heading-secondary">
                                 <span>Move Through Life</span>
                             </div>
                         </div>
                         <div className="card-body">
-                            <form onSubmit={isLogin ? handleLoginSubmit : handleSignupSubmit}>
-                                {!isLogin && (
+                            <form onSubmit={isSignin ? handleSigninSubmit : handleSignupSubmit}>
+                                {!isSignin && (
                                     <div className="row">
                                         <div className="col-md-6 mb-3">
                                             <input
@@ -99,8 +99,8 @@ function SignUpLoginPage({ initialMode = 'login' }) {
                                         className="form-control"
                                         name="email"
                                         placeholder="Email Address"
-                                        value={isLogin ? loginData.email : signupData.email}
-                                        onChange={isLogin ? handleLoginChange : handleSignupChange}
+                                        value={isSignin ? SigninData.email : signupData.email}
+                                        onChange={isSignin ? handleSigninChange : handleSignupChange}
                                         required
                                     />
                                 </div>
@@ -110,8 +110,8 @@ function SignUpLoginPage({ initialMode = 'login' }) {
                                         className="form-control"
                                         name="password"
                                         placeholder="Password"
-                                        value={isLogin ? loginData.password : signupData.password}
-                                        onChange={isLogin ? handleLoginChange : handleSignupChange}
+                                        value={isSignin ? SigninData.password : signupData.password}
+                                        onChange={isSignin ? handleSigninChange : handleSignupChange}
                                         required
                                     />
                                 </div>
@@ -120,12 +120,12 @@ function SignUpLoginPage({ initialMode = 'login' }) {
                                         type="submit"
                                         className="btn"
                                     >
-                                        {isLogin ? 'Log In' : 'Sign Up'}
+                                        {isSignin ? 'Log In' : 'Sign Up'}
                                     </button>
                                 </div>
                                 <div className="text-center">
                                     <p>
-                                        {isLogin
+                                        {isSignin
                                             ? "Don't have an account? "
                                             : "Already have an account? "}
                                         <a
@@ -135,7 +135,7 @@ function SignUpLoginPage({ initialMode = 'login' }) {
                                                 handleModeSwitch();
                                             }}
                                         >
-                                            {isLogin ? 'Sign Up' : 'Log In'}
+                                            {isSignin ? 'Sign Up' : 'Sign In'}
                                         </a>
                                     </p>
                                 </div>
@@ -149,4 +149,4 @@ function SignUpLoginPage({ initialMode = 'login' }) {
 
 }
 
-export default SignUpLoginPage;
+export default SignUpSigninPage;

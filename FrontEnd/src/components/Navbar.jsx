@@ -18,7 +18,7 @@ function Navbar({ logo }) {
             
                 <div className="d-flex align-items-center">
                     <Link 
-                        to="/login" 
+                        to="/Signin" 
                         className="btn btn-outline-dark me-2 d-none d-md-block"
                     >
                         Sign In
@@ -58,7 +58,7 @@ function Navbar({ logo }) {
                                 <Link className="nav-link" to="/blog" onClick={handleNavItemClick}>Blog</Link>
                             </li>
                             <li className="nav-item d-md-none">
-                                <Link className="nav-link" to="/login" onClick={handleNavItemClick}>Sign In</Link>
+                                <Link className="nav-link" to="/Signin" onClick={handleNavItemClick}>Sign In</Link>
                             </li>
                         </ul>
                     </div>

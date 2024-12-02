@@ -4,24 +4,24 @@
     padding: 0;
 }
 
-.signup-login-page {
+.signup-Signin-page {
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.signup-login-section {
+.signup-Signin-section {
     padding: 80px 60px;
     background-color: #ebecec;
 }
 
-.signup-login-section .container {
+.signup-Signin-section .container {
     margin: 0 auto;
     width: 100%;
     max-width: 600px;
 }
 
-.signup-login-card {
+.signup-Signin-card {
     background: #ffffff;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -29,26 +29,26 @@
     overflow: hidden;
 }
 
-.signup-login-card .card-header {
+.signup-Signin-card .card-header {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.signup-login-card .heading-primary {
+.signup-Signin-card .heading-primary {
     color: #2b2e34;
     font-size: 2rem;
     line-height: 1.25;
     font-weight: bold;
 }
 
-.signup-login-card .heading-secondary {
+.signup-Signin-card .heading-secondary {
     color: #59595b;
     font-size: 1.2rem;
     line-height: 1.25;
     margin-top: 10px;
 }
 
-.signup-login-card .form-control {
+.signup-Signin-card .form-control {
     width: 100%;
     padding: 10px 15px;
     margin-bottom: 15px;
@@ -58,16 +58,16 @@
     outline: none;
 }
 
-.signup-login-card .form-control:focus {
+.signup-Signin-card .form-control:focus {
     border-color: #2b2e34;
     box-shadow: 0 0 5px rgba(43, 46, 52, 0.5);
 }
 
-.signup-login-card .buttons {
+.signup-Signin-card .buttons {
     margin-top: 20px;
 }
 
-.signup-login-card .btn {
+.signup-Signin-card .btn {
     width: 100%;
     background-color: #2B2E34;
     color: #ffffff;
@@ -80,46 +80,46 @@
     transition: background-color 0.3s ease;
 }
 
-.signup-login-card .btn:hover {
+.signup-Signin-card .btn:hover {
     background-color: #1f2126;
     color: #ffffff;
 }
 
-.signup-login-card .text-center {
+.signup-Signin-card .text-center {
     margin-top: 15px;
     font-size: 0.9rem;
     color: #59595b;
 }
 
-.signup-login-card .text-center a {
+.signup-Signin-card .text-center a {
     color: #2b2e34;
     font-weight: bold;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.signup-login-card .text-center a:hover {
+.signup-Signin-card .text-center a:hover {
     color: #1f2126;
 }
 
 @media screen and (max-width: 576px) {
-    .signup-login-section {
+    .signup-Signin-section {
         padding: 40px 20px;
     }
 
-    .signup-login-card {
+    .signup-Signin-card {
         padding: 15px;
     }
 
-    .signup-login-card .heading-primary {
+    .signup-Signin-card .heading-primary {
         font-size: 1.5rem;
     }
 
-    .signup-login-card .heading-secondary {
+    .signup-Signin-card .heading-secondary {
         font-size: 1rem;
     }
 
-    .signup-login-card .btn {
+    .signup-Signin-card .btn {
         padding: 10px 15px;
     }
 }
