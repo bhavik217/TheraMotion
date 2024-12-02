@@ -50,8 +50,8 @@
 }
 
 .meetteam-content .section3 {
-    padding: 4vh 0;
-    background-color: #f5f5f7;
+    padding: 1vh 0;
+    background-color: #f5f5f795;
 }
 
 .meetteam-content .section3 .card-container {
@@ -68,7 +68,7 @@
 }
 
 .meetteam-content .section3 .card:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translate(0px, -7px) scale(1.04);
     box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
 }
 
