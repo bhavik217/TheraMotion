@@ -1,7 +1,7 @@
 .meetteam-content .section2 {
-    background: linear-gradient(to right, #2b2e34, #3d4046);
+    background: linear-gradient(to right, #2B2E34, #2B2E30);
     color: #ffffff;
-    padding: 6vh 4vh;
+    padding: 3vh;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -19,16 +19,15 @@
 }
 
 .meetteam-content .section2 .btn {
-    border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffffff;
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 10px 20px;
-    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.04);
+    padding: 0.6rem 1rem;
+    border: none;
     transition: all 0.3s ease;
 }
 
 .meetteam-content .section2 .btn:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.06);
     transform: translateY(-1px);
 }
 
