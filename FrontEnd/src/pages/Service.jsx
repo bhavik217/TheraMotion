@@ -1,28 +1,25 @@
-// import servicedata from '../Data/servicebox'
-// import Servicebox from '../Components/Servicebox'
-// import Servicedata from '../Components/Servicedata'
+import IntroSection from "../components/IntroSection";
+import ServiceBox from "../components/Servicebox"
+import serviceData from "./data/serviceData"
 // import Bookappoint from '../Components/Bookappoint'
-import { Link } from "react-router-dom";
 
 function Service(){
   return (
     <div className="servico">
-      <section className="section1">
-        <div className="container">
-          <div className="heading1"><span>Our Services</span></div>
-          <div className="buttons">
-            <Link to="/"><span className="w-btn-label">Home</span></Link><i class="fa-solid fa-chevron-right"></i>
-            <Link to="/services"><span className="w-btn-label"> Services</span></Link>
-          </div>
-        </div>
-      </section>
-      {/* <Servicedata /> */}
-      <div className="container">
+      <IntroSection 
+        hd1="Experience Our Extensive Services"
+        content1="We truly believe in a patient focused care model, by offering a range of services under the one roof and a team approach we want to help you 'Move Through Life'."
+
+        content2="Our aim is to identify your health goals and create a plan to achieve these. This may mean working with just one of our practitioners or utilising other services to help you achieve this. Our team collaborates together and most importantly communicates with you, to get you to your health goals."
+        img="Services-imgs\TrainerHelp.jpg"
+      />
+      
+      <div className="container" style={{marginTop: "7vh"}}>
         <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 py-5 ab">
           {
-            // servicedata.map((data) => {
-              // return <Servicebox heading={data.heading} image={data.image} />;
-            // })
+            serviceData.map((data, index) => {
+              return <ServiceBox heading={data.heading} image={data.image}/>
+            })
           }
         </div>
       </div>

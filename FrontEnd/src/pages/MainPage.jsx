@@ -118,13 +118,6 @@ function MainPage(){
                 linksNames={["Search our Blog Posts & Resources"]}
                 carousel={<Carousel {...carouselProps3} />}
             />
-            <section className="row mx-0 section7">
-                <div className="col-sm-6 p-0 sub-container2">
-                    {/* <Carousel img1="/Services-imgs/Car3-1.jpg" img2="/Services-imgs/Car3-2.jpg" img3="/Services-imgs/Car3-3.jpg" num={"3"} h1={"Healthy Bones at Every Age"} h2={"Arthritis of Lower Back"} h3={"Back Pain Relief"}/> */}
-                </div>
-            </section>
-           
-            {/* <Bookappoint /> */}
         </div>
     );
 }

@@ -204,46 +204,4 @@
     .section6 .reqd_star{
         color: #e80000;
     }
-
-    /* Section7 */
-    .section7 {
-        text-align: center;
-        background-color: #ebecec;
-        padding: 59.5px;
-    }
-
-    .section7 h5 {
-        color: #2B2E34;
-        font-size: 28px;
-    }
-
-    .section7 p {
-        color: #2B2E34;
-        font-size: 20px;
-        margin: 12px 0px 0px;
-    }
-
-    .section7 .btn {
-        margin: 24px 0px 0px;
-    }
-
-    .section7 .btn a {
-        background-color: #2b2e34;
-        color: white;
-        text-decoration: none;
-        padding: 7px 20px;
-        font-size: medium;
-    }
-
-
-    /* Footer */
-    footer {
-        background: #2b2e34;
-        color: #ffffff;
-    }
-
-    footer .nav-link {
-        color: #ffffff !important;
-        text-decoration: none;
-    }
 }
