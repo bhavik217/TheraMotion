@@ -1,0 +1,122 @@
+.meetteam-layout {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+}
+
+.section1 {
+    padding: 4.5vh;
+    background-color: #ebecec;
+}
+
+.section1 .container {
+    max-width: 1200px;
+    background: url(https://www.movebeyond.com.au/wp-content/uploads/2020/07/Beyond-icon-dark-1.svg);
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: auto;
+}
+
+.section1 .heading1 {
+    color: #2B2E34;
+    font-size: 2rem;
+    line-height: 1.25;
+}
+
+.section1 .buttons a {
+    color: #2b2e34;
+    text-decoration: none;
+    margin-right: 5px;
+    font-size: 1rem;
+}
+
+.meetteam-layout .section4 {
+    text-align: center;
+    background-color: #ebecec;
+    padding: 59.5px;
+    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.05);
+    margin-top: 10px;
+}
+
+.meetteam-layout .section4 h5 {
+    color: #2B2E34;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.meetteam-layout .section4 p {
+    color: #2B2E34;
+    font-size: 20px;
+    max-width: 800px;
+    margin: 12px auto 0;
+    line-height: 1.6;
+}
+
+.meetteam-layout .section4 .btn1 {
+    margin: 24px 0 0;
+}
+
+.meetteam-layout .section4 .btn1 a {
+    background-color: #2b2e34;
+    color: white;
+    text-decoration: none;
+    padding: 7px 20px;
+    font-size: medium;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    border: 2px solid #2b2e34;
+}
+
+.meetteam-layout .section4 .btn1 a:hover {
+    background-color: transparent;
+    color: #2b2e34;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@media screen and (max-width: 768px) {
+    .meetteam-layout .section1 .container {
+        background-position: center right -100px;
+    }
+
+    .meetteam-layout .section4 h5 {
+        font-size: 24px;
+    }
+
+    .meetteam-layout .section4 p {
+        font-size: 18px;
+        padding: 0 1rem;
+    }
+}
+
+@media screen and (max-width: 527px) {
+    .section1 .buttons {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .section1 .buttons .btn1 a {
+        padding: 3px 10px;
+        font-size: small;
+    }
+
+    .section1 .buttons .btn2 a {
+        padding: 3px 10px;
+        font-size: small;
+    }
+
+    .meetteam-layout .section4 h5 {
+        font-size: 22px;
+    }
+
+    .meetteam-layout .section4 .btn1 a {
+        padding: 7px 20px;
+        font-size: small;
+    }
+}
