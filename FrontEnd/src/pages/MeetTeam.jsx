@@ -1,28 +1,18 @@
-import './MeetTeam.css'
-import { Link } from "react-router-dom";
+import './MeetTeam.css';
 import { useState } from 'react';
-import Card from '../components/elements/Card'
+import Card from '../components/elements/Card';
 import meetData from './data/meetTeamData';
 
-function MeetTeam(){
+function MeetTeam() {
     const [filter, setFilter] = useState('all');
 
     function filterCards(category) {
         setFilter(category);
     }
 
-    return(
-        <div className="meetteam">
-            <section className="section1">
-                <div className="container">
-                <div className="heading1"><span>Our Team</span></div>
-                    <div className="buttons">
-                        <Link to="/"><span className="w-btn-label">Home <i className="fa-solid fa-chevron-right"></i></span></Link>
-                        <Link to="/meet-team"><span className="w-btn-label"> Our Team</span></Link>
-                    </div>
-                </div>
-            </section>
-
+    return (
+        <>
+        <div className='meetteam-content'>
             <section className="section2 text-center">
                 <div className="container">
                     <div className="heading">
@@ -43,30 +33,17 @@ function MeetTeam(){
 
             <div className="container">
                 <section className="section3 row row-cols-2 row-cols-md-3 row-cols-lg-4">
-                {
-                    meetData.map((data, index) => {
+                    {meetData.map((data, index) => {
                         if(filter === 'all' || filter === data.category){
                             return <Card key={index} data={data}/>
                         }
                         return null;
-                    })
-                }
+                    })}
                 </section>
             </div>
-
-            <section className="section4">
-                <div>
-                    <h5>Looking to Book an Appointment?</h5>
-                </div>
-                <div>
-                    <p>Site is here to help you Move through life! Booking an appointment online is the most convenient way to
-                    lock in the location, practitioner &amp; time you want.</p>
-                </div>
-                <div title="Book Online" className="btn1">
-                    <Link to="/book-appointment"><span>Book an Appointment</span></Link>
-                </div>
-            </section>
-        </div>
+            </div>
+        </>
     );
 }
+
 export default MeetTeam;

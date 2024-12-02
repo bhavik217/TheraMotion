@@ -5,6 +5,7 @@ import MainPage from "./pages/MainPage";
 import MeetTeam from "./pages/MeetTeam";
 import Blog from "./pages/Blog";
 import Person1 from "./components/Person1"
+import MeetTeamLayout from "./pages/MeetTeamLayout";
 
 export const routes = [
     {
@@ -25,17 +26,17 @@ export const routes = [
             },
             {
                 path: "/meet-team",
-                element: <MeetTeam />,
-                // children: [
-                //     {
-                //         path: "person1",
-                //         element: <Person1 />,
-                //     }
-                // ]
-            },
-            {
-                path: "/meet-team/person1",
-                element: <Person1 />,
+                element: <MeetTeamLayout />,
+                children: [
+                    {
+                        index: true,
+                        element: <MeetTeam />
+                    },
+                    {
+                        path: "person1",
+                        element: <Person1 />
+                    }
+                ]
             },
             {
                 path: "/join-team",
