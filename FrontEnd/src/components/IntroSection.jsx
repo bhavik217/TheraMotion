@@ -28,14 +28,11 @@ function IntroSection({
                 <div style={{ height: "3vh" }}></div>
                 {links.length > 0 && (
                     <div className="links">
-                        <p>
-                            {links.map((link, index) => (
-                                <div key={index}>
-                                    <Link to={link}>{linksNames[index]} &gt;</Link>
-                                    <br />
-                                </div>
-                            ))}
-                        </p>
+                        {links.map((link, index) => (
+                            <div key={index}>
+                                <Link to={link}>{linksNames[index]} &gt;</Link>
+                            </div>
+                        ))}
                     </div>
                 )}
                 {buttonProps && <button className={`btn ${buttonProps.color}`} onClick={buttonProps.onClick}>{buttonProps.text}</button>}
