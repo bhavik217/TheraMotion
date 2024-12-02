@@ -5,10 +5,20 @@
 }
 
 .persons {
+    .section1 {
+        margin-top: 10px;
+    }
     
-    .section1 .sub-container1 img {
-        width: 100%;
-        transition: all 0.3s ease;
+    .section1 .sub-container1 {
+        display: flex;
+        align-items: center;
+        
+        img {
+            width: 80%; 
+            max-height: 500px; 
+            object-fit: cover; 
+            margin: 0 auto;
+        }
     }
 
     .section1 .sub-container2 {
@@ -27,6 +37,11 @@
                 height: 2px;
                 background: #2b2e34;
             }
+        }
+        
+        .para, .content p {
+            text-align: justify;
+            hyphens: auto; 
         }
     }
 
@@ -67,7 +82,7 @@
     }
 
     .section1 .buttons #first {
-        background: #ebecec;
+        background-color: #ebecec;
     }
 
     .section1 .buttons .btn {
@@ -78,8 +93,12 @@
         border: 1px solid #e0e0e0;
         
         &:hover {
-            background: #ebecec;
+            background-color: #ebecec;
             transform: translateY(-1px);
+        }
+
+        &.active {
+            background-color: #ebecec;
         }
     }
 
@@ -126,6 +145,13 @@
 
         .section1 .buttons {
             margin: 0vh;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        .section1 .sub-container1 img {
+            width: 100%;
+            max-height: 300px;
         }
     }
 

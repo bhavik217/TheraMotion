@@ -4,8 +4,8 @@ import JoinTeam from "./pages/JoinTeam";
 import MainPage from "./pages/MainPage";
 import MeetTeam from "./pages/MeetTeam";
 import Blog from "./pages/Blog";
-import Person1 from "./components/Person1"
 import MeetTeamLayout from "./pages/MeetTeamLayout";
+import PersonDetail from "./components/PersonDetails";
 
 export const routes = [
     {
@@ -33,8 +33,8 @@ export const routes = [
                         element: <MeetTeam />
                     },
                     {
-                        path: "person1",
-                        element: <Person1 />
+                        path: ":personId",
+                        element: <PersonDetail />
                     }
                 ]
             },
