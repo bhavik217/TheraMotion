@@ -1,0 +1,91 @@
+.dashboard {
+    min-height: 100vh;
+}
+
+.dashboard .section1 {
+    padding: 80px 60px;
+    background-color: #ebecec;
+}
+
+.dashboard .section1 .container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.dashboard .section1 .heading1 {
+    color: #2B2E34;
+    font-size: 2rem;
+    line-height: 1.25;
+    margin-bottom: 20px;
+}
+
+.dashboard .section1 .buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.dashboard .section1 .buttons a {
+    color: #373737;
+    text-decoration: none;
+}
+
+.dashboard .section2 {
+    padding: 80px 60px;
+    background-color: #2b2e34;
+}
+
+.dashboard .section2 .container {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.dashboard .section2 .heading1 {
+    color: #ffffff;
+    font-size: 2rem;
+    line-height: 1.25;
+}
+
+.dashboard .section2 .heading2 {
+    color: #59595b;
+    font-size: 2rem;
+    line-height: 1.25;
+}
+
+.dashboard .section2 .buttons {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.dashboard .section2 .buttons a {
+    background-color: white;
+    color: #373737;
+    text-decoration: none;
+    padding: 7px 20px;
+    font-size: medium;
+}
+
+@media screen and (max-width: 527px) {
+    .dashboard .section1,
+    .dashboard .section2 {
+        padding: 40px 20px;
+    }
+
+    .dashboard .section1 .heading1,
+    .dashboard .section2 .heading1,
+    .dashboard .section2 .heading2 {
+        font-size: 1.5rem;
+    }
+
+    .dashboard .section2 .buttons {
+        flex-direction: column;
+    }
+
+    .dashboard .section2 .buttons a {
+        padding: 5px 15px;
+        font-size: small;
+    }
+}
