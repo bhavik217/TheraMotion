@@ -20,37 +20,40 @@ function SignUp() {
             password: passwordRef.current.value,
         };
 
+        console.log("The event is: ", event);
+        console.log("The form values are: ", formValuesObject);
+
         if (
             formValuesObject.firstName &&
             formValuesObject.lastName &&
             formValuesObject.email &&
             formValuesObject.password
-        )
-        {
-            // Make an API/web service call to submit the user details
-            var response = await fetch("http://localhost:8080/user", {
+        ) {
+            console.log("Submit this form");
+
+            var response = await fetch("http://localhost:8081/user", {
                 method: "POST",
                 body: JSON.stringify({ ...formValuesObject }),
                 headers: {
-                    "Content-Type": "application/json"
-                }
+                    "Content-Type": "application/json",
+                },
             });
 
-            if (response.ok && (response.status == 201 || response.status == 200)) {
-                setShowFailureAlert(false);
+            if (
+                response.ok &&
+                (response.status === 201 || response.status === 200)
+            ) {
                 setShowSuccessAlert(true);
+                setShowFailureAlert(false);
             } else {
                 setShowSuccessAlert(false);
                 setShowFailureAlert(true);
             }
-        }
-        else {
+
+            console.log("The response of POST API call is ", response);
+        } else {
             setShowFailureAlert(true);
         }
-    };
-
-    const updateFirstName = () => {
-        console.log("on change called: ", firstNameRef);
     };
 
     return (
@@ -63,7 +66,6 @@ function SignUp() {
                 <div className="alert alert-danger" role="alert">Error creating user</div>
             )}
 
-            {/* Centered container with adjusted form layout */}
             <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: "90vh" }}>
                 <div className="card p-4" style={{ width: "400px", borderRadius: "10px" }}>
                     <h2 className="text-center mb-2">SignUp to TheraMotion</h2>
@@ -77,7 +79,6 @@ function SignUp() {
                                 className="form-control"
                                 id="firstName"
                                 ref={firstNameRef}
-                                onChange={updateFirstName}
                                 required
                             />
                         </div>
