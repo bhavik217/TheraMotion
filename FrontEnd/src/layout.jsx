@@ -9,7 +9,7 @@ function Layout() {
     const location = useLocation();
 
     const showBookLink =
-        location.pathname !== "/Signin" &&
+        location.pathname !== "/signin" &&
         location.pathname !== "/signup";
 
 
