@@ -1,5 +1,5 @@
 import Layout from "./layout"
-import SignUpSigninPage from "./pages/SignUpSignInPage";
+import SignUp from "./pages/SignUp";
 import JoinTeam from "./pages/JoinTeam";
 import MainPage from "./pages/MainPage";
 import MeetTeam from "./pages/MeetTeam";
@@ -18,12 +18,12 @@ export const routes = [
                 element: <MainPage />
             },
             {
-                path: "/Signin",
-                element: <SignUpSigninPage initialMode="Signin" />
+                path: "/signin",
+                element: <SignUp />
             },
             {
                 path: "/signup",
-                element: <SignUpSigninPage initialMode="signup" />
+                element: <SignUp />
             },
             {
                 path: "/meet-team",
