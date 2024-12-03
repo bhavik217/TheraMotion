@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 function SignUp() {
     const firstNameRef = useRef(null);
@@ -55,11 +56,11 @@ function SignUp() {
     return (
         <>
             {showSuccessAlert && (
-                window.alert("User created successfully")
+                <div className="alert alert-success" role="alert">User created successfully</div>
             )}
 
             {showFailureAlert && (
-                window.alert("Error Creating User")
+                <div className="alert alert-danger" role="alert">Error creating user</div>
             )}
 
             {/* Centered container with adjusted form layout */}
@@ -116,7 +117,7 @@ function SignUp() {
                         </div>
 
                         <div className="text-center">
-                            <p>Already have an account? <a href="/login">Sign In</a></p>
+                            <p>Already have an account? <Link to="/signin">Sign In</Link></p>
                         </div>
                     </form>
                 </div>
