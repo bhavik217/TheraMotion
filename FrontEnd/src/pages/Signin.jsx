@@ -1,9 +1,19 @@
-import { useRef, useState } from "react";
-import { Link } from "react-router-dom"
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function SignIn() {
+export function SignIn() {
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
+    const [signInSuccess, setSignInSuccess] = useState(false);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (signInSuccess) {
+            fetchUserDetails();
+        }
+    }, [signInSuccess]);
 
     const signInHandler = async (event) => {
         event.preventDefault();
@@ -13,28 +23,48 @@ function SignIn() {
             password: passwordRef.current.value,
         };
 
+        console.log("The event is: ", event);
+        console.log("The form values are: ", formValuesObject);
+
         if (formValuesObject.email && formValuesObject.password) {
-            try {
-                const signInResponse = await fetch("http://localhost:8081/user/signin", {
-                    method: "POST",
-                    body: JSON.stringify(formValuesObject),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                });
+            console.log("Submit this form");
+            const signInResponse = await fetch("http://localhost:8081/user/signin", {
+                method: "POST",
+                body: JSON.stringify(formValuesObject),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
 
+            if (signInResponse.ok && signInResponse.status == "200") {
                 const signInResponseData = await signInResponse.json();
-
-                if (signInResponse.ok) {
-                    alert("Signin success");
-                } else {
-                    alert(signInResponseData.message || "Signin failed");
-                }
-            } catch (error) {
-                alert("Network error");
+                localStorage.setItem("authToken", signInResponseData?.token);
+                localStorage.setItem("loggedInUserEmail", formValuesObject.email);
+                setSignInSuccess(true);
+                alert("Signin success");
+                window.location.href = '/dashboard';
+            } else {
+                alert("Signin failed");
             }
         } else {
             alert("Form is invalid");
+        }
+    };
+
+    const fetchUserDetails = async () => {
+        let email = localStorage.getItem("loggedInUserEmail");
+        var productsResponse = await fetch(`http://localhost:8081/user}`, {
+            headers: {
+                Authorization: localStorage.getItem("authToken"),
+            },
+        });
+        var userDetails = await productsResponse.json();
+        console.log("The user details are: ", userDetails);
+        if (productsResponse.ok && productsResponse.status == "200") {
+            localStorage.setItem("userDetails", JSON.stringify(userDetails));
+            window.location.href = '/dashboard';
+        } else {
+            console.log("Failed to fetch user details");
         }
     };
 
@@ -55,6 +85,7 @@ function SignIn() {
                             required
                         />
                     </div>
+
                     <div className="mb-3">
                         <label htmlFor="inputPassword4" className="form-label">Password</label>
                         <input
@@ -65,11 +96,9 @@ function SignIn() {
                             required
                         />
                     </div>
-
                     <div className="d-grid gap-2 mb-3">
                         <button type="submit" className="btn btn-dark">Sign In</button>
                     </div>
-
                     <div className="text-center">
                         <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
                     </div>
@@ -78,4 +107,5 @@ function SignIn() {
         </div>
     );
 }
+
 export default SignIn;
