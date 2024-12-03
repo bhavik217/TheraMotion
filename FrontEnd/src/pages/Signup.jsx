@@ -39,12 +39,10 @@ function SignUp() {
                 },
             });
 
-            if (
-                response.ok &&
-                (response.status === 201 || response.status === 200)
-            ) {
+            if (response.ok && (response.status === 201 || response.status === 200)) {
                 setShowSuccessAlert(true);
                 setShowFailureAlert(false);
+                setTimeout(() => navigate("/signin"), 2000);
             } else {
                 setShowSuccessAlert(false);
                 setShowFailureAlert(true);
