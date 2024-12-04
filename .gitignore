@@ -3,3 +3,4 @@ BackEnd/package-lock.json
 BackEnd/config/dbconnection.js
 BackEnd/.gitignore
 BackEnd/.env
+FrontEnd/src/components/extra

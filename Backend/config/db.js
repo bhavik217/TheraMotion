@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-const MONGO_URI = "mongodb+srv://Arnavgupta25:arnav123@cluster0.wxmx8.mongodb.net/theramotion";
+const MONGO_URI = process.env.MONGO_URL;
 
 export  const connectDB = async () => {
     try{
