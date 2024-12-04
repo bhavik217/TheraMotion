@@ -25,36 +25,23 @@ function Navbar({ logo }) {
     const handleNavItemClick = () => {
         try {
             const offcanvasElement = document.getElementById("offcanvasNavbar");
-            
-            // Bootstrap method
-            if (offcanvasElement && typeof bootstrap !== 'undefined') {
+    
+            if (offcanvasElement && typeof bootstrap !== "undefined") {
                 const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
                 if (offcanvasInstance) {
                     offcanvasInstance.hide();
                 }
             }
     
-            // Programmatic method
-            if (offcanvasElement) {
-                offcanvasElement.classList.remove('show');
-            }
+            const backdrop = document.querySelector(".offcanvas-backdrop");
+            if (backdrop) backdrop.remove();
     
-            // Remove backdrop and body classes
-            const backdrop = document.querySelector('.offcanvas-backdrop');
-            if (backdrop) {
-                backdrop.remove();
-            }
-    
-            document.body.classList.remove(
-                'offcanvas-backdrop', 
-                'modal-open', 
-                'show', 
-                'offcanvas-open'
-            );
+            document.body.classList.remove("offcanvas-backdrop", "modal-open", "show", "offcanvas-open");
         } catch (error) {
             console.error("Error closing offcanvas:", error);
         }
     };
+    
 
     return (
         <nav className="navbar bg-body-tertiary border-bottom fixed-top">
