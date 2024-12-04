@@ -1,13 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 export function SignIn() {
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const [signInSuccess, setSignInSuccess] = useState(false);
-
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (signInSuccess) {
@@ -42,7 +39,7 @@ export function SignIn() {
                 localStorage.setItem("loggedInUserEmail", formValuesObject.email);
                 setSignInSuccess(true);
                 alert("Signin success");
-                // window.location.href = '/dashboard';
+                window.location.href = '/dashboard';
             } else {
                 alert("Signin failed");
             }
