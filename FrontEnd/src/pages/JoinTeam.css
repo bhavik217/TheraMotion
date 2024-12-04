@@ -5,12 +5,12 @@
 }
 
 .jointeam{
-    /* Section1 */
+
     .section1 {
-        padding: 4.5vh;
+        padding: 2vh;
         background-color: #ebecec;
     }
-
+    
     .section1 .container {
         max-width: 1200px;
         background: url(https://www.movebeyond.com.au/wp-content/uploads/2020/07/Beyond-icon-dark-1.svg);

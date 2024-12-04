@@ -21,7 +21,6 @@ const ProtectedRoute = () => {
     const authToken = localStorage.getItem("authToken");
 
     if (!authToken) {
-        // Redirect to signin if not authenticated
         return <Navigate to="/signin" replace />;
     }
 

@@ -1,5 +1,9 @@
 import express from "express";
 import userRoutes from "./routes/user.js";
+import {connectDB} from "./config/db.js";
+import dotenv  from "dotenv";
+
+dotenv.config();
 
 const app = express();
 const port = "8081";
@@ -21,6 +25,8 @@ app.use("/user",userRoutes);
 app.get("/", (req, res) => {
     res.send("hello world again");
 });
+
+connectDB();
 
 app.listen(port, () => {
     console.log("The server is running on port: ", port);

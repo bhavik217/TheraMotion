@@ -1,13 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 export function SignIn() {
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const [signInSuccess, setSignInSuccess] = useState(false);
-
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (signInSuccess) {
@@ -53,7 +50,8 @@ export function SignIn() {
 
     const fetchUserDetails = async () => {
         let email = localStorage.getItem("loggedInUserEmail");
-        var productsResponse = await fetch(`http://localhost:8081/user}`, {
+        var productsResponse = await fetch(`http://localhost:8081/user/${email}`, {
+            method: "GET",
             headers: {
                 Authorization: localStorage.getItem("authToken"),
             },
@@ -62,7 +60,7 @@ export function SignIn() {
         console.log("The user details are: ", userDetails);
         if (productsResponse.ok && productsResponse.status == "200") {
             localStorage.setItem("userDetails", JSON.stringify(userDetails));
-            window.location.href = '/dashboard';
+            // window.location.href = '/dashboard';
         } else {
             console.log("Failed to fetch user details");
         }
