@@ -1,14 +1,17 @@
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import "./Navbar.css";
 
-function Navbar({ logo }) {
+const Navbar = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         const authToken = localStorage.getItem("authToken");
         setIsAuthenticated(!!authToken);
     }, []);
+
 
     const handleAuthToggle = () => {
         if (isAuthenticated) {
@@ -22,115 +25,89 @@ function Navbar({ logo }) {
         }
     };
 
-    const handleNavItemClick = () => {
-        try {
-            const offcanvasElement = document.getElementById("offcanvasNavbar");
-    
-            if (offcanvasElement && typeof bootstrap !== "undefined") {
-                const offcanvasInstance = bootstrap.Offcanvas.getInstance(offcanvasElement);
-                if (offcanvasInstance) {
-                    offcanvasInstance.hide();
-                }
-            }
-    
-            const backdrop = document.querySelector(".offcanvas-backdrop");
-            if (backdrop) backdrop.remove();
-    
-            document.body.classList.remove("offcanvas-backdrop", "modal-open", "show", "offcanvas-open");
-        } catch (error) {
-            console.error("Error closing offcanvas:", error);
-        }
+    // Toggle menu visibility
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
     };
-    
+
+    // Close menu
+    const closeMenu = () => {
+        setMenuOpen(false);
+    };
 
     return (
-        <nav className="navbar bg-body-tertiary border-bottom fixed-top">
-            <div className="container-sm">
-                <Link className="navbar-brand" to="/">
-                    <img
-                        width="180"
-                        height="50"
-                        src={logo}
-                        alt="Site Logo"
-                        style={{ objectFit: 'contain' }}
-                    />
-                </Link>
-
-                <div className="d-flex align-items-center">
-                    <button
-                        className="btn btn-outline-dark me-2 d-none d-md-block"
-                        onClick={handleAuthToggle}
-                    >
-                        {isAuthenticated ? "Logout" : "Sign In"}
-                    </button>
-                    <button
-                        className="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasNavbar"
-                        aria-controls="offcanvasNavbar"
-                        aria-label="Toggle navigation"
-                    >
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-
-                <div
-                    className="offcanvas offcanvas-end"
-                    tabIndex="-1"
-                    id="offcanvasNavbar"
-                    aria-labelledby="offcanvasNavbarLabel"
-                >
-                    <div className="offcanvas-header">
-                        <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
-                            Menu
-                        </h5>
+        <div>
+            <nav className="navbar navbar-light bg-light fixed-top">
+                <div className="container d-flex justify-content-between align-items-center">
+                    <Link to="/" className="navbar-brand">
+                        <img
+                            src="/path-to-logo.png"
+                            alt="Site Logo"
+                            style={{ width: "40px", height: "40px" }}
+                        />
+                    </Link>
+                    <div className="d-flex align-items-center">
                         <button
-                            type="button"
-                            className="btn-close"
-                            data-bs-dismiss="offcanvas"
-                            aria-label="Close"
-                        ></button>
-                    </div>
-                    <div className="offcanvas-body">
-                        <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            {[
-                                { path: "/", text: "Home", current: true },
-                                { path: "/meet-team", text: "Meet Our Team" },
-                                { path: "/join-team", text: "Join Our Team" },
-                                { path: "/services", text: "Services" },
-                                { path: "/blog", text: "Blog" }
-                            ].map((item) => (
-                                <li key={item.path} className="nav-item">
-                                    <Link
-                                        to={item.path}
-                                        className={`nav-link ${item.current ? 'active' : ''}`}
-                                        aria-current={item.current ? "page" : undefined}
-                                        onClick={() => {
-                                            handleNavItemClick();
-                                        }}
-                                    >
-                                        {item.text}
-                                    </Link>
-                                </li>
-                            ))}
-                            <li className="nav-item d-md-none">
-                                <button
-                                    className="btn btn-link nav-link"
-                                    onClick={() => {
-                                        handleNavItemClick();
-                                        handleAuthToggle();
-                                    }}
-                                >
-                                    {isAuthenticated ? "Logout" : "Sign In"}
-                                </button>
-                            </li>
-                        </ul>
+                            className="btn btn-outline-dark me-2 d-none d-md-block"
+                            onClick={handleAuthToggle}
+                        >
+                            {isAuthenticated ? "Sign Out" : "Sign In"}
+                        </button>
+                        <button className="menu-toggle" onClick={toggleMenu}>
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
                     </div>
                 </div>
+            </nav>
+
+            {/* Side Drawer Menu */}
+            <div className={`side-drawer ${menuOpen ? "open" : ""}`}>
+                <button className="close-btn" onClick={closeMenu}>
+                    &times;
+                </button>
+                <ul className="menu-links">
+                    <li>
+                        <Link to="/" onClick={closeMenu}>
+                            Home
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/dashboard" onClick={closeMenu}>
+                            Dahboard
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/meet-team" onClick={closeMenu}>
+                            Meet Our Team
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/join-team" onClick={closeMenu}>
+                            Join Our Team
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/services" onClick={closeMenu}>
+                            Services
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/blog" onClick={closeMenu}>
+                            Blog
+                        </Link>
+                    </li>
+                    <li className="d-lg-none">
+                        <button className="btn btn-link auth-button" onClick={handleAuthToggle}>
+                            {isAuthenticated ? "Sign Out" : "Sign In"}
+                        </button>
+                    </li>
+                </ul>
             </div>
-        </nav>
+
+            {/* Backdrop */}
+            {menuOpen && <div className="backdrop" onClick={closeMenu}></div>}
+        </div>
     );
-}
+};
 
 export default Navbar;
