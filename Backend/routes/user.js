@@ -1,68 +1,87 @@
 import express from 'express';
+import UserModel from '../models/Usermodel.js';
+import { verifyToken } from '../utils/helpers.js';
+
 const router = express.Router();
 
-const users = [];
+router.get("/:email", verifyToken, (req, res) => {
+    console.log("fetch request received");
+    UserModel.getUser(
+        req,
+        (dbRes) => {
+            if(dbRes){
+                if (!res.headersSent) {
+                    res.status(200).json(dbRes);
+                }
+            }
+            else{
+                if (!res.headersSent) {
+                    res.status(204).json(null);
+                }
+            }
+        },
+        (dbErr) => {
+            console.log(dbErr.name);
+            res.status(dbErr.status || 500);
+            res.send({error: dbErr.message});
+        }
+    )
+});
 
 // Signup Route
-router.post('/', (req, res) => {
-    try {
-        const { firstName, lastName, email, password } = req.body;
+router.post("/", (req, res) => {
+    // res.json(req.body);
+    console.log(req.body);
+    const user = req.body;
 
-        // Check if user already exists
-        const existingUser = users.find(user => user.email === email);
-        if (existingUser) {
-            return res.status(400).json({ message: "User already exists" });
-        }
-
-        // Create new user
-        const newUser = {
-            id: users.length + 1,
-            firstName,
-            lastName,
-            email,
-            password,
-        };
-
-        users.push(newUser);
-
-        res.status(201).json({
-            message: "User created successfully",
-            user: {
-                id: newUser.id,
-                firstName: newUser.firstName,
-                lastName: newUser.lastName,
-                email: newUser.email
+    UserModel.addUser(
+        user, 
+        (dbRes) => {
+            if(dbRes){
+                res.send(dbRes);
             }
-        });
-    } catch (error) {
-        res.status(500).json({ message: "Server error during signup" });
-    }
+            else{
+                res.status(400);
+                res.send(dbRes);
+            }
+        },
+        (dbError) => {
+            console.log(dbError.name);
+            if(dbError.name === "ValidationError"){
+                res.status(400); //client side error
+            }
+            else{
+                res.status(500); //server side error
+            }
+            res.send({error: dbError.message});
+        }
+    );
 });
 
 // Signin Route
-router.post('/signin', (req, res) => {
-    try {
-        const { email, password } = req.body;
-
-        // Find user by email
-        const user = users.find(u => u.email === email && u.password === password);
-
-        if (!user) {
-            return res.status(401).json({ message: "Invalid credentials" });
-        }
-
-        res.status(200).json({
-            message: "Sign in successful",
-            user: {
-                id: user.id,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email
+router.post("/signin", (req, res) => {
+    const userData = req.body;
+    UserModel.signIn(
+        userData,
+        (dbRes) => {
+            if(dbRes){
+                res.send(dbRes);
             }
-        });
-    } catch (error) {
-        res.status(500).json({ message: "Server error during signin" });
-    }
+            else{
+                res.status(400).send({message: "Invalid Credentials"});
+            }
+        },
+        (dbError) => {
+            console.log(dbError.name);
+            if(dbError.name == "ValidationError"){
+                res.status(dbError.status || 400);
+            }
+            else{
+                res.status(dbError.status || 500);
+            }
+            res.send({error: dbError.message});
+        }
+    );
 });
 
 export default router;

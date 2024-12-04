@@ -42,7 +42,7 @@ export function SignIn() {
                 localStorage.setItem("loggedInUserEmail", formValuesObject.email);
                 setSignInSuccess(true);
                 alert("Signin success");
-                window.location.href = '/dashboard';
+                // window.location.href = '/dashboard';
             } else {
                 alert("Signin failed");
             }
@@ -53,7 +53,8 @@ export function SignIn() {
 
     const fetchUserDetails = async () => {
         let email = localStorage.getItem("loggedInUserEmail");
-        var productsResponse = await fetch(`http://localhost:8081/user}`, {
+        var productsResponse = await fetch(`http://localhost:8081/user/${email}`, {
+            method: "GET",
             headers: {
                 Authorization: localStorage.getItem("authToken"),
             },
@@ -62,7 +63,7 @@ export function SignIn() {
         console.log("The user details are: ", userDetails);
         if (productsResponse.ok && productsResponse.status == "200") {
             localStorage.setItem("userDetails", JSON.stringify(userDetails));
-            window.location.href = '/dashboard';
+            // window.location.href = '/dashboard';
         } else {
             console.log("Failed to fetch user details");
         }

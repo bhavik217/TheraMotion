@@ -1,5 +1,6 @@
 import express from "express";
 import userRoutes from "./routes/user.js";
+import { connectDB } from "./config/db.js";
 
 const app = express();
 const port = "8081";
@@ -25,3 +26,6 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
     console.log("The server is running on port: ", port);
 });
+
+
+connectDB();
