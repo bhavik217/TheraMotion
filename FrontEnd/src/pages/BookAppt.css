@@ -1,0 +1,30 @@
+.booko{
+    .col-md-7 {
+        margin-right: 50px;
+    }
+    .btn11 {
+        padding-left: 10px;
+        padding-right: 10px;
+        height: 50px;
+        border: 1px solid black;
+        border-radius: 0px;
+    }
+    
+    .appo1 {
+        background-color: rgba(128, 128, 128, 0.705);
+    }
+    
+    .appo1:hover{
+        background-color: white;
+        border: none;
+    }
+    
+    .group1 {
+        background-color: rgba(128, 128, 128, 0.196);
+    }
+    
+    .group1:hover{
+        background-color: white;
+        border: none;
+    }   
+}
