@@ -1,0 +1,52 @@
+.timee{
+	.timings{
+		border:1px solid black;
+		padding-bottom: 50px;
+	}
+	.date{
+		
+		margin:30px;
+		border: 1px solid black;
+		width:90%;
+		background-color: #2b2e34e4;
+		display:flex;
+		height:45px;
+	}
+	.d{
+		line-height: 45px;
+		text-align: center;
+		width:93%;
+		color: white;
+		font-size: larger;
+	}
+	.c{
+		text-align: center;
+		line-height: 45px;
+		width:7%;
+		color: white;
+		font-size: larger;
+		border: 2px solid white;
+		box-shadow:0 0 5px #26bf99;
+	}
+	.c:hover{
+		border:none;
+		box-shadow: none;
+	}
+	
+	.time{
+		display: flex;
+		justify-content: space-evenly;
+		flex-wrap: wrap;
+	}
+	.t{
+		text-align: center;
+	}
+	.time button{
+		width:180px;
+		height:35px;
+		background-color: #3cae40;
+		color: white;
+		border-radius: 2px;
+		border: 1px solid white;
+	}
+}
