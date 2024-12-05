@@ -8,7 +8,7 @@ function BookLink() {
                 <h5>Looking to Book an Appointment?</h5>
             </div>
             <div>
-                <p>MoveMend is here to help you Move through life! Booking an appointment online is the most convenient way to lock in the location, practitioner &amp; time you want.</p>
+                <p>TheraMotion is here to help you Move through life! Booking an appointment online is the most convenient way to lock in the location, practitioner &amp; time you want.</p>
             </div>
             <div className="btn">
                 <Link to="/book-appointment"><span>Book an Appointment</span></Link>

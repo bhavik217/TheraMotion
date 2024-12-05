@@ -10,7 +10,7 @@ function Needform() {
         <p><i className="fa-solid fa-mobile"></i>&nbsp;&nbsp;&nbsp;0019&nbsp;902&nbsp;543</p>
       </div>
       <div className="email">
-        <p><i className="fa-solid fa-envelope"></i>&nbsp;&nbsp;&nbsp;admin@movemend.com</p>
+        <p><i className="fa-solid fa-envelope"></i>&nbsp;&nbsp;&nbsp;admin@TheraMotion.com</p>
       </div>
       <form>
         <div className="inp1">

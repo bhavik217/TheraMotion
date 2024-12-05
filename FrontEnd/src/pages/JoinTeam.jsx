@@ -34,7 +34,7 @@ function JoinTeam() {
 
             <IntroSection
                 hd2="Hi! Can we help you Move Through Life?"
-                content1="Are you looking for a career and not just a job? If you are then MoveMend could provide you with the perfect opportunity. Just by landing on this page you have taken the first step, but let us tell you a bit about ourselves so we can make sure we're right for each other, We're always on the lookout for smart, talented people, so if you like what you see here, reach out for a chat. We love going for a coffee."
+                content1="Are you looking for a career and not just a job? If you are then TheraMotion could provide you with the perfect opportunity. Just by landing on this page you have taken the first step, but let us tell you a bit about ourselves so we can make sure we're right for each other, We're always on the lookout for smart, talented people, so if you like what you see here, reach out for a chat. We love going for a coffee."
 
                 img="/Join-team-imgs/Sec1.jpg"
                 buttonProps={buttonProps}
@@ -45,14 +45,14 @@ function JoinTeam() {
 
                 content1="What does that mean? It means the latest technology in the clinic, including VALD force measurement systems for our team members to have objective measures to demonstrate success with clients. It also means pathways and career progressions (see below). It means we have an all inclusive, non gendered Paid Parental Leave Policy, which supports parents to both go on leave and return to work."
             
-                content2="Our team includes: Physiotherapists, Pelvic Health Physiotherapists, Exercise Physiologists, Osteopaths, Podiatrists, Dieticians, Myotherapists and Remedial Massage Therapists! We Go MoveMend, We are Good People, We Level up & We have fun!"
+                content2="Our team includes: Physiotherapists, Pelvic Health Physiotherapists, Exercise Physiologists, Osteopaths, Podiatrists, Dieticians, Myotherapists and Remedial Massage Therapists! We Go TheraMotion, We are Good People, We Level up & We have fun!"
 
                 img="/Join-team-imgs/Sec2.jpg"
                 toReverse="flex-sm-row-reverse"
             />
             <section className="section4">
                 <div>
-                    <span className="heading1">What does the interview process look like at MoveMend?</span>
+                    <span className="heading1">What does the interview process look like at TheraMotion?</span>
                 </div>
                 <div style={{ margin: "1vw 35vw" }}>
                     <hr />
@@ -83,7 +83,7 @@ function JoinTeam() {
             <section className="section5">
                 <span>If you have any questions about joining the team please email: </span>
                 <span>
-                    <a href="mailto:admin@movemend.com">admin@movemend.com</a>
+                    <a href="mailto:admin@TheraMotion.com">admin@TheraMotion.com</a>
                 </span>
             </section>
             <hr />

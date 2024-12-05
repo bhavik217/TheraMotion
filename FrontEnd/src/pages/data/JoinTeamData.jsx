@@ -26,7 +26,7 @@ const joinTeamData = [
     {
         category : "5",
         key: 5,
-        h : "Join Team MoveMend",
+        h : "Join Team TheraMotion",
         p : "We are a bit excited… We want you to join the Team!! We will be in touch to discuss start dates and contracts."
     }
 ];
