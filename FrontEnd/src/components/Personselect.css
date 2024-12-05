@@ -1,0 +1,40 @@
+.perselect {
+
+    .container {
+        margin-top: 100px;
+        /* margin-right: 100px; */
+    }
+
+    .col-md-7 {
+        margin-right: 50px;
+    }
+
+    .names {
+        margin-top: 50px;
+        border: 1px solid black;
+    }
+
+    .btn {
+        width: 100px;
+        border-radius: 5px;
+        margin-right: 20px;
+        height: 50px;
+    }
+    .btno{
+        color: white;
+        text-decoration: none;
+    }
+
+    .pracc {
+        border: 1px solid black;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        background-color: rgba(195, 198, 198, 0.491);
+        justify-content: space-between;
+    }
+
+    .pracc h5 {
+        margin-left: 10px;
+    }
+}
