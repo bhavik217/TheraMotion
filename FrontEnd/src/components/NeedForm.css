@@ -1,0 +1,49 @@
+.needformo {
+
+    .call {
+        padding-top: 8px;
+        border-top: 1px solid rgba(66, 66, 66, 0.721);
+        border-bottom: 1px solid rgba(66, 66, 66, 0.721);
+    }
+
+    /* .inp{
+    border:1px solid black;
+} */
+    .email {
+        padding-top: 8px;
+        border-bottom: 1px solid rgba(66, 66, 66, 0.721);
+    }
+
+    .inp1 {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .reqd {
+        color: red;
+        display: none;
+    }
+
+    .emai input {
+        width: 80%;
+    }
+
+    .mess textarea {
+        width: 90%;
+        height: 160px;
+    }
+
+    .submit {
+        margin-top: 20px;
+    }
+
+    .submit button {
+        width: 90%;
+        text-align: center;
+    }
+
+    .psub {
+        display: none;
+    }
+}

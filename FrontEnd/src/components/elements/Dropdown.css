@@ -1,0 +1,29 @@
+.bookoserv {
+
+    .d11 {
+        height: 60px;
+        margin-top: 40px;
+        background-color: #2b2e34d2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+
+    .d111 {
+        width: 98%;
+        height: 90%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    .d111 h5 {
+        margin-left: 20px;
+    }
+
+    .d111 i {
+        margin-right: 5px;
+    }
+}
