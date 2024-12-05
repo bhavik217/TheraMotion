@@ -1,0 +1,41 @@
+.fform{
+		.div3 {
+			height: 100vh;
+			overflow: scroll;
+		}
+
+		.info {
+			margin-top: 30px;
+			border: 1px solid black;
+			padding-left: 20px;
+			padding-right: 10px;
+			padding-top: 30px;
+
+		}
+
+		.info p {
+			font-size: 16px;
+		}
+
+		.in {
+			width: 90%;
+			height: 40px;
+			/* border:1px solid black; */
+		}
+
+		.dt {
+			margin-left: 10%;
+		}
+
+		.your {
+			border-bottom: 1px solid rgba(66, 66, 66, 0.498);
+		}
+
+		.cont {
+			border-bottom: 1px solid rgba(66, 66, 66, 0.491);
+		}
+
+		input[type="checkbox"] {
+			transform: scale(1.5);
+		}
+	}
