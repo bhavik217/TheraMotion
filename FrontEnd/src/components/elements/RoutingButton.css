@@ -1,0 +1,36 @@
+.bookoserhid {
+
+    .btn {
+        height: 50px;
+        border: 1px solid black;
+        border-radius: 0px;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .hid1 {
+        height: 70px;
+        background-color: rgb(256, 256, 256);
+        display: flex;
+        border-bottom: 1px solid rgba(66, 66, 66, 0.721);
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .hid1 div {
+        height: 37px;
+        width: 80px;
+        padding-top: 5px;
+        padding-left: 12px;
+        padding-right: 10px;
+        background-color: rgb(189, 186, 183);
+    }
+
+    .hid1 .btn {
+        width: 100px;
+        border-radius: 5px;
+    }
+}

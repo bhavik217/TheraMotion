@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import "./Dropdown.css";
-import Bookservhid from "./RoutingButton";
+import RoutingButton from "./RoutingButton";
 
 const Dropdown = ({ name, arr }) => {
   const [showServices, setShowServices] = useState(false);
@@ -16,7 +16,7 @@ const Dropdown = ({ name, arr }) => {
       </div>
       {
         showServices && arr.map((data, index) => (
-          <Bookservhid key={index} name={data.hdata} time={data.time} />
+          <RoutingButton key={index} name={data.hdata} time={data.time} />
         ))
       }
     </div>

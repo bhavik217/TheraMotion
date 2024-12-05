@@ -12,7 +12,7 @@ import PersonDetail from "./components/PersonDetails";
 import { Outlet, Navigate } from "react-router-dom";
 import BookAppt from "./pages/BookAppt.jsx";
 import Personselect from "./components/Personselect.jsx";
-import Calendar from "./pages/Calendar.jsx";
+import Calendar from "./components/Calendar.jsx";
 import Finalform from "./pages/Finalform.jsx";
 import OrderDetail from "./pages/OrderDetail.jsx";
 import PersonSelectLayout from "./pages/PersonSelectLayout.jsx";

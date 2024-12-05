@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
-import Bookservice from "../components/BookService";
+import Dropdown from "../components/elements/Dropdown";
 import Needform from '../components/NeedForm';
-import data from "./data/service";
-import serdata from './data/service2';
+import { BookApptData1, BookApptData2 } from "./data/BookApptData";
 import "./BookAppt.css";
 
 const BookAppt = () => {
@@ -34,11 +33,11 @@ const BookAppt = () => {
             {
               // Render Bookservice components based on the value of btn
               btn
-                ? serdata.map((data, index) => (
-                    <Bookservice key={index} name={data.name} arr={data.arr} />
+                ? BookApptData1.map((data, index) => (
+                    <Dropdown key={index} name={data.name} arr={data.arr} />
                   ))
-                : data.map((data, index) => (
-                    <Bookservice key={index} name={data.name} arr={data.arr} />
+                : BookApptData2.map((data, index) => (
+                    <Dropdown key={index} name={data.name} arr={data.arr} />
                   ))
             }
           </div>
