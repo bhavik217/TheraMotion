@@ -1,0 +1,47 @@
+.per {
+    .prac {
+        border: 1px solid black;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        background-color: rgba(195, 198, 198, 0.491);
+        justify-content: space-between;
+    }
+
+    .pracname {
+        padding-left: 10px;
+        height: 90px;
+        border-bottom: 1px solid rgba(66, 66, 66, 0.721);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .prac h5 {
+        margin-left: 10px;
+    }
+
+    .btn {
+        width: 100px;
+        border-radius: 5px;
+        margin-right: 20px;
+        height: 50px;
+    }
+
+    .moreinfo {
+        height: 40px;
+        width: 120px;
+        border-radius: 5px;
+        margin-right: 20px;
+        border: 1px solid rgba(66, 66, 66, 0.721);
+    }
+
+    .hid {
+        border-bottom: 1px solid rgba(66, 66, 66, 0.721);
+    }
+
+    .hid h6 {
+        margin-left: 15px;
+    }
+}
