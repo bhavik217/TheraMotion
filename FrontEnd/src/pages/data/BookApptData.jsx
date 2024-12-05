@@ -1,4 +1,4 @@
-const serdata = [
+const BookApptData1 = [
   {
     name: "Exercise Physiology",
     arr: [
@@ -11,7 +11,7 @@ const serdata = [
         time: "60 min"
       },
       {
-        hdata: "Initial Exercise Physiology Consultation  ",
+        hdata: "Initial Exercise Physiology Consultation",
         time: "30 min"
       }
     ]
@@ -46,6 +46,9 @@ const serdata = [
       }
     ]
   },
+];
+
+const BookApptData2 = [
   {
     name: "Osteopathy",
     arr: [
@@ -57,10 +60,33 @@ const serdata = [
         hdata: "Extended Osteopathy Consultation",
         time: "60 min"
       },
-
     ]
-  }
+  },
+  {
+    name: "Classes",
+    arr: [
+      {
+        hdata: "Double Exercise Physiology Consultation",
+        time: "60 min"
+      },
+      {
+        hdata: "Single Exercise Physiology Consultation",
+        time: "30 min"
+      },
+    ]
+  },
+  {
+    name: "Pilates Classes",
+    arr: [
+      {
+        hdata: "Double Exercise Physiology Consultation",
+        time: "60 min"
+      },
+      {
+        hdata: "Single Exercise Physiology Consultation",
+        time: "30 min"
+      },
+    ]
+  },
 ];
-
-
-export default serdata;
+export { BookApptData1, BookApptData2 };
