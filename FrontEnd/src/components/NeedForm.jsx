@@ -19,7 +19,7 @@ function Needform() {
             <div className="email">
                 <p>
                     <i className="fa-solid fa-envelope"></i>
-                    &nbsp;&nbsp;&nbsp;admin@movemend.com
+                    &nbsp;&nbsp;&nbsp;admin@TheraMotion.com
                 </p>
             </div>
             <form>

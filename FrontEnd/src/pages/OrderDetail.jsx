@@ -24,9 +24,9 @@ const OrderDetail = () => {
             key: "rzp_test_bAStVbQXXg0Jx1", // Your Razorpay key_id
             amount: 100 * 100, // Amount in paise (Rs 105)
             currency: "INR",
-            name: "MoveMend",
+            name: "TheraMotion",
             description: "Test Transaction",
-            image: "/MovemendLogo.png",
+            image: "/TheraMotionLogo.png",
             handler: function (response) {
                 alert(
                     `Payment successful! Payment ID: ${response.razorpay_payment_id}`
