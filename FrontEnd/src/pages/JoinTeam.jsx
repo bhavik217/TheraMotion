@@ -101,7 +101,7 @@ function JoinTeam() {
                     email:{" "}
                 </span>
                 <span>
-                    <a href="mailto:admin@movemend.com">admin@movemend.com</a>
+                    <a href="mailto:admin@TheraMotion.com">admin@TheraMotion.com</a>
                 </span>
             </section>
             <hr />
