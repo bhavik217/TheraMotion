@@ -1,6 +1,6 @@
-import express from 'express';
-import UserModel from '../models/Usermodel.js';
-import { verifyToken } from '../utils/helpers.js';
+import express from "express";
+import UserModel from "../models/Usermodel.js";
+import { verifyToken } from "../utils/helpers.js";
 
 const router = express.Router();
 
@@ -9,12 +9,11 @@ router.get("/:email", verifyToken, (req, res) => {
     UserModel.getUser(
         req,
         (dbRes) => {
-            if(dbRes){
+            if (dbRes) {
                 if (!res.headersSent) {
                     res.status(200).json(dbRes);
                 }
-            }
-            else{
+            } else {
                 if (!res.headersSent) {
                     res.status(204).json(null);
                 }
@@ -23,9 +22,9 @@ router.get("/:email", verifyToken, (req, res) => {
         (dbErr) => {
             console.log(dbErr.name);
             res.status(dbErr.status || 500);
-            res.send({error: dbErr.message});
+            res.send({ error: dbErr.message });
         }
-    )
+    );
 });
 
 // Signup Route
@@ -35,25 +34,23 @@ router.post("/", (req, res) => {
     const user = req.body;
 
     UserModel.addUser(
-        user, 
+        user,
         (dbRes) => {
-            if(dbRes){
+            if (dbRes) {
                 res.send(dbRes);
-            }
-            else{
+            } else {
                 res.status(400);
                 res.send(dbRes);
             }
         },
         (dbError) => {
             console.log(dbError.name);
-            if(dbError.name === "ValidationError"){
+            if (dbError.name === "ValidationError") {
                 res.status(400); //client side error
-            }
-            else{
+            } else {
                 res.status(500); //server side error
             }
-            res.send({error: dbError.message});
+            res.send({ error: dbError.message });
         }
     );
 });
@@ -64,22 +61,20 @@ router.post("/signin", (req, res) => {
     UserModel.signIn(
         userData,
         (dbRes) => {
-            if(dbRes){
+            if (dbRes) {
                 res.send(dbRes);
-            }
-            else{
-                res.status(400).send({message: "Invalid Credentials"});
+            } else {
+                res.status(400).send({ message: "Invalid Credentials" });
             }
         },
         (dbError) => {
             console.log(dbError.name);
-            if(dbError.name == "ValidationError"){
+            if (dbError.name == "ValidationError") {
                 res.status(dbError.status || 400);
-            }
-            else{
+            } else {
                 res.status(dbError.status || 500);
             }
-            res.send({error: dbError.message});
+            res.send({ error: dbError.message });
         }
     );
 });

@@ -1,5 +1,5 @@
-import express from 'express';
-import AppointmentModel from '../models/AppointmentModel.js';
+import express from "express";
+import AppointmentModel from "../models/AppointmentModel.js";
 
 const router = express.Router();
 
@@ -9,24 +9,22 @@ router.post("/", (req, res) => {
     AppointmentModel.addAppointment(
         req.body,
         (dbRes) => {
-            if(dbRes){
+            if (dbRes) {
                 res.send(dbRes);
-            }
-            else{
+            } else {
                 res.status(400);
                 res.send(dbRes);
             }
         },
         (dbError) => {
             console.log(dbError.name);
-            if(dbError.name === "ValidationError"){
+            if (dbError.name === "ValidationError") {
                 res.status(400);
-            }
-            else{
+            } else {
                 res.status(500);
             }
-            res.send({error: dbError.message});
+            res.send({ error: dbError.message });
         }
     );
-})
+});
 export default router;
