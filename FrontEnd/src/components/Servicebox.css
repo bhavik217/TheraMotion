@@ -1,15 +1,15 @@
 .transition-bg-color {
-  height: 250px;
-  transition: background-color 0.7s ease;
-  color: white;
-  background-size: cover;
+    height: 250px;
+    transition: background-color 0.7s ease;
+    color: white;
+    background-size: cover;
 }
 
 .transition-bg-color:hover {
-  background-color: #2b2e34 !important;
-  background-image: none !important;
+    background-color: #2b2e34 !important;
+    background-image: none !important;
 }
 
 .h-250 {
-  height: 250px !important;
+    height: 250px !important;
 }

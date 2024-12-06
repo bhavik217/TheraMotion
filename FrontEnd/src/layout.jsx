@@ -1,21 +1,18 @@
-import Navbar from "./components/Navbar"
-import Footer from "./components/Footer"
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import { Outlet, useLocation } from "react-router-dom";
 import ScrollToTop from "./components/elements/ScrollToTop";
-import BookLink from "./components/elements/BookLink"
-import "./Layout.css"
+import BookLink from "./components/elements/BookLink";
+import "./Layout.css";
 
 function Layout() {
     const location = useLocation();
 
     const showBookLink =
-        location.pathname !== "/signin" &&
-        location.pathname !== "/signup";
-
+        location.pathname !== "/signin" && location.pathname !== "/signup";
 
     return (
         <>
-
             <ScrollToTop />
             <header>
                 <Navbar />
@@ -29,5 +26,5 @@ function Layout() {
             </footer>
         </>
     );
-};
+}
 export default Layout;

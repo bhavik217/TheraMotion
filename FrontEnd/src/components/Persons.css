@@ -9,28 +9,28 @@
         margin-top: 10px;
         margin-bottom: 10px;
     }
-    
+
     .section1 .sub-container1 {
         display: flex;
         align-items: center;
-        
+
         img {
-            width: 100%; 
-            max-height: 500px; 
-            object-fit: contain; 
+            width: 100%;
+            max-height: 500px;
+            object-fit: contain;
             margin: 0 auto;
         }
     }
 
     .section1 .sub-container2 {
         padding: 4vmin;
-        
+
         .heading {
             color: #2b2e34;
             position: relative;
-            
+
             &:after {
-                content: '';
+                content: "";
                 position: absolute;
                 bottom: -8px;
                 left: 0;
@@ -39,10 +39,11 @@
                 background: #2b2e34;
             }
         }
-        
-        .para, .content p {
+
+        .para,
+        .content p {
             text-align: justify;
-            hyphens: auto; 
+            hyphens: auto;
         }
 
         .para {
@@ -54,12 +55,12 @@
         text-align: center;
         margin-top: 3vh;
         font-size: 0.9rem;
-        
+
         p {
             transition: background-color 0.2s ease;
             padding: 0.4rem;
             border-radius: 4px;
-            
+
             &:hover {
                 background-color: #f5f5f5;
             }
@@ -96,7 +97,7 @@
         font-weight: 500;
         transition: all 0.2s ease;
         border: 1px solid #e0e0e0;
-        
+
         &:hover {
             background-color: #ebecec;
             transform: translateY(-1px);
@@ -123,8 +124,8 @@
 
                 img {
                     width: 100%;
-                    max-height: none; 
-                    object-fit: contain; 
+                    max-height: none;
+                    object-fit: contain;
                 }
             }
 
@@ -166,7 +167,7 @@
     @media screen and (min-width: 768px) and (max-width: 992px) {
         .section1 .sub-container2 {
             padding: 1.4vmin;
-            
+
             .heading {
                 font-size: 1rem;
             }
@@ -202,7 +203,7 @@
         font-size: 1.2vw;
 
         p {
-            line-height: 1.20;
+            line-height: 1.2;
         }
     }
 
@@ -232,12 +233,12 @@
     footer {
         background: #2b2e34;
         color: #ffffff;
-        
+
         .nav-link {
             color: #ffffff !important;
             text-decoration: none;
             transition: opacity 0.2s ease;
-            
+
             &:hover {
                 opacity: 0.9;
             }

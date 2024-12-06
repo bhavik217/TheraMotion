@@ -7,9 +7,9 @@
 .intro-section .content1 {
     font-size: 1.1vw;
     letter-spacing: 0.04em;
-    
+
     p {
-        line-height: 1.20;
+        line-height: 1.2;
     }
 }
 .intro-section .content2 {
@@ -47,7 +47,7 @@
     height: auto;
 }
 
-@media screen and (max-width : 776px) {
+@media screen and (max-width: 776px) {
     .intro-section .heading1 {
         font-size: 3vw;
     }
@@ -63,7 +63,7 @@
     }
 }
 
-@media screen and (max-width : 575px) {
+@media screen and (max-width: 575px) {
     .intro-section .first-container {
         padding: 50px;
     }

@@ -25,21 +25,27 @@ export function SignIn() {
 
         if (formValuesObject.email && formValuesObject.password) {
             console.log("Submit this form");
-            const signInResponse = await fetch("http://localhost:8081/user/signin", {
-                method: "POST",
-                body: JSON.stringify(formValuesObject),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
+            const signInResponse = await fetch(
+                "http://localhost:8081/user/signin",
+                {
+                    method: "POST",
+                    body: JSON.stringify(formValuesObject),
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
 
             if (signInResponse.ok && signInResponse.status == "200") {
                 const signInResponseData = await signInResponse.json();
                 localStorage.setItem("authToken", signInResponseData?.token);
-                localStorage.setItem("loggedInUserEmail", formValuesObject.email);
+                localStorage.setItem(
+                    "loggedInUserEmail",
+                    formValuesObject.email
+                );
                 setSignInSuccess(true);
                 alert("Signin success");
-                window.location.href = '/dashboard';
+                window.location.href = "/dashboard";
             } else {
                 alert("Signin failed");
             }
@@ -50,12 +56,15 @@ export function SignIn() {
 
     const fetchUserDetails = async () => {
         let email = localStorage.getItem("loggedInUserEmail");
-        var productsResponse = await fetch(`http://localhost:8081/user/${email}`, {
-            method: "GET",
-            headers: {
-                Authorization: localStorage.getItem("authToken"),
-            },
-        });
+        var productsResponse = await fetch(
+            `http://localhost:8081/user/${email}`,
+            {
+                method: "GET",
+                headers: {
+                    Authorization: localStorage.getItem("authToken"),
+                },
+            }
+        );
         var userDetails = await productsResponse.json();
         console.log("The user details are: ", userDetails);
         if (productsResponse.ok && productsResponse.status == "200") {
@@ -67,14 +76,22 @@ export function SignIn() {
     };
 
     return (
-        <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: "90vh" }}>
-            <div className="card p-4" style={{ width: "400px", borderRadius: "10px" }}>
+        <div
+            className="container d-flex justify-content-center align-items-center"
+            style={{ minHeight: "90vh" }}
+        >
+            <div
+                className="card p-4"
+                style={{ width: "400px", borderRadius: "10px" }}
+            >
                 <h2 className="text-center mb-2">Sign In to TheraMotion</h2>
                 <p className="text-center mb-3">Move Through Life</p>
 
                 <form onSubmit={signInHandler}>
                     <div className="mb-3">
-                        <label htmlFor="inputEmail4" className="form-label">Email</label>
+                        <label htmlFor="inputEmail4" className="form-label">
+                            Email
+                        </label>
                         <input
                             type="email"
                             className="form-control"
@@ -85,7 +102,9 @@ export function SignIn() {
                     </div>
 
                     <div className="mb-3">
-                        <label htmlFor="inputPassword4" className="form-label">Password</label>
+                        <label htmlFor="inputPassword4" className="form-label">
+                            Password
+                        </label>
                         <input
                             type="password"
                             className="form-control"
@@ -95,10 +114,15 @@ export function SignIn() {
                         />
                     </div>
                     <div className="d-grid gap-2 mb-3">
-                        <button type="submit" className="btn btn-dark">Sign In</button>
+                        <button type="submit" className="btn btn-dark">
+                            Sign In
+                        </button>
                     </div>
                     <div className="text-center">
-                        <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
+                        <p>
+                            Don't have an account?{" "}
+                            <Link to="/signup">Sign Up</Link>
+                        </p>
                     </div>
                 </form>
             </div>

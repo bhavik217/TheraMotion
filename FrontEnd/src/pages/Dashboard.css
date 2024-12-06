@@ -16,18 +16,17 @@
 }
 
 .dashboard .section1 .heading1 {
-    color: #2B2E34;
+    color: #2b2e34;
     font-size: 2rem;
     line-height: 1.25;
 }
 
-.dashboard .section1 .buttons a{
+.dashboard .section1 .buttons a {
     color: #2b2e34;
     text-decoration: none;
     margin-right: 5px;
     font-size: 1rem;
 }
-
 
 .dashboard .section2 {
     padding: 80px 60px;
@@ -73,7 +72,7 @@
         padding: 40px 20px;
     }
 
-    .dashboard .section1 .buttons{
+    .dashboard .section1 .buttons {
         display: flex;
         align-items: flex-start;
         flex-direction: column;

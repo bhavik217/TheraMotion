@@ -1,4 +1,4 @@
-const MeetTeamData= [
+const MeetTeamData = [
     {
         img: "/Meet-team-imgs/Holly.jpg",
         key: 1,
@@ -10,16 +10,13 @@ const MeetTeamData= [
         clinicalInterests: [
             "Paediatrics",
             "Pre & Post Natal & Return to Exercise",
-            "Chronic Hip and Knee Conditions & Disability"
+            "Chronic Hip and Knee Conditions & Disability",
         ],
         qualifications: [
             "Masters of Clinical Exercise Physiology",
-            "Bachelor of Exercise Sport Science"
+            "Bachelor of Exercise Sport Science",
         ],
-        locations: [
-            "Blackburn",
-            "East Melbourne"
-        ]
+        locations: ["Blackburn", "East Melbourne"],
     },
     {
         img: "/Meet-team-imgs/Ashleigh.jpg",
@@ -32,14 +29,10 @@ const MeetTeamData= [
         clinicalInterests: [
             "Lower Limb Injuries & Pain",
             "Performers & Athletes",
-            "Return to Sport & Work"
+            "Return to Sport & Work",
         ],
-        qualifications: [
-            "Bachelor of Physiotherapy"
-        ],
-        locations: [
-            "Winsdor"
-        ]
+        qualifications: ["Bachelor of Physiotherapy"],
+        locations: ["Winsdor"],
     },
     {
         img: "/Meet-team-imgs/Liana.jpg",
@@ -52,15 +45,13 @@ const MeetTeamData= [
         clinicalInterests: [
             "Headaches",
             "Jaw Pain",
-            "Vertigo & Cranial Conditions"
+            "Vertigo & Cranial Conditions",
         ],
         qualifications: [
             "Bachelor of Science (Clinical Science)",
-            "Master of Health Science (Osteopathy)"
+            "Master of Health Science (Osteopathy)",
         ],
-        locations: [
-            "East Melbourne"
-        ]
+        locations: ["East Melbourne"],
     },
     {
         img: "/Meet-team-imgs/Lachlan.jpg",
@@ -73,15 +64,13 @@ const MeetTeamData= [
         clinicalInterests: [
             "Shoulder & Back Pain",
             "Postural Complaints",
-            "Teens & Young Adults"
+            "Teens & Young Adults",
         ],
         qualifications: [
             "Bachelor of Science (Clinical Science)",
-            "Master of Health Science (Osteopathy)"
+            "Master of Health Science (Osteopathy)",
         ],
-        locations: [
-            "Ocean Grove"
-        ]
+        locations: ["Ocean Grove"],
     },
     {
         img: "/Meet-team-imgs/Lucy.jpg",
@@ -94,14 +83,10 @@ const MeetTeamData= [
         clinicalInterests: [
             "Ankle & Knee Injuries",
             "Sporting Injuries",
-            "Return to Sport & Work"
+            "Return to Sport & Work",
         ],
-        qualifications: [
-            "Bachelor of Physiotherapy"
-        ],
-        locations: [
-            "Newtown"
-        ]
+        qualifications: ["Bachelor of Physiotherapy"],
+        locations: ["Newtown"],
     },
     {
         img: "/Meet-team-imgs/Rick.jpg",
@@ -114,16 +99,13 @@ const MeetTeamData= [
         clinicalInterests: [
             "Balance & Falls Prevention",
             "Chronic Pain",
-            "Cancer"
+            "Cancer",
         ],
         qualifications: [
             "Bachelor of Exercise Science",
-            "Master of Clinical Exercise Physiology"
+            "Master of Clinical Exercise Physiology",
         ],
-        locations: [
-            "Ocean Grove",
-            "East Melbourne"
-        ]
+        locations: ["Ocean Grove", "East Melbourne"],
     },
     {
         img: "/Meet-team-imgs/Will.jpg",
@@ -136,14 +118,10 @@ const MeetTeamData= [
         clinicalInterests: [
             "Low Back Pain",
             "Sport Injuries",
-            "Postural Complaints"
+            "Postural Complaints",
         ],
-        qualifications: [
-            "Advanced Diploma of Myotherapy"
-        ],
-        locations: [
-            "Ocean Grove"
-        ]
+        qualifications: ["Advanced Diploma of Myotherapy"],
+        locations: ["Ocean Grove"],
     },
     {
         img: "/Meet-team-imgs/Caitlyn.jpg",
@@ -156,14 +134,10 @@ const MeetTeamData= [
         clinicalInterests: [
             "Headaches",
             "Postural Complaints",
-            "Thoracics (fascial slings etc)"
+            "Thoracics (fascial slings etc)",
         ],
-        qualifications: [
-            "Advanced Diploma of Myotherapy"
-        ],
-        locations: [
-            "East Melbourne"
-        ]
-    }
+        qualifications: ["Advanced Diploma of Myotherapy"],
+        locations: ["East Melbourne"],
+    },
 ];
 export default MeetTeamData;

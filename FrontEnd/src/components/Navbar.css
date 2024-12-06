@@ -1,4 +1,4 @@
-.navbar{
+.navbar {
     z-index: 1040;
 }
 .menu-toggle {
@@ -80,7 +80,6 @@
     background-color: #e9ecef;
     color: black;
 }
-
 
 .backdrop {
     position: fixed;

@@ -11,42 +11,42 @@ const serviceData = [
     {
         key: 1,
         heading: "EXCERCISE PHYSIOLOGY",
-        image: ExercisePhysiology
+        image: ExercisePhysiology,
     },
     {
         key: 2,
         heading: "OSTEOPATHY",
-        image: Osteopathy
+        image: Osteopathy,
     },
     {
         key: 3,
         heading: "CLINICAL PILATES",
-        image: ClinicalPilates
+        image: ClinicalPilates,
     },
     {
         key: 4,
         heading: "PHYSIOTHERAPY",
-        image: Physiotherapy
+        image: Physiotherapy,
     },
     {
         key: 5,
         heading: "MYOTHERAPY",
-        image: Myotherapy
+        image: Myotherapy,
     },
     {
         key: 6,
         heading: "PODIATRY",
-        image: Podiatry
+        image: Podiatry,
     },
     {
         key: 7,
         heading: "REMEDIAL MASSAGE",
-        image: RemedialMassage
+        image: RemedialMassage,
     },
     {
         key: 8,
         heading: "PRE AND POST NATAL",
-        image: PreAndPostNatal
-    }
+        image: PreAndPostNatal,
+    },
 ];
 export default serviceData;

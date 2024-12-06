@@ -1,4 +1,4 @@
-import Layout from "./layout"
+import Layout from "./layout";
 import SignUp from "./pages/Signup.jsx";
 import SignIn from "./pages/Signin.jsx";
 import JoinTeam from "./pages/JoinTeam";
@@ -34,15 +34,15 @@ export const routes = [
         children: [
             {
                 path: "/",
-                element: <MainPage />
+                element: <MainPage />,
             },
             {
                 path: "/signup",
-                element: <SignUp />
+                element: <SignUp />,
             },
             {
                 path: "/signin",
-                element: <SignIn />
+                element: <SignIn />,
             },
             {
                 element: <ProtectedRoute />,
@@ -53,31 +53,31 @@ export const routes = [
                         children: [
                             {
                                 index: true,
-                                element: <MeetTeam />
+                                element: <MeetTeam />,
                             },
                             {
                                 path: ":personId",
-                                element: <PersonDetail />
-                            }
-                        ]
+                                element: <PersonDetail />,
+                            },
+                        ],
                     },
                     {
                         path: "/join-team",
-                        element: <JoinTeam />
+                        element: <JoinTeam />,
                     },
                     {
                         path: "/services",
-                        element: <Services />
+                        element: <Services />,
                     },
                     {
                         path: "/blog",
-                        element: <Blog />
+                        element: <Blog />,
                     },
                     {
                         path: "/dashboard",
                         element: <Dashboard />,
                     },
-                ]
+                ],
             },
             {
                 path: "/book-appointment",
@@ -94,8 +94,8 @@ export const routes = [
                     {
                         path: "calendar",
                         element: <Calendar />,
-                    }
-                ]
+                    },
+                ],
             },
             {
                 path: "/form",
@@ -105,6 +105,6 @@ export const routes = [
                 path: "/order",
                 element: <OrderDetail />,
             },
-        ]
-    }
+        ],
+    },
 ];

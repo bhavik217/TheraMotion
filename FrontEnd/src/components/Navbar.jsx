@@ -12,7 +12,6 @@ const Navbar = () => {
         setIsAuthenticated(!!authToken);
     }, []);
 
-
     const handleAuthToggle = () => {
         if (isAuthenticated) {
             localStorage.removeItem("authToken");
@@ -97,7 +96,10 @@ const Navbar = () => {
                         </Link>
                     </li>
                     <li className="d-lg-none">
-                        <button className="btn btn-link auth-button" onClick={handleAuthToggle}>
+                        <button
+                            className="btn btn-link auth-button"
+                            onClick={handleAuthToggle}
+                        >
                             {isAuthenticated ? "Sign Out" : "Sign In"}
                         </button>
                     </li>

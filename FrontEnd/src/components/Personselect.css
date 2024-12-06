@@ -1,5 +1,4 @@
 .perselect {
-
     .container {
         margin-top: 100px;
         /* margin-right: 100px; */
@@ -20,7 +19,7 @@
         margin-right: 20px;
         height: 50px;
     }
-    .btno{
+    .btno {
         color: white;
         text-decoration: none;
     }

@@ -1,5 +1,5 @@
 .meetteam-content .section2 {
-    background: linear-gradient(to right, #2B2E34, #2B2E30);
+    background: linear-gradient(to right, #2b2e34, #2b2e30);
     color: #ffffff;
     padding: 3vh;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -108,7 +108,7 @@
     .meetteam-content .section2 .heading {
         font-size: 1.3rem;
     }
-    
+
     .meetteam-content .section3 .card:hover {
         transform: translateY(-4px) scale(1.01);
     }

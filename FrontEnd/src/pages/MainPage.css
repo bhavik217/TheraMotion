@@ -4,7 +4,7 @@
     margin: 0;
 }
 
-.mainpage{
+.mainpage {
     /* Section2 */
     .section2 {
         padding: 80px 60px;
@@ -15,7 +15,7 @@
         margin: 0 auto;
         width: 100%;
         max-width: 1200px;
-        background: url('/Background-icon-light.png') no-repeat right;
+        background: url("/Background-icon-light.png") no-repeat right;
     }
 
     .section2 .heading1 {
@@ -63,7 +63,6 @@
     /* Section3 */
     /* Sub Container-1 */
 
-
     /* Section4 */
     .section4 {
         padding: 80px 60px;
@@ -74,11 +73,11 @@
         margin: 0 auto;
         width: 100%;
         max-width: 1200px;
-        background: url('/Background-icon-dark.png') no-repeat right !important;
+        background: url("/Background-icon-dark.png") no-repeat right !important;
     }
 
     .section4 .heading1 {
-        color: #2B2E34;
+        color: #2b2e34;
         font-size: 2rem;
         line-height: 1.25;
     }
@@ -145,7 +144,7 @@
         font-size: 1.3vw;
 
         p {
-            line-height: 1.20;
+            line-height: 1.2;
         }
     }
 
@@ -157,7 +156,7 @@
     }
 
     @media screen and (max-width: 575px) {
-        .section5 .sub-container2 .newclass{
+        .section5 .sub-container2 .newclass {
             width: 100% !important;
         }
         .section5 .sub-container1 {
@@ -173,7 +172,7 @@
         }
     }
 
-    @media screen and (min-width: 576px) and (max-width: 768px){
+    @media screen and (min-width: 576px) and (max-width: 768px) {
         .section5 .content1 {
             font-size: 2vw;
         }
@@ -191,7 +190,7 @@
         margin: 0 auto;
         width: 100%;
         max-width: 1200px;
-        background: url('/Background-icon-light.png') no-repeat right !important;
+        background: url("/Background-icon-light.png") no-repeat right !important;
     }
 
     .section6 .heading1 {
@@ -235,8 +234,6 @@
         }
     }
 
-
-
     /* Section7 */
     .section7 {
         display: flex;
@@ -255,7 +252,7 @@
         font-size: 1.2vw;
 
         p {
-            line-height: 1.20;
+            line-height: 1.2;
         }
     }
 
@@ -268,7 +265,7 @@
         }
     }
 
-    @media screen and (max-width : 575px) {
+    @media screen and (max-width: 575px) {
         .section7 .sub-container1 {
             padding: 50px;
         }
@@ -280,7 +277,7 @@
         .section7 .content2 {
             font-size: 0.7rem;
         }
-        .section7 .sub-container2 .point-it{
+        .section7 .sub-container2 .point-it {
             width: 100vw;
             height: 100vh;
         }

@@ -48,31 +48,40 @@ function Blog() {
                         />
                     </div>
                     <div className="col-md-6">
-                        <h2 className="blog-detail-title">{selectedBlog.heading}</h2>
+                        <h2 className="blog-detail-title">
+                            {selectedBlog.heading}
+                        </h2>
                         <div className="blog-detail-meta mb-3">
                             <span className="me-3">
-                                <i className="fa-solid fa-calendar me-1"></i> {selectedBlog.time}
+                                <i className="fa-solid fa-calendar me-1"></i>{" "}
+                                {selectedBlog.time}
                             </span>
                             <span className="me-3">
-                                <i className="fa-solid fa-user me-1"></i> {selectedBlog.author}
+                                <i className="fa-solid fa-user me-1"></i>{" "}
+                                {selectedBlog.author}
                             </span>
                             <span>
-                                <i className="fa-solid fa-pen me-1"></i> {selectedBlog.type}
+                                <i className="fa-solid fa-pen me-1"></i>{" "}
+                                {selectedBlog.type}
                             </span>
                         </div>
                         <div className="blog-detail-content">
                             {selectedBlog.content.map((section, index) => {
-                                if (section.type === 'paragraph') {
+                                if (section.type === "paragraph") {
                                     return <p key={index}>{section.text}</p>;
                                 }
-                                if (section.type === 'list') {
+                                if (section.type === "list") {
                                     return (
                                         <div key={index}>
                                             <h4>{section.title}</h4>
                                             <ul>
-                                                {section.items.map((item, itemIndex) => (
-                                                    <li key={itemIndex}>{item}</li>
-                                                ))}
+                                                {section.items.map(
+                                                    (item, itemIndex) => (
+                                                        <li key={itemIndex}>
+                                                            {item}
+                                                        </li>
+                                                    )
+                                                )}
                                             </ul>
                                         </div>
                                     );
@@ -95,7 +104,7 @@ function Blog() {
                             key={data.heading}
                             className="col-md-4 mb-4"
                             onClick={() => handleBlogClick(data)}
-                            style={{ cursor: 'pointer' }}
+                            style={{ cursor: "pointer" }}
                         >
                             <BlogBox
                                 head={data.heading}
@@ -119,15 +128,23 @@ function Blog() {
         <div className="blogo">
             <section className="section1">
                 <div className="container">
-                    <div className="heading1"><span>Blogs</span></div>
+                    <div className="heading1">
+                        <span>Blogs</span>
+                    </div>
                     <div className="buttons">
-                        <Link to="/"><span className="w-btn-label">Home <i className="fa-solid fa-chevron-right"></i></span></Link>
-                        <Link to="/blog"><span className="w-btn-label">Blogs</span></Link>
+                        <Link to="/">
+                            <span className="w-btn-label">
+                                Home{" "}
+                                <i className="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </Link>
+                        <Link to="/blog">
+                            <span className="w-btn-label">Blogs</span>
+                        </Link>
                     </div>
                 </div>
             </section>
             <br /> <br />
-
             <div className="blogofilter">
                 {!selectedBlog && (
                     <div className="container">
@@ -155,9 +172,14 @@ function Blog() {
                                         ].map((category) => (
                                             <li
                                                 key={category}
-                                                onClick={() => handleFilterChange(category)}
+                                                onClick={() =>
+                                                    handleFilterChange(category)
+                                                }
                                             >
-                                                <a className="dropdown-item" href="#">
+                                                <a
+                                                    className="dropdown-item"
+                                                    href="#"
+                                                >
                                                     {category}
                                                 </a>
                                             </li>
@@ -173,7 +195,9 @@ function Blog() {
                                         placeholder="Search for a Post"
                                         className="innp search-input"
                                         value={searchTerm}
-                                        onChange={(e) => setSearchTerm(e.target.value)}
+                                        onChange={(e) =>
+                                            setSearchTerm(e.target.value)
+                                        }
                                     />
                                     <i className="fa-solid fa-magnifying-glass search-icon"></i>
                                 </div>
@@ -182,8 +206,6 @@ function Blog() {
                     </div>
                 )}
             </div>
-
-
             <div className="container py-5">
                 {selectedBlog ? renderBlogContent() : renderBlogList()}
             </div>

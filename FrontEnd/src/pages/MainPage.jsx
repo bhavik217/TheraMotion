@@ -1,12 +1,12 @@
 import "./MainPage.css";
 import { Link } from "react-router-dom";
 
-import Carousel from '../components/elements/Carousel';
+import Carousel from "../components/elements/Carousel";
 import Carousel2 from "../components/elements/Carousel2";
 import IntroSection from "../components/IntroSection";
 // import Bookappoint from "../Components/Bookappoint";
 
-function MainPage(){
+function MainPage() {
     const carouselProps = {
         img1: "/Services-imgs/Car1-1.jpg",
         img2: "/Services-imgs/Car1-2.jpg",
@@ -26,7 +26,7 @@ function MainPage(){
         h3: "Lachlan White",
         p1: "Physiotherapist",
         p2: "Exercise Physiologist",
-        p3: "Osteopath"
+        p3: "Osteopath",
     };
     const carouselProps3 = {
         img1: "/Services-imgs/Car3-1.jpg",
@@ -35,16 +35,20 @@ function MainPage(){
         num: "3",
         h1: "Healthy Bones at Every Age",
         h2: "Arthritis of Lower Back",
-        h3: "Back Pain Relief"
-      };
-      
-    return(
+        h3: "Back Pain Relief",
+    };
+
+    return (
         <div className="mainpage">
-            <IntroSection 
+            <IntroSection
                 hd1="Welcome To Site"
                 hd2="Helping You Move Through Life."
                 links={["/book-appointment", "/meet-team", "/join-team"]}
-                linksNames={["Book an Appointment", "Meet the Team", "Join our Team"]}
+                linksNames={[
+                    "Book an Appointment",
+                    "Meet the Team",
+                    "Join our Team",
+                ]}
                 img="/Mainpage.jpg"
             />
 
@@ -52,13 +56,21 @@ function MainPage(){
                 <div className="container">
                     <div className="heading1">Our Services Help You</div>
                     <div className="heading2">Move Through Life.</div>
-                    <div style={{height:"3vh"}}></div>
+                    <div style={{ height: "3vh" }}></div>
                     <div className="buttons">
                         <div>
-                            <Link to="/services"><span className="w-btn-label">See Our Services</span></Link>
+                            <Link to="/services">
+                                <span className="w-btn-label">
+                                    See Our Services
+                                </span>
+                            </Link>
                         </div>
                         <div>
-                            <Link to="/book-appointment"><span className="w-btn-label">Book an Appointment</span></Link>
+                            <Link to="/book-appointment">
+                                <span className="w-btn-label">
+                                    Book an Appointment
+                                </span>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -73,16 +85,28 @@ function MainPage(){
 
             <section className="section4">
                 <div className="container">
-                    <div className="heading1"><span>Our Team Help You</span></div>
-                    <div className="heading2"><span>Move Through Life.</span></div>
-                    <div style={{height:"3vh"}}></div>
+                    <div className="heading1">
+                        <span>Our Team Help You</span>
+                    </div>
+                    <div className="heading2">
+                        <span>Move Through Life.</span>
+                    </div>
+                    <div style={{ height: "3vh" }}></div>
                     <div className="buttons">
-                    <div className="btn1">
-                        <Link title="Our Team" to="/meet-team"><span className="w-btn-label">Meet The Team</span></Link>
-                    </div>
-                    <div className="btn2">
-                        <Link title="Book Online" to="/book-appointment"><span className="w-btn-label">Book an Appointment</span></Link>
-                    </div>
+                        <div className="btn1">
+                            <Link title="Our Team" to="/meet-team">
+                                <span className="w-btn-label">
+                                    Meet The Team
+                                </span>
+                            </Link>
+                        </div>
+                        <div className="btn2">
+                            <Link title="Book Online" to="/book-appointment">
+                                <span className="w-btn-label">
+                                    Book an Appointment
+                                </span>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -96,16 +120,28 @@ function MainPage(){
 
             <section className="section6">
                 <div className="container">
-                    <div className="heading1"><span>Our Services Help You</span></div>
-                    <div className="heading2"><span>Move Through Life.</span></div>
-                    <div style={{height:"3vh"}}></div>
+                    <div className="heading1">
+                        <span>Our Services Help You</span>
+                    </div>
+                    <div className="heading2">
+                        <span>Move Through Life.</span>
+                    </div>
+                    <div style={{ height: "3vh" }}></div>
                     <div className="buttons">
-                    <div>
-                        <Link title="Blog" to="/blog"><span className="w-btn-label">View Our Resources</span></Link>
-                    </div>
-                    <div>
-                        <Link title="Book Online" to="/book-appointment"><span className="w-btn-label">Book an Appointment</span></Link>
-                    </div>
+                        <div>
+                            <Link title="Blog" to="/blog">
+                                <span className="w-btn-label">
+                                    View Our Resources
+                                </span>
+                            </Link>
+                        </div>
+                        <div>
+                            <Link title="Book Online" to="/book-appointment">
+                                <span className="w-btn-label">
+                                    Book an Appointment
+                                </span>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>
