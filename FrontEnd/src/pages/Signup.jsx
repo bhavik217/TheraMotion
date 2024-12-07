@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignUp() {
     const navigate = useNavigate();
@@ -10,20 +9,17 @@ function SignUp() {
     const passwordRef = useRef(null);
 
     const [showSuccessAlert, setShowSuccessAlert] = useState(false);
-    const [showFailureAlert, setShowFailureAlert] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(null);
 
     const signUpHandler = async (event) => {
         event.preventDefault();
 
-        var formValuesObject = {
+        const formValuesObject = {
             firstName: firstNameRef.current.value,
             lastName: lastNameRef.current.value,
             email: emailRef.current.value,
             password: passwordRef.current.value,
         };
-
-        console.log("The event is: ", event);
-        console.log("The form values are: ", formValuesObject);
 
         if (
             formValuesObject.firstName &&
@@ -31,45 +27,44 @@ function SignUp() {
             formValuesObject.email &&
             formValuesObject.password
         ) {
-            console.log("Submit this form");
+            try {
+                const response = await fetch("http://localhost:8081/user", {
+                    method: "POST",
+                    body: JSON.stringify(formValuesObject),
+                    headers: { "Content-Type": "application/json" },
+                });
 
-            var response = await fetch("http://localhost:8081/user", {
-                method: "POST",
-                body: JSON.stringify({ ...formValuesObject }),
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            });
+                const responseData = await response.json();
 
-            if (
-                response.ok &&
-                (response.status === 201 || response.status === 200)
-            ) {
-                setShowSuccessAlert(true);
-                setShowFailureAlert(false);
-                setTimeout(() => navigate("/signin"), 2000);
-            } else {
+                if (response.ok) {
+                    setShowSuccessAlert(true);
+                    setErrorMessage(null);
+                    setTimeout(() => navigate("/signin"), 2000);
+                } else {
+                    setShowSuccessAlert(false);
+                    setErrorMessage(responseData.error || "Error creating user");
+                }
+            } catch (error) {
                 setShowSuccessAlert(false);
-                setShowFailureAlert(true);
+                setErrorMessage("Network error occurred. Please try again.");
             }
-
-            console.log("The response of POST API call is ", response);
         } else {
-            setShowFailureAlert(true);
+            setErrorMessage("All fields are required.");
         }
     };
+
 
     return (
         <>
             {showSuccessAlert && (
                 <div className="alert alert-success" role="alert">
-                    User created successfully
+                    User created successfully! Redirecting to Sign In...
                 </div>
             )}
 
-            {showFailureAlert && (
+            {errorMessage && (
                 <div className="alert alert-danger" role="alert">
-                    Error creating user
+                    {errorMessage}
                 </div>
             )}
 

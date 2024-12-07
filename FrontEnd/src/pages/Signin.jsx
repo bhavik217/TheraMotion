@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 export function SignIn() {
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
+    const [signInError, setSignInError] = useState("");
     const [signInSuccess, setSignInSuccess] = useState(false);
 
     useEffect(() => {
@@ -14,64 +15,71 @@ export function SignIn() {
 
     const signInHandler = async (event) => {
         event.preventDefault();
+        setSignInError(""); 
 
-        var formValuesObject = {
-            email: emailRef.current.value,
+        const formValuesObject = {
+            email: emailRef.current.value.trim(),
             password: passwordRef.current.value,
         };
 
-        console.log("The event is: ", event);
-        console.log("The form values are: ", formValuesObject);
-
         if (formValuesObject.email && formValuesObject.password) {
-            console.log("Submit this form");
-            const signInResponse = await fetch(
-                "http://localhost:8081/user/signin",
-                {
-                    method: "POST",
-                    body: JSON.stringify(formValuesObject),
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
-
-            if (signInResponse.ok && signInResponse.status == "200") {
-                const signInResponseData = await signInResponse.json();
-                localStorage.setItem("authToken", signInResponseData?.token);
-                localStorage.setItem(
-                    "loggedInUserEmail",
-                    formValuesObject.email
+            try {
+                const signInResponse = await fetch(
+                    "http://localhost:8081/user/signin",
+                    {
+                        method: "POST",
+                        body: JSON.stringify(formValuesObject),
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    }
                 );
-                setSignInSuccess(true);
-                alert("Signin success");
-                window.location.href = "/dashboard";
-            } else {
-                alert("Signin failed");
+
+                if (signInResponse.ok) {
+                    const signInResponseData = await signInResponse.json();
+                    localStorage.setItem("authToken", signInResponseData?.token);
+                    localStorage.setItem(
+                        "loggedInUserEmail",
+                        formValuesObject.email
+                    );
+                    setSignInSuccess(true);
+                    window.location.href = "/dashboard";
+                } else {
+                    const errorData = await signInResponse.json();
+                    setSignInError(errorData?.message || "Sign-in failed");
+                }
+            } catch (error) {
+                console.error("Sign-in error:", error);
+                setSignInError("An unexpected error occurred. Please try again.");
             }
         } else {
-            alert("Form is invalid");
+            setSignInError("Please fill in all fields.");
         }
     };
 
     const fetchUserDetails = async () => {
         let email = localStorage.getItem("loggedInUserEmail");
-        var productsResponse = await fetch(
-            `http://localhost:8081/user/${email}`,
-            {
-                method: "GET",
-                headers: {
-                    Authorization: localStorage.getItem("authToken"),
-                },
+
+        try {
+            const productsResponse = await fetch(
+                `http://localhost:8081/user/${email}`,
+                {
+                    method: "GET",
+                    headers: {
+                        Authorization: localStorage.getItem("authToken"),
+                    },
+                }
+            );
+
+            if (productsResponse.ok) {
+                const userDetails = await productsResponse.json();
+                console.log("The user details are: ", userDetails);
+                localStorage.setItem("userDetails", JSON.stringify(userDetails));
+            } else {
+                console.log("Failed to fetch user details");
             }
-        );
-        var userDetails = await productsResponse.json();
-        console.log("The user details are: ", userDetails);
-        if (productsResponse.ok && productsResponse.status == "200") {
-            localStorage.setItem("userDetails", JSON.stringify(userDetails));
-            // window.location.href = '/dashboard';
-        } else {
-            console.log("Failed to fetch user details");
+        } catch (error) {
+            console.error("Error fetching user details:", error);
         }
     };
 
@@ -86,6 +94,12 @@ export function SignIn() {
             >
                 <h2 className="text-center mb-2">Sign In to TheraMotion</h2>
                 <p className="text-center mb-3">Move Through Life</p>
+
+                {signInError && (
+                    <div className="alert alert-danger" role="alert">
+                        {signInError}
+                    </div>
+                )}
 
                 <form onSubmit={signInHandler}>
                     <div className="mb-3">
