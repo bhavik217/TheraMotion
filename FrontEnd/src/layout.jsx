@@ -3,7 +3,7 @@ import Footer from "./components/Footer";
 import { Outlet, useLocation } from "react-router-dom";
 import ScrollToTop from "./components/elements/ScrollToTop";
 import BookLink from "./components/elements/BookLink";
-import "./Layout.css";
+import "./layout.css";
 
 function Layout() {
     const location = useLocation();
