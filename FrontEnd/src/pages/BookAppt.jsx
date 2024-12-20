@@ -5,9 +5,6 @@ import { BookApptData1, BookApptData2 } from "./data/BookApptData";
 import "./BookAppt.css";
 
 const BookAppt = () => {
-    useEffect(() => {
-        console.log("Component Loaded BookAppt.jsx");
-    }, []);
 
     const [btn, setbtn] = useState(true);
 

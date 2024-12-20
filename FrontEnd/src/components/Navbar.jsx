@@ -72,7 +72,7 @@ const Navbar = () => {
                     </li>
                     <li>
                         <Link to="/dashboard" onClick={closeMenu}>
-                            Dahboard
+                            Dashboard
                         </Link>
                     </li>
                     <li>
