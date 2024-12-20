@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import Needform from "./NeedForm";
 import Time from "./Time";
 
-function Calendar() {
+const Calendar = () => {
     const location = useLocation();
     const { name, ser } = location.state || {};
 
@@ -15,50 +15,35 @@ function Calendar() {
     const [dis, setdisplay] = useState(true);
 
     const monthNames = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
     ];
 
     const generateCalendar = () => {
         const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
-        const daysInMonth = new Date(
-            currentYear,
-            currentMonth + 1,
-            0
-        ).getDate();
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
         const dates = [];
         for (let i = 0; i < firstDayOfMonth; i++) {
             dates.push(
-                <li
-                    key={`empty-${i}`}
-                    className="calendar-date inactive-date"
-                ></li>
+                <li key={`empty-${i}`} className="calendar-date inactive-date"></li>
             );
         }
 
         for (let i = 1; i <= daysInMonth; i++) {
-            const isPastDate =
-                currentDate > new Date(currentYear, currentMonth, i);
+            const isPastDate = currentDate > new Date(currentYear, currentMonth, i);
             dates.push(
                 <li
                     key={i}
-                    className={`calendar-date ${
-                        isPastDate ? "inactive-date" : ""
-                    }`}
+                    className={`calendar-date ${isPastDate ? "inactive-date" : ""}`}
                     onClick={() => !isPastDate && selectDate(i)}
                 >
-                    {i}
+                    <div className="date-number">{i}</div>
+                    <div className="shape-container">
+                        <i className="far fa-circle shape-icon"></i>
+                        <i className="far fa-square shape-icon"></i>
+                        <i className="far fa-lightbulb shape-icon"></i>
+                    </div>
                 </li>
             );
         }
@@ -73,7 +58,6 @@ function Calendar() {
             month: "long",
             year: "numeric",
         });
-
         setselecteddate(formattedDate);
         setdisplay(false);
     };
@@ -110,19 +94,13 @@ function Calendar() {
                             <br />
                             <div className="calendar-container">
                                 <header className="calendar-header">
-                                    <span
-                                        className="chevron-icons"
-                                        onClick={prevMonth}
-                                    >
+                                    <span className="chevron-icons" onClick={prevMonth}>
                                         &lt;
                                     </span>
                                     <h2 className="calendar-month">
                                         {monthNames[currentMonth]} {currentYear}
                                     </h2>
-                                    <span
-                                        className="chevron-icons"
-                                        onClick={nextMonth}
-                                    >
+                                    <span className="chevron-icons" onClick={nextMonth}>
                                         &gt;
                                     </span>
                                 </header>
@@ -160,5 +138,6 @@ function Calendar() {
             </div>
         </div>
     );
-}
+};
+
 export default Calendar;
