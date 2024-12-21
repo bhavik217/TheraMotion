@@ -21,8 +21,8 @@ const OrderDetail = () => {
     // Trigger Razorpay payment
     const handlePayment = () => {
         const options = {
-            key: "rzp_test_bAStVbQXXg0Jx1", // Your Razorpay key_id
-            amount: 100 * 100, // Amount in paise (Rs 105)
+            key: "rzp_test_ZQmsCkWeX6PsgX", // Your Razorpay key_id
+            amount: 105 * 100, // Amount in paise (Rs 105)
             currency: "INR",
             name: "TheraMotion",
             description: "Test Transaction",
@@ -42,6 +42,7 @@ const OrderDetail = () => {
             },
             theme: {
                 color: "#3399cc",
+                margin: "0px",
             },
         };
 
@@ -152,4 +153,5 @@ const OrderDetail = () => {
         </div>
     );
 };
+
 export default OrderDetail;
