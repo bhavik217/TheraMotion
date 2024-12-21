@@ -31,14 +31,20 @@ const Calendar = () => {
         }
 
         for (let i = 1; i <= daysInMonth; i++) {
-            const isPastDate = currentDate > new Date(currentYear, currentMonth, i);
+            const date = new Date(currentYear, currentMonth, i);
+            const isPastDate = currentDate > date;
+            const isToday =
+                currentDate.toDateString() === date.toDateString();
+
             dates.push(
                 <li
                     key={i}
-                    className={`calendar-date ${isPastDate ? "inactive-date" : ""}`}
+                    className={`calendar-date ${isPastDate ? "inactive-date" : ""} ${
+                        isToday ? "today-date" : ""
+                    }`}
                     onClick={() => !isPastDate && selectDate(i)}
                 >
-                    <div className="date-number">{i}</div>
+                    <div className="date-number">{i}/</div>
                     <div className="shape-container">
                         <i className="far fa-circle shape-icon"></i>
                         <i className="far fa-square shape-icon"></i>
@@ -47,7 +53,6 @@ const Calendar = () => {
                 </li>
             );
         }
-
         return dates;
     };
 
@@ -63,11 +68,17 @@ const Calendar = () => {
     };
 
     const prevMonth = () => {
-        if (currentMonth === 0) {
-            setCurrentMonth(11);
-            setCurrentYear(currentYear - 1);
-        } else {
-            setCurrentMonth(currentMonth - 1);
+        const today = new Date();
+        if (
+            currentYear > today.getFullYear() ||
+            (currentYear === today.getFullYear() && currentMonth > today.getMonth())
+        ) {
+            if (currentMonth === 0) {
+                setCurrentMonth(11);
+                setCurrentYear(currentYear - 1);
+            } else {
+                setCurrentMonth(currentMonth - 1);
+            }
         }
     };
 

@@ -8,39 +8,39 @@
 
     h4 {
         text-align: center;
-        font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+        font-size: clamp(1.5rem, 4vw, 2rem);
         margin: 1rem 0;
     }
-    
+
     .calendar-container {
         width: 100%;
-        max-width: 500px;
+        max-width: 600px;
         margin: 0 auto;
         background-color: #fff;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
     }
 
     .calendar-header {
-        background-color: #4caf50;
+        background-color: #60b674;
         color: #fff;
-        padding: clamp(8px, 2vw, 10px);
+        padding: clamp(10px, 2.5vw, 15px);
         text-align: center;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
     .calendar-body {
-        padding: clamp(10px, 3vw, 20px);
+        padding: clamp(15px, 3.5vw, 25px);
     }
 
     .calendar-month {
-        font-size: clamp(16px, 3vw, 20px);
+        font-size: clamp(18px, 3.5vw, 24px);
         font-weight: bold;
-        margin-bottom: clamp(10px, 2vw, 20px);
+        margin-bottom: clamp(12px, 3vw, 24px);
         text-align: center;
     }
 
@@ -49,13 +49,13 @@
         justify-content: space-around;
         list-style-type: none;
         padding: 0;
-        font-size: clamp(14px, 2.5vw, 16px);
+        font-size: clamp(16px, 3vw, 20px);
     }
 
     .calendar-weekdays li {
         width: 14.2857%;
         text-align: center;
-        padding: 0 2px;
+        padding: 0 3px;
     }
 
     .calendar-dates {
@@ -63,35 +63,35 @@
         flex-wrap: wrap;
         list-style-type: none;
         padding: 0;
-        gap: 2px;
+        gap: 4px;
     }
 
     .calendar-date {
-        width: calc(14.2857% - 4px);
+        width: calc(14.2857% - 6px);
         text-align: center;
         cursor: pointer;
-        margin-bottom: 5px;
-        padding: clamp(2px, 1vw, 5px);
-        border-radius: 5px;
+        margin-bottom: 8px;
+        padding: clamp(5px, 2vw, 10px);
+        border-radius: 8px;
         transition: background-color 0.3s ease;
         display: flex;
         flex-direction: column;
         align-items: center;
-        font-size: clamp(12px, 2vw, 14px);
+        font-size: clamp(16px, 3vw, 18px);
     }
 
     .date-number {
-        margin-bottom: 3px;
+        margin-bottom: 5px;
     }
 
     .shape-container {
         display: flex;
-        gap: 2px;
+        gap: 3px;
         justify-content: center;
     }
 
     .shape-icon {
-        font-size: clamp(10px, 1.5vw, 12px);
+        font-size: clamp(12px, 1.8vw, 15px);
         color: #666;
     }
 
@@ -100,7 +100,7 @@
     }
 
     .active-date {
-        background-color: #4caf50;
+        background-color: #60b674;
         color: #fff;
     }
 
@@ -109,10 +109,17 @@
         pointer-events: none;
     }
 
+    .today-date {
+        color: blue;
+        border-radius: 50%;
+        text-align: center;
+        font-weight: bold;
+    }
+
     .chevron-icons {
-        font-size: clamp(18px, 3vw, 24px);
+        font-size: clamp(24px, 4vw, 28px);
         cursor: pointer;
-        padding: 0 5px;
+        padding: 0 7px;
     }
 
     .container {
@@ -137,13 +144,33 @@
         padding: 0 15px;
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 576px) {
         .col-md-7 {
-            width: 58.333333%;
+            width: 100%;
         }
 
         .col-md-4 {
-            width: 33.333333%;
+            width: 100%;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .calendar-container {
+            width: 100%;
+        }
+
+        .col-md-7 {
+            width: 60%;
+        }
+
+        .col-md-4 {
+            width: 40%;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .calendar-container {
+            max-width: 800px;
         }
     }
 
@@ -152,8 +179,32 @@
             margin: 0 auto;
         }
 
+        .calendar-header {
+            padding: clamp(12px, 4vw, 16px);
+        }
+
+        .calendar-body {
+            padding: clamp(10px, 4vw, 20px);
+        }
+
         .calendar-weekdays li {
-            padding: 0 1px;
+            padding: 0 2px;
+            font-size: clamp(12px, 3vw, 14px);
+        }
+
+        .calendar-date {
+            width: calc(14.2857% - 4px);
+            padding: clamp(4px, 3vw, 8px);
+            font-size: clamp(14px, 3vw, 16px);
+        }
+
+        .shape-icon {
+            font-size: clamp(10px, 2.5vw, 12px);
+        }
+
+        .chevron-icons {
+            font-size: clamp(22px, 4vw, 26px);
+            padding: 0 6px;
         }
     }
 }
