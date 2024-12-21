@@ -21,7 +21,7 @@ const OrderDetail = () => {
     // Trigger Razorpay payment
     const handlePayment = () => {
         const options = {
-            key: "rzp_test_bAStVbQXXg0Jx1", // Your Razorpay key_id
+            key: "rzp_test_ZQmsCkWeX6PsgX,ktjItJMPjBJTxF3qNMO7DOXe", // Your Razorpay key_id
             amount: 100 * 100, // Amount in paise (Rs 105)
             currency: "INR",
             name: "TheraMotion",
