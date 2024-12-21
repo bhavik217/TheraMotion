@@ -1,48 +1,135 @@
 .needformo {
-    .call {
-        padding-top: 8px;
-        border-top: 1px solid rgba(66, 66, 66, 0.721);
-        border-bottom: 1px solid rgba(66, 66, 66, 0.721);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.needformo h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.needformo p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.needformo .call,
+.needformo .email {
+    padding: 1rem 0;
+    border-top: 1px solid rgba(66, 66, 66, 0.2);
+    border-bottom: 1px solid rgba(66, 66, 66, 0.2);
+}
+
+.needformo .call p,
+.needformo .email p {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.needformo .fa-mobile,
+.needformo .fa-envelope {
+    margin-right: 0.5rem;
+    color: #4a90e2;
+}
+
+.needformo form {
+    margin-top: 2rem;
+}
+
+.needformo .inp1 {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .needformo .inp1 {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+.needformo h5 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.needformo .inp {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.needformo .inp:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.needformo .inp::placeholder {
+    color: #999;
+}
+
+.needformo .namee,
+.needformo .phone {
+    flex: 1;
+}
+
+.needformo .emai {
+    margin-bottom: 1.5rem;
+}
+
+.needformo .mess textarea {
+    height: 160px;
+    resize: vertical;
+}
+
+.needformo .submit {
+    margin-top: 2rem;
+}
+
+.needformo .bsub {
+    width: 100%;
+    padding: 1rem;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.needformo .bsub:hover {
+    background-color: #357abd;
+}
+
+@media (max-width: 576px) {
+    .needformo {
+        padding: 1rem;
     }
 
-    /* .inp{
-    border:1px solid black;
-} */
-    .email {
-        padding-top: 8px;
-        border-bottom: 1px solid rgba(66, 66, 66, 0.721);
+    .needformo .inp1 {
+        gap: 1rem;
     }
 
-    .inp1 {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    }
-
-    .reqd {
-        color: red;
-        display: none;
-    }
-
-    .emai input {
-        width: 80%;
-    }
-
-    .mess textarea {
-        width: 90%;
-        height: 160px;
-    }
-
-    .submit {
-        margin-top: 20px;
-    }
-
-    .submit button {
-        width: 90%;
-        text-align: center;
-    }
-
-    .psub {
-        display: none;
+    .needformo h4 {
+        font-size: 1.25rem;
     }
 }

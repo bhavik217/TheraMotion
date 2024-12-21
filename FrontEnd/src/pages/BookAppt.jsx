@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import Dropdown from "../components/elements/Dropdown";
 import Needform from "../components/NeedForm";
 import { BookApptData1, BookApptData2 } from "./data/BookApptData";
 import "./BookAppt.css";
 
 const BookAppt = () => {
-
     const [btn, setbtn] = useState(true);
 
     const changebtnapp = () => {
@@ -25,36 +24,33 @@ const BookAppt = () => {
                         <p>Prices are inclusive of tax, if applicable</p>
                         <div className="btn-group" role="group">
                             <button
-                                className="btn11 appo1"
+                                className={`btn11 ${btn ? 'active' : ''} appo1`}
                                 onClick={changebtnapp}
                             >
                                 Appointments
                             </button>
                             <button
-                                className="btn11 group1"
+                                className={`btn11 ${!btn ? 'active' : ''} group1`}
                                 onClick={changebtngrp}
                             >
                                 Group Sessions
                             </button>
                         </div>
-                        {
-                            // Render Bookservice components based on the value of btn
-                            btn
-                                ? BookApptData1.map((data, index) => (
-                                      <Dropdown
-                                          key={index}
-                                          name={data.name}
-                                          arr={data.arr}
-                                      />
-                                  ))
-                                : BookApptData2.map((data, index) => (
-                                      <Dropdown
-                                          key={index}
-                                          name={data.name}
-                                          arr={data.arr}
-                                      />
-                                  ))
-                        }
+                        {btn
+                            ? BookApptData1.map((data, index) => (
+                                  <Dropdown
+                                      key={index}
+                                      name={data.name}
+                                      arr={data.arr}
+                                  />
+                              ))
+                            : BookApptData2.map((data, index) => (
+                                  <Dropdown
+                                      key={index}
+                                      name={data.name}
+                                      arr={data.arr}
+                                  />
+                              ))}
                     </div>
 
                     <div className="col-md-4">
@@ -66,4 +62,5 @@ const BookAppt = () => {
         </div>
     );
 };
+
 export default BookAppt;

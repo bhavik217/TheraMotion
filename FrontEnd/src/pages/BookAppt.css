@@ -1,30 +1,135 @@
 .booko {
-    .col-md-7 {
-        margin-right: 50px;
-    }
-    .btn11 {
-        padding-left: 10px;
-        padding-right: 10px;
-        height: 50px;
-        border: 1px solid black;
-        border-radius: 0px;
+    padding: 20px;
+}
+
+.booko .container {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+.booko .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+}
+
+.booko .col-md-7 {
+    flex: 0 0 calc(65% - 30px);
+    max-width: calc(65% - 30px);
+    padding: 0 15px;
+    margin-bottom: 30px;
+}
+
+.booko .col-md-4 {
+    flex: 0 0 calc(35% - 30px);
+    max-width: calc(35% - 30px);
+    padding: 0 15px;
+}
+
+.booko h5 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.booko p {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.booko .btn-group {
+    display: flex;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.booko .btn11 {
+    flex: 1;
+    padding: 12px 20px;
+    height: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.booko .appo1 {
+    background-color: rgba(128, 128, 128, 0.1);
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.booko .group1 {
+    background-color: rgba(128, 128, 128, 0.05);
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.booko .btn11:hover,
+.booko .btn11.active {
+    background-color: rgba(128, 128, 128, 0.2);
+    border-color: rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 992px) {
+    .booko .container {
+        max-width: 720px;
     }
 
-    .appo1 {
-        background-color: rgba(128, 128, 128, 0.705);
+    .booko .col-md-7,
+    .booko .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
     }
 
-    .appo1:hover {
-        background-color: white;
-        border: none;
+    .booko .col-md-7 {
+        margin-right: 0;
+        margin-bottom: 40px;
     }
 
-    .group1 {
-        background-color: rgba(128, 128, 128, 0.196);
+    .booko .btn-group {
+        max-width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .booko .container {
+        max-width: 540px;
     }
 
-    .group1:hover {
-        background-color: white;
-        border: none;
+    .booko h5 {
+        font-size: 1.2rem;
+    }
+
+    .booko .btn11 {
+        padding: 8px 15px;
+        height: 45px;
+        font-size: 0.95rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .booko {
+        padding: 15px;
+    }
+
+    .booko .container {
+        padding: 0 10px;
+    }
+
+    .booko .btn11 {
+        padding: 8px 10px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+
+    .booko [style*="height: 15vh"] {
+        height: 10vh !important;
     }
 }

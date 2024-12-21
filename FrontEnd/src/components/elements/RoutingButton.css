@@ -1,35 +1,82 @@
 .bookoserhid {
-    .btn {
-        height: 50px;
-        border: 1px solid black;
-        border-radius: 0px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bookoserhid .btn {
+    height: 40px;
+    min-height: 40px;
+    border: 1px solid black;
+    border-radius: 0px;
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+.bookoserhid a {
+    text-decoration: none;
+    color: white;
+}
+
+.bookoserhid .hid1 {
+    height: auto;
+    min-height: 70px;
+    background-color: rgb(256, 256, 256);
+    display: flex;
+    border-bottom: 1px solid rgba(66, 66, 66, 0.721);
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.bookoserhid .hid1 div {
+    height: auto;
+    min-height: 37px;
+    width: auto;
+    min-width: 80px;
+    padding: 8px 12px;
+    background-color: rgb(189, 186, 183);
+    text-align: center;
+}
+
+.bookoserhid .hid1 .btn {
+    width: auto;
+    min-width: 100px;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .bookoserhid .hid1 {
+        padding: 15px;
+        flex-direction: column;
+        text-align: center;
     }
 
-    a {
-        text-decoration: none;
-        color: white;
+    .bookoserhid .hid1 h5 {
+        margin: 0;
+        width: 100%;
     }
 
-    .hid1 {
-        height: 70px;
-        background-color: rgb(256, 256, 256);
-        display: flex;
-        border-bottom: 1px solid rgba(66, 66, 66, 0.721);
-        align-items: center;
-        justify-content: space-around;
+    .bookoserhid .hid1 div {
+        width: 100%;
+        max-width: 200px;
     }
 
-    .hid1 div {
-        height: 37px;
-        width: 80px;
-        padding-top: 5px;
-        padding-left: 12px;
-        padding-right: 10px;
-        background-color: rgb(189, 186, 183);
+    .bookoserhid .hid1 .btn {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .bookoserhid .hid1 {
+        padding: 10px;
     }
 
-    .hid1 .btn {
-        width: 100px;
-        border-radius: 5px;
+    .bookoserhid .btn {
+        font-size: 12px;
+        height: 36px;
     }
 }

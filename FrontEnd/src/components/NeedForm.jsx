@@ -26,40 +26,29 @@ function Needform() {
                 <div className="inp1">
                     <div className="namee">
                         <h5>Name</h5>
-                        <input type="text" className="inp" required />
-                        <br />
-                        <p className="reqd">This is the required field</p>
+                        <input type="text" className="inp" placeholder="Your name" />
                     </div>
                     <div className="phone">
                         <h5>Phone</h5>
-                        <input type="text" className="inp" required />
-                        <br />
-                        <p className="reqd">This is the required field</p>
+                        <input type="text" className="inp" placeholder="Your phone number" />
                     </div>
                 </div>
                 <div className="emai">
                     <h5>Email</h5>
-                    <input type="email" className="inp" required />
-                    <br />
-                    <p className="reqd">This is the required field</p>
+                    <input type="email" className="inp" placeholder="Your email address" />
                 </div>
                 <div className="mess">
                     <h5>Message</h5>
-                    <textarea className="inp" required />
-                    <br />
-                    <p className="reqd">This is the required field</p>
+                    <textarea className="inp" placeholder="How can we help you?" />
                 </div>
                 <div className="submit">
                     <button className="bsub" type="submit">
                         SUBMIT
                     </button>
-                    <br />
-                    <p className="psub">
-                        Please Enter Correct Information before Submitting form
-                    </p>
                 </div>
             </form>
         </div>
     );
 }
+
 export default Needform;
