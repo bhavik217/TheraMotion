@@ -44,7 +44,7 @@ const Calendar = () => {
                     }`}
                     onClick={() => !isPastDate && selectDate(i)}
                 >
-                    <div className="date-number">{i}/</div>
+                    <div className="date-number">{i}</div>
                     <div className="shape-container">
                         <i className="far fa-circle shape-icon"></i>
                         <i className="far fa-square shape-icon"></i>
