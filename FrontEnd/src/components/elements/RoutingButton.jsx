@@ -6,15 +6,14 @@ const RoutingButton = ({ name, time }) => {
         <div className="bookoserhid">
             <div className="hid1">
                 <h5>{name}</h5>
-                <div>{time}</div>
-                <Link to="/person" state={{ name }}>
-                    <button
-                        className="btn btn-primary"
-                        aria-label={`Select ${name}`}
-                    >
-                        Select
-                    </button>
-                </Link>
+                <div className="btnbox">
+                    <div className="time">{time}</div>
+                    <Link to="/person" state={{ name }}>
+                        <button className="btn btn-success" aria-label={`Select ${name}`}>
+                            Select
+                        </button>
+                    </Link>
+                </div>
             </div>
         </div>
     );

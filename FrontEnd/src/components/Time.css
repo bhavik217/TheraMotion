@@ -24,8 +24,6 @@
         width: 7%;
         color: white;
         font-size: larger;
-        border: 2px solid white;
-        box-shadow: 0 0 5px #26bf99;
     }
     .c:hover {
         border: none;
@@ -43,7 +41,7 @@
     .time button {
         width: 180px;
         height: 35px;
-        background-color: #3cae40;
+        background-color: #60b674;
         color: white;
         border-radius: 2px;
         border: 1px solid white;

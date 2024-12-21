@@ -1,82 +1,93 @@
+/* Main container styles */
 .bookoserhid {
-    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%;
 }
 
+/* Content section styles */
+.bookoserhid .hid1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(66, 66, 66, 0.72);
+    padding: 20px;
+    gap: 15px;
+    flex-wrap: wrap;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Name/title styling */
+.bookoserhid .hid1 h5 {
+    margin: 0;
+    font-size: 20px;
+    color: #333;
+}
+
+/* Button container */
+.bookoserhid .btnbox {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Time box styles */
+.bookoserhid .time {
+    background-color: rgb(189, 186, 183);
+    padding: 12px 16px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 4px;
+    color: #333;
+}
+
+/* Button styling */
 .bookoserhid .btn {
-    height: 40px;
-    min-height: 40px;
-    border: 1px solid black;
-    border-radius: 0px;
-    padding: 8px 16px;
-    font-size: 14px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
 }
 
+/* Link styling */
 .bookoserhid a {
     text-decoration: none;
-    color: white;
+    color: inherit;
 }
 
-.bookoserhid .hid1 {
-    height: auto;
-    min-height: 70px;
-    background-color: rgb(256, 256, 256);
-    display: flex;
-    border-bottom: 1px solid rgba(66, 66, 66, 0.721);
-    align-items: center;
-    justify-content: space-around;
-    padding: 10px;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.bookoserhid .hid1 div {
-    height: auto;
-    min-height: 37px;
-    width: auto;
-    min-width: 80px;
-    padding: 8px 12px;
-    background-color: rgb(189, 186, 183);
-    text-align: center;
-}
-
-.bookoserhid .hid1 .btn {
-    width: auto;
-    min-width: 100px;
-    border-radius: 5px;
-}
-
+/* Responsive design for tablets and smaller screens */
 @media screen and (max-width: 768px) {
     .bookoserhid .hid1 {
-        padding: 15px;
         flex-direction: column;
         text-align: center;
+        padding: 15px;
     }
 
-    .bookoserhid .hid1 h5 {
-        margin: 0;
-        width: 100%;
+    .bookoserhid .btnbox {
+        justify-content: center;
     }
 
-    .bookoserhid .hid1 div {
+    .bookoserhid .btn,
+    .bookoserhid .time {
         width: 100%;
-        max-width: 200px;
-    }
-
-    .bookoserhid .hid1 .btn {
-        width: 100%;
-        max-width: 200px;
+        max-width: 300px;
     }
 }
 
+/* Responsive design for small screens */
 @media screen and (max-width: 480px) {
     .bookoserhid .hid1 {
         padding: 10px;
     }
 
     .bookoserhid .btn {
-        font-size: 12px;
-        height: 36px;
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .bookoserhid .time {
+        font-size: 14px;
+        padding: 10px 14px;
     }
 }

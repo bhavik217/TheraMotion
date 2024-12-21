@@ -39,7 +39,7 @@
 .needformo .fa-mobile,
 .needformo .fa-envelope {
     margin-right: 0.5rem;
-    color: #4a90e2;
+    color: #2b2e34;
 }
 
 .needformo form {
@@ -77,7 +77,7 @@
 
 .needformo .inp:focus {
     outline: none;
-    border-color: #4a90e2;
+    border-color: #2b2e34;;
     box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
 }
 
@@ -105,8 +105,8 @@
 
 .needformo .bsub {
     width: 100%;
-    padding: 1rem;
-    background-color: #4a90e2;
+    padding: 0.5rem;
+    background-color: #2b2e34;;
     color: white;
     border: none;
     border-radius: 4px;
@@ -117,7 +117,7 @@
 }
 
 .needformo .bsub:hover {
-    background-color: #357abd;
+    background-color: #383a3c;;
 }
 
 @media (max-width: 576px) {

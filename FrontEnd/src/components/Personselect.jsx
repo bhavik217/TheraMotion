@@ -18,7 +18,7 @@ function Personselect() {
                             <h5>Any practitioner</h5>
                             <Link
                                 to="/person/calendar"
-                                className="btn btn-primary btno"
+                                className="btn btn-success btno"
                             >
                                 Select{" "}
                                 <i className="fa-solid fa-chevron-right"></i>

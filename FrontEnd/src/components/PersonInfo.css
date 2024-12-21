@@ -29,11 +29,16 @@
         height: 50px;
     }
 
+    .btnholder{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
     .moreinfo {
-        height: 40px;
-        width: 120px;
+        padding: 0.5rem;
         border-radius: 5px;
-        margin-right: 20px;
+        margin: 1vw;
         border: 1px solid rgba(66, 66, 66, 0.721);
     }
 
