@@ -1,21 +1,21 @@
 import Layout from "./layout";
-import SignUp from "./pages/Signup.jsx";
-import SignIn from "./pages/Signin.jsx";
-import JoinTeam from "./pages/JoinTeam";
-import MainPage from "./pages/MainPage";
-import MeetTeam from "./pages/MeetTeam";
-import Services from "./pages/Service";
-import Blog from "./pages/Blog";
+import SignUp from "./pages/authentication/Signup.jsx";
+import SignIn from "./pages/authentication/Signin.jsx";
+import JoinTeam from "./pages/join team/JoinTeam.jsx";
+import MainPage from "./pages/main page/MainPage.jsx";
+import MeetTeam from "./pages/meet team/MeetTeam.jsx";
+import Services from "./pages/services/Service.jsx";
+import Blog from "./pages/blog/Blog.jsx";
 import Dashboard from "./pages/Dashboard";
-import MeetTeamLayout from "./pages/MeetTeamLayout";
+import MeetTeamLayout from "./pages/meet team/MeetTeamLayout.jsx";
 import PersonDetail from "./components/PersonDetails";
 import { Outlet, Navigate } from "react-router-dom";
-import BookAppt from "./pages/BookAppt.jsx";
+import BookAppt from "./pages//book appointment/BookAppt.jsx";
 import Personselect from "./components/Personselect.jsx";
 import Calendar from "./components/Calendar.jsx";
-import Finalform from "./pages/Finalform.jsx";
-import OrderDetail from "./pages/OrderDetail.jsx";
-import PersonSelectLayout from "./pages/PersonSelectLayout.jsx";
+import Finalform from "./pages/forms/Finalform.jsx";
+import OrderDetail from "./pages/book appointment/OrderDetail.jsx";
+import PersonSelectLayout from "./pages/book appointment/PersonSelectLayout.jsx";
 
 const ProtectedRoute = () => {
     const authToken = localStorage.getItem("authToken");

@@ -1,0 +1,285 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.mainpage {
+    /* Section2 */
+    .section2 {
+        padding: 80px 60px;
+        background-color: #2b2e34;
+    }
+
+    .section2 .container {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1200px;
+        background: url("/Background-icon-light.png") no-repeat right;
+    }
+
+    .section2 .heading1 {
+        color: #ffffff;
+        font-size: 2rem;
+        line-height: 1.25;
+    }
+
+    .section2 .heading2 {
+        color: #59595b;
+        font-size: 2rem;
+        line-height: 1.25;
+    }
+
+    .section2 .buttons {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        display: flex;
+        align-items: center;
+    }
+
+    .section2 .buttons a {
+        background-color: white;
+        color: black;
+        text-decoration: none;
+        padding: 7px 20px;
+        margin-right: 20px;
+        font-size: medium;
+        color: #373737;
+    }
+
+    @media screen and (max-width: 527px) {
+        .section2 .buttons {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .section2 .buttons a {
+            padding: 3px 5px;
+            font-size: small;
+        }
+    }
+
+    /* Section3 */
+    /* Sub Container-1 */
+
+    /* Section4 */
+    .section4 {
+        padding: 80px 60px;
+        background-color: #ebecec;
+    }
+
+    .section4 .container {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1200px;
+        background: url("/Background-icon-dark.png") no-repeat right !important;
+    }
+
+    .section4 .heading1 {
+        color: #2b2e34;
+        font-size: 2rem;
+        line-height: 1.25;
+    }
+
+    .section4 .heading2 {
+        color: #59595b;
+        font-size: 2rem;
+        line-height: 1.25;
+    }
+
+    .section4 .buttons {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        display: flex;
+    }
+
+    .section4 .buttons .btn1 a {
+        background-color: #2b2e34;
+        color: white;
+        text-decoration: none;
+        padding: 7px 20px;
+        margin-right: 20px;
+        font-size: medium;
+    }
+
+    .section4 .buttons .btn2 a {
+        background-color: white;
+        color: #2b2e34;
+        text-decoration: none;
+        padding: 7px 20px;
+        margin-right: 20px;
+        font-size: medium;
+    }
+
+    @media screen and (max-width: 527px) {
+        .section4 .buttons {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .section4 .buttons .btn1 a {
+            padding: 3px 10px;
+            font-size: small;
+        }
+
+        .section4 .buttons .btn2 a {
+            padding: 3px 10px;
+            font-size: small;
+        }
+    }
+
+    /* Section5 */
+    /* Sub Container-1 */
+    .section5 .sub-container1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 0px 50px;
+    }
+
+    .section5 .content1 {
+        font-size: 1.3vw;
+
+        p {
+            line-height: 1.2;
+        }
+    }
+
+    .section5 .content2 {
+        a {
+            color: #959595;
+            text-decoration: none;
+        }
+    }
+
+    @media screen and (max-width: 575px) {
+        .section5 .sub-container2 .newclass {
+            width: 100% !important;
+        }
+        .section5 .sub-container1 {
+            padding: 50px;
+        }
+
+        .section5 .content1 {
+            font-size: 4vw;
+        }
+
+        .section5 .content2 {
+            font-size: 0.7rem;
+        }
+    }
+
+    @media screen and (min-width: 576px) and (max-width: 768px) {
+        .section5 .content1 {
+            font-size: 2vw;
+        }
+        .section5 .content2 {
+            font-size: 0.7rem;
+        }
+    }
+    /* Section6 */
+    .section6 {
+        padding: 80px 60px;
+        background-color: #2b2e34;
+    }
+
+    .section6 .container {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 1200px;
+        background: url("/Background-icon-light.png") no-repeat right !important;
+    }
+
+    .section6 .heading1 {
+        color: #ffffff;
+        font-size: 2rem;
+        line-height: 1.25;
+    }
+
+    .section6 .heading2 {
+        color: #59595b;
+        font-size: 2rem;
+        line-height: 1.25;
+    }
+
+    .section6 .buttons {
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .section6 .buttons a {
+        background-color: white;
+        color: #373737;
+        text-decoration: none;
+        padding: 7px 20px;
+        margin-right: 20px;
+        font-size: medium;
+    }
+
+    @media screen and (max-width: 527px) {
+        .section6 .buttons {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .section6 .buttons a {
+            padding: 3px 10px;
+            font-size: small;
+        }
+    }
+
+    /* Section7 */
+    .section7 {
+        display: flex;
+    }
+
+    /* Sub Container-1 */
+    .section7 .sub-container1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 0px 50px;
+    }
+
+    .section7 .content1 {
+        font-size: 1.2vw;
+
+        p {
+            line-height: 1.2;
+        }
+    }
+
+    .section7 .content2 {
+        font-size: 1rem;
+
+        a {
+            color: #959595;
+            text-decoration: none;
+        }
+    }
+
+    @media screen and (max-width: 575px) {
+        .section7 .sub-container1 {
+            padding: 50px;
+        }
+
+        .section7 .content1 {
+            font-size: 4vw;
+        }
+
+        .section7 .content2 {
+            font-size: 0.7rem;
+        }
+        .section7 .sub-container2 .point-it {
+            width: 100vw;
+            height: 100vh;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 import "./JoinTeam.css";
-import joinTeamData from "./data/JoinTeamData";
+import joinTeamData from "../data/JoinTeamData";
 import { Link } from "react-router-dom";
-import IntroSection from "../components/IntroSection";
+import IntroSection from "../../components/IntroSection";
 
 function JoinTeam() {
     const scrollFactor = window.innerWidth < 768 ? 3 : 2.25;
@@ -58,7 +58,8 @@ function JoinTeam() {
             <section className="section4">
                 <div>
                     <span className="heading1">
-                        What does the interview process look like at TheraMotion?
+                        What does the interview process look like at
+                        TheraMotion?
                     </span>
                 </div>
                 <div style={{ margin: "1vw 35vw" }}>
@@ -101,7 +102,9 @@ function JoinTeam() {
                     email:{" "}
                 </span>
                 <span>
-                    <a href="mailto:admin@TheraMotion.com">admin@TheraMotion.com</a>
+                    <a href="mailto:admin@TheraMotion.com">
+                        admin@TheraMotion.com
+                    </a>
                 </span>
             </section>
             <hr />

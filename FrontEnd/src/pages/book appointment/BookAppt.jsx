@@ -1,7 +1,7 @@
 import {useState } from "react";
-import Dropdown from "../components/elements/Dropdown";
-import Needform from "../components/NeedForm";
-import { BookApptData1, BookApptData2 } from "./data/BookApptData";
+import Dropdown from "../../components/elements/Dropdown";
+import Needform from "../../components/NeedForm";
+import { BookApptData1, BookApptData2 } from "../../pages/data/BookApptData";
 import "./BookAppt.css";
 
 const BookAppt = () => {

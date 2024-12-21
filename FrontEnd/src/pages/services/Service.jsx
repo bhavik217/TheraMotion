@@ -1,6 +1,6 @@
-import IntroSection from "../components/IntroSection";
-import ServiceBox from "../components/Servicebox";
-import serviceData from "./data/serviceData";
+import IntroSection from "../../components/IntroSection";
+import ServiceBox from "../../components/Servicebox";
+import serviceData from "./../data/serviceData";
 // import Bookappoint from '../Components/Bookappoint'
 
 function Service() {

@@ -1,7 +1,7 @@
 import "./MeetTeam.css";
 import { useState } from "react";
-import Card from "../components/elements/Card";
-import meetData from "./data/meetTeamData";
+import Card from "../../components/elements/Card";
+import meetData from "../data/meetTeamData";
 
 function MeetTeam() {
     const [filter, setFilter] = useState("all");
