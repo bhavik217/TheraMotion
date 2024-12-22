@@ -42,6 +42,7 @@ const OrderDetail = () => {
             },
             theme: {
                 color: "#3399cc",
+                margin: "0px",
             },
         };
 
@@ -152,4 +153,5 @@ const OrderDetail = () => {
         </div>
     );
 };
+
 export default OrderDetail;

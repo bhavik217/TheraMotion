@@ -1,36 +1,37 @@
 .perselect {
-    padding: 20px;
+    padding: clamp(15px, 2vw, 20px);
 }
 
 .perselect .container {
-    margin-top: 60px;
+    margin-top: clamp(20px, 4vw, 60px);
     max-width: 1200px;
     width: 100%;
-    padding: 0 15px;
+    padding: 0 clamp(10px, 2vw, 15px);
+    margin-inline: auto;
 }
 
 .perselect .row {
     display: flex;
     flex-wrap: wrap;
     margin: 0 -15px;
+    gap: clamp(20px, 3vw, 30px);
 }
 
 .perselect .col-md-7 {
-    flex: 0 0 calc(65% - 30px);
+    flex: 1 1 calc(65% - 30px);
     max-width: calc(65% - 30px);
     padding: 0 15px;
-    margin-bottom: 30px;
 }
 
 .perselect .col-md-4 {
-    flex: 0 0 calc(35% - 30px);
+    flex: 1 1 calc(35% - 30px);
     max-width: calc(35% - 30px);
     padding: 0 15px;
 }
 
 .perselect h4 {
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
     color: #333;
 }
 
@@ -38,39 +39,48 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     height: auto;
-    min-height: 80px;
-    padding: 15px 20px;
+    min-height: clamp(70px, 10vh, 80px);
+    padding: clamp(12px, 2vw, 20px);
     display: flex;
     align-items: center;
     background-color: rgba(195, 198, 198, 0.15);
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: clamp(15px, 2vw, 20px);
     transition: all 0.3s ease;
+    gap: 15px;
 }
 
 .perselect .pracc:hover {
     background-color: rgba(195, 198, 198, 0.25);
     border-color: rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .perselect .pracc h5 {
     margin: 0;
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
     color: #444;
 }
 
 .perselect .btn {
     width: auto;
-    min-width: 100px;
-    padding: 8px 20px;
+    min-width: clamp(90px, 15vw, 100px);
+    padding: clamp(6px, 1vw, 8px) clamp(15px, 2vw, 20px);
     border-radius: 5px;
     height: auto;
-    min-height: 45px;
+    min-height: clamp(40px, 6vh, 45px);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.perselect .btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .perselect .btno {
@@ -80,12 +90,12 @@
 }
 
 .perselect .names {
-    margin-top: 30px;
+    margin-top: clamp(20px, 3vw, 30px);
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
-
 
 @media screen and (max-width: 1200px) {
     .perselect .container {
@@ -96,69 +106,52 @@
 @media screen and (max-width: 992px) {
     .perselect .container {
         max-width: 720px;
-        margin-top: 40px;
+        margin-top: clamp(30px, 4vw, 40px);
     }
 
     .perselect .col-md-7,
     .perselect .col-md-4 {
-        flex: 0 0 100%;
+        flex: 1 1 100%;
         max-width: 100%;
-    }
-
-    .perselect .col-md-7 {
-        margin-right: 0;
-        margin-bottom: 40px;
     }
 }
 
 @media screen and (max-width: 768px) {
     .perselect .container {
         max-width: 540px;
-        margin-top: 30px;
     }
 
-    .perselect h4 {
-        font-size: 1.25rem;
+    .perselect .row {
+        margin: 0;
+        gap: 20px;
     }
 
-    .perselect .pracc {
-        padding: 12px 15px;
-        min-height: 70px;
-    }
-
-    .perselect .pracc h5 {
-        font-size: 1rem;
-    }
-
-    .perselect .btn {
-        min-width: 90px;
-        padding: 6px 15px;
-        min-height: 40px;
+    .perselect .col-md-7,
+    .perselect .col-md-4 {
+        padding: 0 10px;
     }
 }
 
 @media screen and (max-width: 576px) {
-    .perselect {
-        padding: 15px;
-    }
-
     .perselect .container {
         padding: 0 10px;
-        margin-top: 20px;
     }
 
     .perselect .pracc {
         flex-direction: column;
-        gap: 15px;
         text-align: center;
-        padding: 15px;
     }
 
     .perselect .btn {
         width: 100%;
+        max-width: 200px;
     }
 
-    .perselect .names {
-        margin-top: 20px;
+    .perselect .names .per:last-child {
+        margin-bottom: 0;
+    }
+
+    .perselect .row {
+        gap: 15px;
     }
 }
