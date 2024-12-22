@@ -43,7 +43,7 @@ export function SignIn() {
                         formValuesObject.email
                     );
                     setSignInSuccess(true);
-                    window.location.href = "/dashboard";
+                    window.location.href = "/profile";
                 } else {
                     const errorData = await signInResponse.json();
                     setSignInError(errorData?.message || "Sign-in failed");

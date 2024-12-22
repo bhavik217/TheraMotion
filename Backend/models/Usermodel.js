@@ -2,9 +2,15 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET_KEY } from "../config/constants.js";
+import Counter from "../utils/counter.js";
 
 const userSchema = new mongoose.Schema(
     {
+        userId: {
+            type: Number,
+            required: true,
+            unique: true,
+        },
         firstName: {
             type: String,
             trim: true,
@@ -43,7 +49,6 @@ UserModel.getUser = async (req, successCallback, errorCallback) => {
 
     try {
         const dbRes = await UserModel.find({ email: reqMail });
-        console.log("GET | dbRes is: ", dbRes);
         successCallback(dbRes);
     } catch (dbErr) {
         console.error("GET | dbErr is: ", dbErr.Error);
@@ -55,7 +60,6 @@ UserModel.signIn = async (user, successCallback, errorCallback) => {
     try {
         const dbRes = await UserModel.findOne({ email: user.email });
         if (dbRes) {
-            console.log("SignIn | dbRes is: ", dbRes);
             const isPasswordMatch = bcrypt.compareSync(
                 user.password,
                 dbRes.password
@@ -93,7 +97,6 @@ UserModel.addUser = async (user, successCallback, errorCallback) => {
     let encryptedPassword = "";
     try {
         encryptedPassword = bcrypt.hashSync(user.password, 10);
-        console.log("The encrypted password is: ", encryptedPassword);
     } catch (err) {
         console.error("Error hashing password: ", err);
         errorCallback({ message: "Error encrypting password." });
@@ -101,8 +104,16 @@ UserModel.addUser = async (user, successCallback, errorCallback) => {
     }
 
     try {
+        let userId;
+        const counter = await Counter.findByIdAndUpdate(
+            { _id: "userId" },
+            { $inc: { sequenceValue: 1 } },
+            { new: true, upsert: true } // Create counter if it doesn't exist
+        );
+        userId = counter.sequenceValue;
+
         const dbRes = await UserModel.insertMany([
-            { ...user, password: encryptedPassword },
+            { userId, ...user, password: encryptedPassword },
         ]);
         console.log("POST | dbRes is: ", dbRes);
         successCallback(dbRes);
@@ -120,7 +131,4 @@ UserModel.addUser = async (user, successCallback, errorCallback) => {
         }
     }
 };
-
-
-
 export default UserModel;

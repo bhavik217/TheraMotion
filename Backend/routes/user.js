@@ -30,7 +30,6 @@ router.get("/:email", verifyToken, (req, res) => {
 // Signup Route
 router.post("/", (req, res) => {
     // res.json(req.body);
-    console.log(req.body);
     const user = req.body;
 
     UserModel.addUser(
