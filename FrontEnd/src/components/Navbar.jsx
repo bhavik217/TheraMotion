@@ -55,9 +55,9 @@ const Navbar = () => {
                 <div className="container d-flex justify-content-between align-items-center">
                     <Link to="/" className="navbar-brand">
                         <img
-                            src="/path-to-logo.png"
-                            alt="Site Logo"
-                            style={{ width: "40px", height: "40px" }}
+                            src="/logo.png"
+                            alt="Theramotion Logo"
+                            style={{ width: "150px", height: "40px" }}
                         />
                     </Link>
                     <div className="d-flex align-items-center">

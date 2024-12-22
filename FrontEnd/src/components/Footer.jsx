@@ -6,18 +6,18 @@ function Footer() {
         >
             <div className="container-fluid col-lg-4 mb-3">
                 <div>
-                    <span>Site</span>
+                    <span>Theramotion</span>
                 </div>
                 <div>
                     <span>Our Commitment:</span>
                     <p>
-                        Site acknowledges the Traditional Owners of country
+                        Theramotion acknowledges the Traditional Owners of country
                         throughout Australia, in particular the Wathaurong &
                         Wurundjeri land in which we work. We pay our respect to
                         their Elders past, present and emerging.
                     </p>
                     <p>
-                        Site is an allied health clinic that provides quality
+                        Theramotion is an allied health clinic that provides quality
                         healthcare in an environment that is safe and inclusive
                         for people of all genders.
                     </p>
