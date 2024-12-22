@@ -10,6 +10,18 @@ function UserProfile() {
         email: "",
     });
 
+    const [isEditing, setIsEditing] = useState({
+        firstName: false,
+        lastName: false,
+        email: false,
+    });
+
+    const [editedProfile, setEditedProfile] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+    });
+
     useEffect(() => {
         fetchUserData();
     }, []);
@@ -33,12 +45,83 @@ function UserProfile() {
                     photo: userDetails.photo || "/DefaultAvatar.png",
                     email: userDetails.email,
                 });
+                setEditedProfile({
+                    firstName: userDetails.firstName,
+                    lastName: userDetails.lastName,
+                    email: userDetails.email,
+                });
             } else {
                 console.error("Failed to fetch user details:", response.statusText);
             }
         } catch (err) {
             console.error("Error fetching user details:", err);
         }
+    };
+
+    const updateUserProfile = async () => {
+        const email = localStorage.getItem("loggedInUserEmail");
+        const updatedData = {
+            firstName: editedProfile.firstName,
+            lastName: editedProfile.lastName,
+            email: editedProfile.email,
+        };
+
+        try {
+            const response = await fetch(`http://localhost:8081/user/${email}/`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                },
+                body: JSON.stringify(updatedData),
+            });
+
+            if (response.ok) {
+                const updatedUser = await response.json();
+                setUserProfile({
+                    firstName: updatedUser.firstName,
+                    lastName: updatedUser.lastName,
+                    photo: updatedUser.photo || "/DefaultAvatar.png",
+                    email: updatedUser.email,
+                });
+
+                // Optionally reset edit mode after successful save
+                setIsEditing({
+                    firstName: false,
+                    lastName: false,
+                    email: false,
+                });
+
+                alert("Profile updated successfully!");
+            } else {
+                console.error("Failed to update profile:", response.statusText);
+                alert("Failed to update profile. Please try again.");
+            }
+        } catch (err) {
+            console.error("Error updating profile:", err);
+            alert("An error occurred while updating your profile.");
+        }
+    };
+
+    const handleEdit = (field) => {
+        setIsEditing((prev) => ({
+            ...prev,
+            [field]: true,
+        }));
+    };
+
+    const handleSave = (field) => {
+        setUserProfile((prev) => ({
+            ...prev,
+            [field]: editedProfile[field],
+        }));
+        setIsEditing((prev) => ({
+            ...prev,
+            [field]: false,
+        }));
+
+        // Call the update function to save changes to the backend
+        updateUserProfile();
     };
 
     const [bookings, setBookings] = useState({
@@ -130,28 +213,106 @@ function UserProfile() {
                                 <div className="info-row">
                                     <div className="info-label">First Name</div>
                                     <div className="info-value">
-                                        <span>{userProfile.firstName}</span>
-                                        <button className="edit-btn">
-                                            <i className="fa-solid fa-pencil"></i>
-                                        </button>
+                                        {isEditing.firstName ? (
+                                            <>
+                                                <input
+                                                    type="text"
+                                                    value={editedProfile.firstName}
+                                                    onChange={(e) =>
+                                                        setEditedProfile((prev) => ({
+                                                            ...prev,
+                                                            firstName: e.target.value,
+                                                        }))
+                                                    }
+                                                />
+                                                <button
+                                                    className="save-btn"
+                                                    onClick={() => handleSave("firstName")}
+                                                >
+                                                    Save
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span>{userProfile.firstName}</span>
+                                                <button
+                                                    className="edit-btn"
+                                                    onClick={() => handleEdit("firstName")}
+                                                >
+                                                    <i className="fa-solid fa-pencil"></i>
+                                                </button>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                                 <div className="info-row">
                                     <div className="info-label">Last Name</div>
                                     <div className="info-value">
-                                        <span>{userProfile.lastName}</span>
-                                        <button className="edit-btn">
-                                            <i className="fa-solid fa-pencil"></i>
-                                        </button>
+                                        {isEditing.lastName ? (
+                                            <>
+                                                <input
+                                                    type="text"
+                                                    value={editedProfile.lastName}
+                                                    onChange={(e) =>
+                                                        setEditedProfile((prev) => ({
+                                                            ...prev,
+                                                            lastName: e.target.value,
+                                                        }))
+                                                    }
+                                                />
+                                                <button
+                                                    className="save-btn"
+                                                    onClick={() => handleSave("lastName")}
+                                                >
+                                                    Save
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span>{userProfile.lastName}</span>
+                                                <button
+                                                    className="edit-btn"
+                                                    onClick={() => handleEdit("lastName")}
+                                                >
+                                                    <i className="fa-solid fa-pencil"></i>
+                                                </button>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                                 <div className="info-row">
                                     <div className="info-label">Email</div>
                                     <div className="info-value">
-                                        <span>{userProfile.email}</span>
-                                        <button className="edit-btn">
-                                            <i className="fa-solid fa-pencil"></i>
-                                        </button>
+                                        {isEditing.email ? (
+                                            <>
+                                                <input
+                                                    type="email"
+                                                    value={editedProfile.email}
+                                                    onChange={(e) =>
+                                                        setEditedProfile((prev) => ({
+                                                            ...prev,
+                                                            email: e.target.value,
+                                                        }))
+                                                    }
+                                                />
+                                                <button
+                                                    className="save-btn"
+                                                    onClick={() => handleSave("email")}
+                                                >
+                                                    Save
+                                                </button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <span>{userProfile.email}</span>
+                                                <button
+                                                    className="edit-btn"
+                                                    onClick={() => handleEdit("email")}
+                                                >
+                                                    <i className="fa-solid fa-pencil"></i>
+                                                </button>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -213,4 +374,5 @@ function UserProfile() {
         </div>
     );
 }
+
 export default UserProfile;

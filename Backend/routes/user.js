@@ -16,6 +16,34 @@ router.get("/:email", verifyToken, (req, res) => {
     );
 });
 
+router.put("/:email", verifyToken, async (req, res) => {
+    const { email } = req.params;
+    const { firstName, lastName, newEmail } = req.body;
+
+    try {
+        // Find the user by email (or another unique identifier)
+        const user = await UserModel.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        // Update the user fields if provided
+        user.firstName = firstName || user.firstName;
+        user.lastName = lastName || user.lastName;
+        user.email = newEmail || user.email;
+
+        // Save the updated user
+        await user.save();
+
+        // Send the updated user data back to the client
+        res.status(200).json(user);
+    } catch (err) {
+        console.error("Error updating user:", err);
+        res.status(500).json({ message: "Server error" });
+    }
+});
+
 router.post("/", (req, res) => {
     const user = req.body;
 
