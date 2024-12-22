@@ -77,25 +77,40 @@ UserModel.signIn = async (user, successCallback, errorCallback) => {
 
 UserModel.addUser = async (user, successCallback, errorCallback) => {
     if (user?.password?.length < 6) {
-        return errorCallback({ message: "Password must be at least 6 characters long" });
+        errorCallback({
+            message: "Password must be at least 6 characters long",
+        });
+        return;
+    }
+
+    let encryptedPassword = "";
+    try {
+        encryptedPassword = bcrypt.hashSync(user.password, 10);
+    } catch (err) {
+        console.error("Error hashing password: ", err);
+        errorCallback({ message: "Error encrypting password." });
+        return;
     }
 
     try {
-        const encryptedPassword = await bcrypt.hash(user.password, 10);
-        const dbRes = await UserModel.create({ ...user, password: encryptedPassword });
+        const dbRes = await UserModel.insertMany([
+            { ...user, password: encryptedPassword },
+        ]);
+        console.log("POST | dbRes is: ", dbRes);
         successCallback(dbRes);
     } catch (dbError) {
         if (dbError.name === "ValidationError") {
             const validationErrors = Object.values(dbError.errors)
                 .map((err) => err.message)
                 .join(", ");
-            errorCallback({ status: 400, message: validationErrors });
+            errorCallback({ message: validationErrors });
         } else if (dbError.code === 11000) {
-            errorCallback({ status: 400, message: "Email already exists. Please use a different email." });
+            errorCallback({ message: "Email already exists. Please use a different email." });
         } else {
             console.error("POST | dbError is: ", dbError.message);
-            errorCallback({ status: 500, message: "An unexpected error occurred." });
+            errorCallback({ message: "An unexpected error occurred." });
         }
     }
 };
+
 export default UserModel;

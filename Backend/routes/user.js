@@ -1,5 +1,5 @@
 import express from "express";
-import UserModel from "../models/UserModel.js";
+import UserModel from "../models/Usermodel.js";
 import { verifyToken } from "../utils/helpers.js";
 
 const router = express.Router();
@@ -17,17 +17,29 @@ router.get("/:email", verifyToken, (req, res) => {
 });
 
 router.post("/", (req, res) => {
+    const user = req.body;
+
     UserModel.addUser(
-        req.body,
+        user,
         (dbRes) => {
-            res.status(201).json(dbRes);
+            if (dbRes) {
+                res.send(dbRes);
+            } else {
+                res.status(400);
+                res.send(dbRes);
+            }
         },
-        (dbErr) => {
-            res.status(dbErr.status || 500).json({ error: dbErr.message });
+        (dbError) => {
+            console.log(dbError.name);
+            if (dbError.name === "ValidationError") {
+                res.status(400); //client side error
+            } else {
+                res.status(500); //server side error
+            }
+            res.send({ error: dbError.message });
         }
     );
 });
-
 router.post("/signin", (req, res) => {
     UserModel.signIn(
         req.body,
