@@ -6,11 +6,6 @@ import Counter from "../utils/counter.js";
 
 const userSchema = new mongoose.Schema(
     {
-        userId: {
-            type: Number,
-            required: true,
-            unique: true,
-        },
         firstName: {
             type: String,
             trim: true,
@@ -104,16 +99,8 @@ UserModel.addUser = async (user, successCallback, errorCallback) => {
     }
 
     try {
-        let userId;
-        const counter = await Counter.findByIdAndUpdate(
-            { _id: "userId" },
-            { $inc: { sequenceValue: 1 } },
-            { new: true, upsert: true } // Create counter if it doesn't exist
-        );
-        userId = counter.sequenceValue;
-
         const dbRes = await UserModel.insertMany([
-            { userId, ...user, password: encryptedPassword },
+            { ...user, password: encryptedPassword },
         ]);
         console.log("POST | dbRes is: ", dbRes);
         successCallback(dbRes);
