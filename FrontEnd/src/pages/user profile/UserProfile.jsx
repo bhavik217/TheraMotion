@@ -6,7 +6,7 @@ function UserProfile() {
     const [userProfile, setUserProfile] = useState({
         firstName: "",
         lastName: "",
-        photo: "/default-avatar.jpg",
+        photo: "",
         email: "",
     });
 
@@ -30,7 +30,7 @@ function UserProfile() {
                 setUserProfile({
                     firstName: userDetails.firstName,
                     lastName: userDetails.lastName,
-                    photo: userDetails.photo || "/default-avatar.jpg",
+                    photo: userDetails.photo || "/DefaultAvatar.png",
                     email: userDetails.email,
                 });
             } else {
