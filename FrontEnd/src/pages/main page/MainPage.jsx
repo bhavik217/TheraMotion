@@ -41,7 +41,7 @@ function MainPage() {
     return (
         <div className="mainpage">
             <IntroSection
-                hd1="Welcome To Site"
+                hd1="Welcome To Theramotion"
                 hd2="Helping You Move Through Life."
                 links={["/book-appointment", "/meet-team", "/join-team"]}
                 linksNames={[
@@ -77,7 +77,7 @@ function MainPage() {
             </section>
 
             <IntroSection
-                content1="At Site we believe in a patient focused care model, by offering a range of services under the one roof and a team approach we want to help you 'Move Through Life'."
+                content1="At Theramotion we believe in a patient focused care model, by offering a range of services under the one roof and a team approach we want to help you 'Move Through Life'."
                 links={["/services"]}
                 linksNames={["See our Services"]}
                 carousel={<Carousel {...carouselProps} />}
@@ -112,9 +112,9 @@ function MainPage() {
             </section>
 
             <IntroSection
-                content1="Our core mission at Site is to help our team 'Move Through Life'. We have a dedicated part of our business that works on team recruitment and team development so that our team is full of like-minded allied health professionals committed to helping their clients achieve their health goals."
+                content1="Our core mission at Theramotion is to help our team 'Move Through Life'. We have a dedicated part of our business that works on team recruitment and team development so that our team is full of like-minded allied health professionals committed to helping their clients achieve their health goals."
                 links={["/meet-team", "/join-team"]}
-                linksNames={["Meet the whole team", "Join the Site team"]}
+                linksNames={["Meet the whole team", "Join the Theramotion team"]}
                 carousel={<Carousel2 {...carouselProps2} />}
             />
 
