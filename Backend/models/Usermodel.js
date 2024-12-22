@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET_KEY } from "../config/constants.js";
-import Counter from "../utils/counter.js";
 
 const userSchema = new mongoose.Schema(
     {
@@ -25,7 +24,7 @@ const userSchema = new mongoose.Schema(
         },
         password: {
             type: String,
-            minLength: [6, "Password must be atleast 6 characters"],
+            minLength: [6, "Password must be at least 6 characters"],
             required: [true, "Password is required"],
         },
     },
@@ -39,15 +38,18 @@ UserModel.getUser = async (req, successCallback, errorCallback) => {
     const tokenMail = req?.emailFromAuthToken;
 
     if (reqMail !== tokenMail) {
-        errorCallback({ status: 401, message: "Invalid credentials" });
+        return errorCallback({ status: 401, message: "Invalid credentials" });
     }
 
     try {
-        const dbRes = await UserModel.find({ email: reqMail });
+        const dbRes = await UserModel.findOne({ email: reqMail });
+        if (!dbRes) {
+            return errorCallback({ status: 404, message: "User not found" });
+        }
         successCallback(dbRes);
     } catch (dbErr) {
-        console.error("GET | dbErr is: ", dbErr.Error);
-        errorCallback(dbErr);
+        console.error("GET | dbErr is: ", dbErr.message);
+        errorCallback({ status: 500, message: "Database error" });
     }
 };
 
@@ -55,66 +57,44 @@ UserModel.signIn = async (user, successCallback, errorCallback) => {
     try {
         const dbRes = await UserModel.findOne({ email: user.email });
         if (dbRes) {
-            const isPasswordMatch = bcrypt.compareSync(
-                user.password,
-                dbRes.password
-            );
+            const isPasswordMatch = await bcrypt.compare(user.password, dbRes.password);
             if (isPasswordMatch) {
                 const authToken = jwt.sign(
                     { email: dbRes.email },
                     JWT_SECRET_KEY,
-                    {
-                        expiresIn: "24h",
-                    }
+                    { expiresIn: "24h" }
                 );
-                successCallback({ token: authToken });
-            } else {
-                errorCallback({ status: 401, message: "Invalid password" });
+                return successCallback({ token: authToken });
             }
-        } else {
-            errorCallback({ message: "User does not exist" });
-            return;
+            return errorCallback({ status: 401, message: "Invalid password" });
         }
+        errorCallback({ status: 404, message: "User does not exist" });
     } catch (dbErr) {
-        console.error("GET | dbErr is: ", dbErr.Error);
-        errorCallback(dbErr);
+        console.error("POST | dbErr is: ", dbErr.message);
+        errorCallback({ status: 500, message: "Database error" });
     }
 };
 
 UserModel.addUser = async (user, successCallback, errorCallback) => {
     if (user?.password?.length < 6) {
-        errorCallback({
-            message: "Password must be at least 6 characters long",
-        });
-        return;
-    }
-
-    let encryptedPassword = "";
-    try {
-        encryptedPassword = bcrypt.hashSync(user.password, 10);
-    } catch (err) {
-        console.error("Error hashing password: ", err);
-        errorCallback({ message: "Error encrypting password." });
-        return;
+        return errorCallback({ message: "Password must be at least 6 characters long" });
     }
 
     try {
-        const dbRes = await UserModel.insertMany([
-            { ...user, password: encryptedPassword },
-        ]);
-        console.log("POST | dbRes is: ", dbRes);
+        const encryptedPassword = await bcrypt.hash(user.password, 10);
+        const dbRes = await UserModel.create({ ...user, password: encryptedPassword });
         successCallback(dbRes);
     } catch (dbError) {
         if (dbError.name === "ValidationError") {
             const validationErrors = Object.values(dbError.errors)
                 .map((err) => err.message)
                 .join(", ");
-            errorCallback({ message: validationErrors });
+            errorCallback({ status: 400, message: validationErrors });
         } else if (dbError.code === 11000) {
-            errorCallback({ message: "Email already exists. Please use a different email." });
+            errorCallback({ status: 400, message: "Email already exists. Please use a different email." });
         } else {
             console.error("POST | dbError is: ", dbError.message);
-            errorCallback({ message: "An unexpected error occurred." });
+            errorCallback({ status: 500, message: "An unexpected error occurred." });
         }
     }
 };

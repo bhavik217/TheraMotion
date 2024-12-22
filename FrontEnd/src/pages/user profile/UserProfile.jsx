@@ -1,16 +1,45 @@
-// UserProfile.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./UserProfile.css";
 
 function UserProfile() {
     const [activeTab, setActiveTab] = useState("profile");
     const [userProfile, setUserProfile] = useState({
-        name: "John Smith",
+        firstName: "",
+        lastName: "",
         photo: "/default-avatar.jpg",
-        address: "123 Main Street, City, Country",
-        email: "john.smith@email.com",
-        phone: "+1 234 567 8900",
+        email: "",
     });
+
+    useEffect(() => {
+        fetchUserData();
+    }, []);
+
+    const fetchUserData = async () => {
+        const email = localStorage.getItem("loggedInUserEmail");
+        try {
+            const response = await fetch(`http://localhost:8081/user/${email}/`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                },
+            });
+            console.log(response);
+
+            if (response.ok) {
+                const userDetails = await response.json();
+                setUserProfile({
+                    firstName: userDetails.firstName,
+                    lastName: userDetails.lastName,
+                    photo: userDetails.photo || "/default-avatar.jpg",
+                    email: userDetails.email,
+                });
+            } else {
+                console.error("Failed to fetch user details:", response.statusText);
+            }
+        } catch (err) {
+            console.error("Error fetching user details:", err);
+        }
+    };
 
     const [bookings, setBookings] = useState({
         current: [
@@ -70,7 +99,7 @@ function UserProfile() {
                                 </button>
                             </div>
                             <div className="profile-name">
-                                {userProfile.name}
+                                {`${userProfile.firstName} ${userProfile.lastName}`}
                             </div>
                         </div>
 
@@ -99,18 +128,18 @@ function UserProfile() {
                         {activeTab === "profile" && (
                             <div className="profile-info">
                                 <div className="info-row">
-                                    <div className="info-label">Name</div>
+                                    <div className="info-label">First Name</div>
                                     <div className="info-value">
-                                        <span>{userProfile.name}</span>
+                                        <span>{userProfile.firstName}</span>
                                         <button className="edit-btn">
                                             <i className="fa-solid fa-pencil"></i>
                                         </button>
                                     </div>
                                 </div>
                                 <div className="info-row">
-                                    <div className="info-label">Address</div>
+                                    <div className="info-label">Last Name</div>
                                     <div className="info-value">
-                                        <span>{userProfile.address}</span>
+                                        <span>{userProfile.lastName}</span>
                                         <button className="edit-btn">
                                             <i className="fa-solid fa-pencil"></i>
                                         </button>
@@ -120,15 +149,6 @@ function UserProfile() {
                                     <div className="info-label">Email</div>
                                     <div className="info-value">
                                         <span>{userProfile.email}</span>
-                                        <button className="edit-btn">
-                                            <i className="fa-solid fa-pencil"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div className="info-row">
-                                    <div className="info-label">Phone</div>
-                                    <div className="info-value">
-                                        <span>{userProfile.phone}</span>
                                         <button className="edit-btn">
                                             <i className="fa-solid fa-pencil"></i>
                                         </button>
@@ -151,8 +171,7 @@ function UserProfile() {
                                                     {booking.service}
                                                 </div>
                                                 <div className="date-time">
-                                                    {booking.date} at{" "}
-                                                    {booking.time}
+                                                    {booking.date} at {booking.time}
                                                 </div>
                                                 <div className="status">
                                                     {booking.status}
@@ -177,8 +196,7 @@ function UserProfile() {
                                                     {booking.service}
                                                 </div>
                                                 <div className="date-time">
-                                                    {booking.date} at{" "}
-                                                    {booking.time}
+                                                    {booking.date} at {booking.time}
                                                 </div>
                                                 <div className="status">
                                                     {booking.status}
@@ -195,5 +213,4 @@ function UserProfile() {
         </div>
     );
 }
-
 export default UserProfile;
