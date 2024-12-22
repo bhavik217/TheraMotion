@@ -3,46 +3,31 @@ import { useLocation } from "react-router-dom";
 import "./OrderDetail.css";
 
 const OrderDetail = () => {
-    const [paymentMethod, setPaymentMethod] = useState("cod");
     const location = useLocation();
     const {
-        practitioner = "",
-        service = "",
-        date = "",
-        time = "",
+        practitioner = "N/A",
+        service = "N/A",
+        date = "N/A",
+        time = "N/A",
         formData = {},
     } = location.state || {};
-
-    // Handle payment method change
-    const handlePaymentMethodChange = (event) => {
-        setPaymentMethod(event.target.value);
-    };
 
     // Trigger Razorpay payment
     const handlePayment = () => {
         const options = {
             key: "rzp_test_ZQmsCkWeX6PsgX", // Your Razorpay key_id
-            amount: 100 * 100, // Amount in paise (Rs 105)
+            amount: 1 * 100, // Amount in paise (Rs 105)
             currency: "INR",
             name: "TheraMotion",
             description: "Test Transaction",
             image: "/TheraMotionLogo.png",
-            handler: function (response) {
-                alert(
-                    `Payment successful! Payment ID: ${response.razorpay_payment_id}`
-                );
-            },
             prefill: {
                 name: formData.firstName || "Guest",
                 email: formData.email || "example@mail.com",
                 contact: formData.phone || "0000000000",
             },
-            notes: {
-                address: "Razorpay Corporate Office",
-            },
             theme: {
                 color: "#3399cc",
-                margin: "0px",
             },
         };
 
@@ -95,7 +80,7 @@ const OrderDetail = () => {
                     <h2>Payment Details</h2>
                     <div className="payment-info">
                         <p>
-                            <strong>Amount:</strong> Rs 2000
+                            <strong>Amount:</strong> Rs 1
                         </p>
                         <p>
                             <strong>Tax:</strong> Rs 0
@@ -105,48 +90,12 @@ const OrderDetail = () => {
                         </p>
                         <hr />
                         <p className="grand-total">
-                            <strong>Grand Total:</strong> Rs 105
+                            <strong>Grand Total:</strong> Rs 1
                         </p>
                     </div>
-                    <div className="payment-options">
-                        {/* Payment Method Options */}
-                        <div className="payment-option">
-                            <input
-                                type="radio"
-                                id="cod"
-                                name="paymentMethod"
-                                value="cod"
-                                checked={paymentMethod === "cod"}
-                                onChange={handlePaymentMethodChange}
-                            />
-                            <label htmlFor="cod"> Cash on Delivery</label>
-                        </div>
-                        <div className="payment-option">
-                            <input
-                                type="radio"
-                                id="card"
-                                name="paymentMethod"
-                                value="card"
-                                checked={paymentMethod === "card"}
-                                onChange={handlePaymentMethodChange}
-                            />
-                            <label htmlFor="card">Credit/Debit Card</label>
-                        </div>
-                    </div>
-                    {paymentMethod === "card" && (
-                        <div className="card-details">
-                            <input type="text" placeholder="Card Number" />
-                            <input type="text" placeholder="Card Holder Name" />
-                            <input type="text" placeholder="Expiry Date" />
-                            <input type="text" placeholder="CVV" />
-                        </div>
-                    )}
-                    <button
-                        type="button"
-                        className="submit-btn"
-                        onClick={handlePayment}
-                    >
-                        Pay Rs 105
+                
+                    <button type="button" className="submit-btn" onClick={handlePayment}>
+                        Pay Rs 1
                     </button>
                 </div>
             </div>
