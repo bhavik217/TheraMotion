@@ -9,23 +9,61 @@ import Blog from "./pages/blog/Blog.jsx";
 import UserProfile from "./pages/user profile/UserProfile.jsx"
 import MeetTeamLayout from "./pages/meet team/MeetTeamLayout.jsx";
 import PersonDetail from "./components/PersonDetails";
-import { Outlet, Navigate } from "react-router-dom";
+import { Outlet,Navigate, useNavigate } from "react-router-dom";
 import BookAppt from "./pages//book appointment/BookAppt.jsx";
 import Personselect from "./components/Personselect.jsx";
 import Calendar from "./components/Calendar.jsx";
 import Finalform from "./pages/forms/Finalform.jsx";
 import OrderDetail from "./pages/book appointment/OrderDetail.jsx";
 import PersonSelectLayout from "./pages/book appointment/PersonSelectLayout.jsx";
+import {jwtDecode} from "jwt-decode"; 
+import {useState, useEffect} from "react";
+
+export const authEvent = new EventTarget();
 
 const ProtectedRoute = () => {
-    const authToken = localStorage.getItem("authToken");
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
+    const navigate = useNavigate();
 
-    if (!authToken) {
-        return <Navigate to="/signin" replace />;
-    }
+    useEffect(() => {
+        const checkAuthToken = () => {
+            const authToken = localStorage.getItem("authToken");
 
-    return <Outlet />;
+            if (authToken) {
+                try {
+                    const decodedToken = jwtDecode(authToken);
+                    const currentTime = Date.now() / 1000;
+
+                    if (decodedToken.exp < currentTime) {
+                        handleLogout();
+                    }
+                } catch (error) {
+                    handleLogout();
+                }
+            } else {
+                setIsAuthenticated(false);
+            }
+        };
+
+        const handleLogout = () => {
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("loggedInUserEmail");
+            localStorage.removeItem("userDetails");
+            setIsAuthenticated(false);
+            authEvent.dispatchEvent(new Event('authStateChanged'));
+            alert("Your session has expired. Please sign in again.");
+            navigate("/signin");
+        };
+
+        checkAuthToken();
+        const interval = setInterval(checkAuthToken, 5 * 60 * 1000); 
+
+        return () => clearInterval(interval); 
+    }, [navigate]);
+
+    return isAuthenticated ? <Outlet /> : <Navigate to="/signin" replace />;
 };
+
 
 export const routes = [
     {

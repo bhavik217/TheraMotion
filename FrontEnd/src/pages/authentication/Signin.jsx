@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 export function SignIn() {
+    const location = useLocation();
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
-    const [signInError, setSignInError] = useState("");
+    const [signInError, setSignInError] = useState(location.state?.message || "");
     const [signInSuccess, setSignInSuccess] = useState(false);
+    
 
     useEffect(() => {
         if (signInSuccess) {

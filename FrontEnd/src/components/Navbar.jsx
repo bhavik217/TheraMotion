@@ -1,15 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
+import { authEvent } from "../routes";
 
 const Navbar = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const navigate = useNavigate();
-
     useEffect(() => {
-        const authToken = localStorage.getItem("authToken");
-        setIsAuthenticated(!!authToken);
+        const checkAuth = () => {
+            const authToken = localStorage.getItem("authToken");
+            setIsAuthenticated(!!authToken);
+        };
+
+        checkAuth();
+
+        const handleAuthChange = () => {
+            checkAuth();
+        };
+
+        authEvent.addEventListener('authStateChanged', handleAuthChange);
+
+        return () => {
+            authEvent.removeEventListener('authStateChanged', handleAuthChange);
+        };
     }, []);
 
     const handleAuthToggle = () => {
@@ -18,6 +32,7 @@ const Navbar = () => {
             localStorage.removeItem("loggedInUserEmail");
             localStorage.removeItem("userDetails");
             setIsAuthenticated(false);
+            authEvent.dispatchEvent(new Event('authStateChanged'));
             navigate("/");
         } else {
             navigate("/signin");
