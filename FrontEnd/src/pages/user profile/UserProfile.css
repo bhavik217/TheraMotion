@@ -1,0 +1,279 @@
+/* UserProfile.css */
+.userprofile {
+    min-height: 100vh;
+}
+
+.userprofile .section1 {
+    padding: 2vh;
+    background-color: #ebecec;
+}
+
+.userprofile .section1 .container {
+    max-width: 1200px;
+    background: url("/Background-icon-dark.png") no-repeat right;
+    background-size: auto;
+}
+
+.userprofile .section1 .heading1 {
+    color: #2b2e34;
+    font-size: 2rem;
+    line-height: 1.25;
+}
+
+.userprofile .section1 .buttons a {
+    color: #2b2e34;
+    text-decoration: none;
+    margin-right: 5px;
+    font-size: 1rem;
+}
+
+.profile-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.profile-layout {
+    display: flex;
+    gap: 2rem;
+}
+
+.profile-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+}
+
+.photo-section {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-photo {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1rem;
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.edit-photo-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #2b2e34;
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-name {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+.navigation-tabs {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.tab-btn {
+    padding: 1rem;
+    text-align: left;
+    background: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    background: #f3f4f6;
+}
+
+.tab-btn.active {
+    background: #2b2e34;
+    color: white;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.profile-info {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-row {
+    padding: 1rem 0;
+    border-bottom: 1px solid #ebecec;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.info-value {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.edit-btn {
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.edit-btn:hover {
+    color: #2b2e34;
+}
+
+.bookings-section {
+    background: #fff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bookings-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #2b2e34;
+}
+
+.bookings-section h3 {
+    font-size: 1.25rem;
+    margin: 1rem 0;
+    color: #2b2e34;
+}
+
+.booking-card {
+    background: #fff;
+    border: 1px solid #ebecec;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.booking-card.faded {
+    opacity: 0.7;
+    background: #f9fafb;
+}
+
+.booking-info .service {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.booking-info .date-time {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.booking-info .status {
+    color: #059669;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.edit-booking {
+    background: #fff;
+    border: 1px solid #d1d5db;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-booking:hover {
+    background: #f9fafb;
+}
+
+@media screen and (max-width: 768px) {
+    .profile-layout {
+        flex-direction: column;
+    }
+
+    .profile-sidebar {
+        width: 100%;
+    }
+
+    .navigation-tabs {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .tab-btn {
+        flex: 1;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 527px) {
+    .userprofile .section1 {
+        padding: 40px 20px;
+    }
+
+    .userprofile .section1 .buttons {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .userprofile .section1 .buttons a {
+        padding: 3px 10px;
+        font-size: small;
+    }
+
+    .userprofile .section1 .heading1 {
+        font-size: 1.5rem;
+    }
+
+    .profile-content {
+        padding: 1rem;
+    }
+
+    .booking-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .edit-booking {
+        width: 100%;
+    }
+}

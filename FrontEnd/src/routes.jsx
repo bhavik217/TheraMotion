@@ -6,7 +6,7 @@ import MainPage from "./pages/main page/MainPage.jsx";
 import MeetTeam from "./pages/meet team/MeetTeam.jsx";
 import Services from "./pages/services/Service.jsx";
 import Blog from "./pages/blog/Blog.jsx";
-import Dashboard from "./pages/Dashboard";
+import UserProfile from "./pages/user profile/UserProfile.jsx"
 import MeetTeamLayout from "./pages/meet team/MeetTeamLayout.jsx";
 import PersonDetail from "./components/PersonDetails";
 import { Outlet, Navigate } from "react-router-dom";
@@ -74,8 +74,8 @@ export const routes = [
                         element: <Blog />,
                     },
                     {
-                        path: "/dashboard",
-                        element: <Dashboard />,
+                        path: "/profile",
+                        element: <UserProfile />,
                     },
                 ],
             },

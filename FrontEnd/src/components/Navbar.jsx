@@ -71,8 +71,8 @@ const Navbar = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/dashboard" onClick={closeMenu}>
-                            Dashboard
+                        <Link to="/profile" onClick={closeMenu}>
+                            Profile
                         </Link>
                     </li>
                     <li>

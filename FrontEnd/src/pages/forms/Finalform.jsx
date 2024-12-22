@@ -15,7 +15,6 @@ const Finalform = () => {
         email: "",
         phone: "",
         comments: "",
-        marketing: false,
     });
 
     const handleChange = (e) => {
@@ -162,18 +161,6 @@ const Finalform = () => {
                                     onChange={handleChange}
                                     style={{ height: "150px" }}
                                 />
-                                <br />
-                                <br />
-                                <input
-                                    type="checkbox"
-                                    name="marketing"
-                                    checked={formData.marketing}
-                                    onChange={handleChange}
-                                />
-                                &nbsp;
-                                <label>
-                                    I would like to receive marketing messages
-                                </label>
                                 <br />
                                 <br />
                                 <button
