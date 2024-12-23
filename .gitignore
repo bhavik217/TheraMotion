@@ -4,3 +4,4 @@ BackEnd/config/dbconnection.js
 BackEnd/.gitignore
 BackEnd/.env
 FrontEnd/src/components/extra
+FrontEnd/public/uploads
