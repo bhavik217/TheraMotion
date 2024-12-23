@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET_KEY } from "../config/constants.js";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const hashSalt = parseInt(process.env.hashSalt, 10);
 
 const userSchema = new mongoose.Schema(
     {
@@ -29,7 +34,7 @@ const userSchema = new mongoose.Schema(
         },
         photo: {
             type: String, // URL or file path to the photo
-            default: "/DefaultAvatar.png", // Optional: default photo if none provided
+            default: "/DefaultAvatar.png", 
         },
     },
     { timestamps: true }
@@ -89,7 +94,7 @@ UserModel.addUser = async (user, successCallback, errorCallback) => {
 
     let encryptedPassword = "";
     try {
-        encryptedPassword = bcrypt.hashSync(user.password, 10);
+        encryptedPassword = bcrypt.hashSync(user.password, hashSalt);
     } catch (err) {
         console.error("Error hashing password: ", err);
         errorCallback({ message: "Error encrypting password." });
