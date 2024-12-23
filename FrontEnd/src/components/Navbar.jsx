@@ -91,6 +91,11 @@ const Navbar = () => {
                         </Link>
                     </li>
                     <li>
+                        <Link to="/book-appointment" onClick={closeMenu}>
+                            Book Appointment
+                        </Link>
+                    </li>
+                    <li>
                         <Link to="/meet-team" onClick={closeMenu}>
                             Meet Our Team
                         </Link>
