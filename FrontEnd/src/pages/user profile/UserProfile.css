@@ -353,6 +353,54 @@
     opacity: 1;
 }
 
+.delete-account-section {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #f3f4f6;
+}
+
+.delete-account-section h3 {
+    color: #dc2626;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.warning-text {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.warning-text i {
+    color: #dc2626;
+}
+
+.delete-account-btn {
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.delete-account-btn:hover {
+    background-color: #b91c1c;
+}
+
+.delete-account-btn i {
+    font-size: 1rem;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     .profile-layout {
@@ -388,6 +436,11 @@
     
     .edit-btn {
         flex-shrink: 0;
+    }
+
+    .delete-account-section {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
     }
 }
 

@@ -157,4 +157,39 @@ router.post("/upload-photo", verifyToken, (req, res) => {
         }
     });
 });
+
+router.delete("/:email", verifyToken, async (req, res) => {
+    const { email } = req.params;
+    
+    // Verify the requesting user is the same as the account being deleted
+    if (email !== req.emailFromAuthToken) {
+        return res.status(401).json({ 
+            success: false, 
+            message: "Unauthorized to delete this account" 
+        });
+    }
+
+    try {
+        const deletedUser = await UserModel.findOneAndDelete({ email });
+        
+        if (!deletedUser) {
+            return res.status(404).json({ 
+                success: false, 
+                message: "User not found" 
+            });
+        }
+
+        res.status(200).json({ 
+            success: true, 
+            message: "Account successfully deleted" 
+        });
+    } catch (error) {
+        console.error("Error deleting user:", error);
+        res.status(500).json({ 
+            success: false, 
+            message: "Error deleting account" 
+        });
+    }
+});
+
 export default router;

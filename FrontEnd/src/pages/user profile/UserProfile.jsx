@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./UserProfile.css";
+import CustomDeleteModal from "../../components/CustomDelete/CustomDeleteModal";
 
 function UserProfile() {
     const [activeTab, setActiveTab] = useState("profile");
@@ -22,6 +23,7 @@ function UserProfile() {
     const [isLoading, setIsLoading] = useState(false);
     const [uploadError, setUploadError] = useState("");
     const [bookings, setBookings] = useState({ current: [], previous: [] });
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
     useEffect(() => {
         fetchUserData();
@@ -229,6 +231,30 @@ function UserProfile() {
         updateUserProfile();
     };
 
+    const handleDeleteAccount = async () => {
+        try {
+            const email = localStorage.getItem("loggedInUserEmail");
+            const response = await fetch(`http://localhost:8081/user/${email}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                },
+            });
+    
+            if (response.ok) {
+                localStorage.removeItem("authToken");
+                localStorage.removeItem("loggedInUserEmail");
+                window.location.href = "/";
+            } else {
+                const data = await response.json();
+                console.error("Failed to delete account:", data.message);
+            }
+        } catch (err) {
+            console.error("Error deleting account:", err);
+        }
+    };
+    
+
     return (
         <div className="userprofile">
             <section className="section1">
@@ -253,15 +279,15 @@ function UserProfile() {
                     <div className="profile-sidebar">
                         <div className="photo-section">
                             <div className="profile-photo">
-                                <img 
-                                    src={userProfile.photo} 
-                                    alt="Profile" 
+                                <img
+                                    src={userProfile.photo}
+                                    alt="Profile"
                                     onError={(e) => {
                                         e.target.src = "/DefaultAvatar.png";
                                     }}
                                 />
-                                <button 
-                                    className="edit-photo-btn" 
+                                <button
+                                    className="edit-photo-btn"
                                     onClick={() => {
                                         setIsEditingPhoto(true);
                                         setUploadError("");
@@ -270,13 +296,13 @@ function UserProfile() {
                                     <i className="fa-solid fa-camera"></i>
                                 </button>
                             </div>
-                            
+
                             {isEditingPhoto && (
                                 <div className="upload-photo-modal">
                                     <div className="upload-content">
                                         <div className="file-input-container">
-                                            <input 
-                                                type="file" 
+                                            <input
+                                                type="file"
                                                 accept=".jpg,.jpeg,.png"
                                                 onChange={handleFileChange}
                                                 disabled={isLoading}
@@ -287,22 +313,22 @@ function UserProfile() {
                                                 </div>
                                             )}
                                         </div>
-                                        
+
                                         {uploadError && (
                                             <div className="error-message">
                                                 {uploadError}
                                             </div>
                                         )}
-                                        
+
                                         <div className="upload-buttons">
-                                            <button 
+                                            <button
                                                 onClick={handleCancelUpload}
                                                 disabled={isLoading}
                                                 className="cancel-btn"
                                             >
                                                 Cancel
                                             </button>
-                                            <button 
+                                            <button
                                                 onClick={handleUploadPhoto}
                                                 disabled={isLoading || !selectedPhoto}
                                                 className="upload-btn"
@@ -422,6 +448,26 @@ function UserProfile() {
                                             </span>
                                         </button>
                                     </div>
+                                </div>
+                                <div className="delete-account-section">
+                                    <h3>Delete Account</h3>
+                                    <p className="warning-text">
+                                        <i className="fa-solid fa-triangle-exclamation"></i>
+                                        Once you delete your account, there is no going back. Please be certain.
+                                    </p>
+                                    <button
+                                        className="delete-account-btn"
+                                        onClick={() => setIsDeleteModalOpen(true)}
+                                    >
+                                        <i className="fa-solid fa-trash-can"></i>
+                                        Delete Account
+                                    </button>
+
+                                    <CustomDeleteModal
+                                        isOpen={isDeleteModalOpen}
+                                        onClose={() => setIsDeleteModalOpen(false)}
+                                        onConfirm={handleDeleteAccount}
+                                    />
                                 </div>
                             </div>
                         )}
