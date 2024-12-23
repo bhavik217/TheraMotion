@@ -24,17 +24,23 @@ function UserProfile() {
 
     useEffect(() => {
         fetchUserData();
+        fetchBookings();
     }, []);
 
     const fetchUserData = async () => {
         const email = localStorage.getItem("loggedInUserEmail");
         try {
-            const response = await fetch(`http://localhost:8081/user/${email}/`, {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-                },
-            });
+            const response = await fetch(
+                `http://localhost:8081/user/${email}/`,
+                {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "authToken"
+                        )}`,
+                    },
+                }
+            );
             console.log(response);
 
             if (response.ok) {
@@ -51,7 +57,10 @@ function UserProfile() {
                     email: userDetails.email,
                 });
             } else {
-                console.error("Failed to fetch user details:", response.statusText);
+                console.error(
+                    "Failed to fetch user details:",
+                    response.statusText
+                );
             }
         } catch (err) {
             console.error("Error fetching user details:", err);
@@ -67,14 +76,19 @@ function UserProfile() {
         };
 
         try {
-            const response = await fetch(`http://localhost:8081/user/${email}/`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-                },
-                body: JSON.stringify(updatedData),
-            });
+            const response = await fetch(
+                `http://localhost:8081/user/${email}/`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "authToken"
+                        )}`,
+                    },
+                    body: JSON.stringify(updatedData),
+                }
+            );
 
             if (response.ok) {
                 const updatedUser = await response.json();
@@ -124,33 +138,53 @@ function UserProfile() {
         updateUserProfile();
     };
 
-    const [bookings, setBookings] = useState({
-        current: [
-            {
-                id: 1,
-                date: "2024-12-23",
-                time: "10:00 AM",
-                service: "Regular Checkup",
-                status: "Confirmed",
-            },
-        ],
-        previous: [
-            {
-                id: 2,
-                date: "2024-12-10",
-                time: "2:30 PM",
-                service: "Consultation",
-                status: "Completed",
-            },
-            {
-                id: 3,
-                date: "2024-11-25",
-                time: "11:00 AM",
-                service: "Follow-up",
-                status: "Completed",
-            },
-        ],
-    });
+    const [bookings, setBookings] = useState({ current: [], previous: [] });
+
+    console.log(bookings["current"][0]);
+
+    const fetchBookings = async function () {
+        try {
+            const email = localStorage.getItem("loggedInUserEmail");
+            const currentResponse = await fetch(
+                `http://localhost:8081/appointment/${email}/current`,
+                {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "authToken"
+                        )}`,
+                    },
+                }
+            );
+
+            const previousResponse = await fetch(
+                `http://localhost:8081/appointment/${email}/previous`,
+                {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem(
+                            "authToken"
+                        )}`,
+                    },
+                }
+            );
+
+            const currentBookings = currentResponse.ok
+                ? await currentResponse.json()
+                : [];
+            const previousBookings = previousResponse.ok
+                ? await previousResponse.json()
+                : [];
+
+            setBookings({
+                current: currentBookings || [],
+                previous: previousBookings || [],
+            });
+        } catch (err) {
+            console.error("Error fetching bookings:", err);
+            setBookings({ current: [], previous: [] });
+        }
+    };
 
     return (
         <div className="userprofile">
@@ -217,27 +251,39 @@ function UserProfile() {
                                             <>
                                                 <input
                                                     type="text"
-                                                    value={editedProfile.firstName}
+                                                    value={
+                                                        editedProfile.firstName
+                                                    }
                                                     onChange={(e) =>
-                                                        setEditedProfile((prev) => ({
-                                                            ...prev,
-                                                            firstName: e.target.value,
-                                                        }))
+                                                        setEditedProfile(
+                                                            (prev) => ({
+                                                                ...prev,
+                                                                firstName:
+                                                                    e.target
+                                                                        .value,
+                                                            })
+                                                        )
                                                     }
                                                 />
                                                 <button
                                                     className="save-btn"
-                                                    onClick={() => handleSave("firstName")}
+                                                    onClick={() =>
+                                                        handleSave("firstName")
+                                                    }
                                                 >
                                                     Save
                                                 </button>
                                             </>
                                         ) : (
                                             <>
-                                                <span>{userProfile.firstName}</span>
+                                                <span>
+                                                    {userProfile.firstName}
+                                                </span>
                                                 <button
                                                     className="edit-btn"
-                                                    onClick={() => handleEdit("firstName")}
+                                                    onClick={() =>
+                                                        handleEdit("firstName")
+                                                    }
                                                 >
                                                     <i className="fa-solid fa-pencil"></i>
                                                 </button>
@@ -252,27 +298,39 @@ function UserProfile() {
                                             <>
                                                 <input
                                                     type="text"
-                                                    value={editedProfile.lastName}
+                                                    value={
+                                                        editedProfile.lastName
+                                                    }
                                                     onChange={(e) =>
-                                                        setEditedProfile((prev) => ({
-                                                            ...prev,
-                                                            lastName: e.target.value,
-                                                        }))
+                                                        setEditedProfile(
+                                                            (prev) => ({
+                                                                ...prev,
+                                                                lastName:
+                                                                    e.target
+                                                                        .value,
+                                                            })
+                                                        )
                                                     }
                                                 />
                                                 <button
                                                     className="save-btn"
-                                                    onClick={() => handleSave("lastName")}
+                                                    onClick={() =>
+                                                        handleSave("lastName")
+                                                    }
                                                 >
                                                     Save
                                                 </button>
                                             </>
                                         ) : (
                                             <>
-                                                <span>{userProfile.lastName}</span>
+                                                <span>
+                                                    {userProfile.lastName}
+                                                </span>
                                                 <button
                                                     className="edit-btn"
-                                                    onClick={() => handleEdit("lastName")}
+                                                    onClick={() =>
+                                                        handleEdit("lastName")
+                                                    }
                                                 >
                                                     <i className="fa-solid fa-pencil"></i>
                                                 </button>
@@ -289,15 +347,20 @@ function UserProfile() {
                                                     type="email"
                                                     value={editedProfile.email}
                                                     onChange={(e) =>
-                                                        setEditedProfile((prev) => ({
-                                                            ...prev,
-                                                            email: e.target.value,
-                                                        }))
+                                                        setEditedProfile(
+                                                            (prev) => ({
+                                                                ...prev,
+                                                                email: e.target
+                                                                    .value,
+                                                            })
+                                                        )
                                                     }
                                                 />
                                                 <button
                                                     className="save-btn"
-                                                    onClick={() => handleSave("email")}
+                                                    onClick={() =>
+                                                        handleSave("email")
+                                                    }
                                                 >
                                                     Save
                                                 </button>
@@ -307,7 +370,9 @@ function UserProfile() {
                                                 <span>{userProfile.email}</span>
                                                 <button
                                                     className="edit-btn"
-                                                    onClick={() => handleEdit("email")}
+                                                    onClick={() =>
+                                                        handleEdit("email")
+                                                    }
                                                 >
                                                     <i className="fa-solid fa-pencil"></i>
                                                 </button>
@@ -322,49 +387,94 @@ function UserProfile() {
                             <div className="bookings-section">
                                 <div className="current-bookings">
                                     <h3>Current Bookings</h3>
-                                    {bookings.current.map((booking) => (
-                                        <div
-                                            key={booking.id}
-                                            className="booking-card"
-                                        >
-                                            <div className="booking-info">
-                                                <div className="service">
-                                                    {booking.service}
+                                    {bookings.current &&
+                                    bookings.current.length > 0 ? (
+                                        bookings.current.map((booking) => (
+                                            <div
+                                                key={booking.bookingId}
+                                                className="booking-card"
+                                            >
+                                                <div className="booking-info">
+                                                    <div className="service">
+                                                        {
+                                                            booking
+                                                                .appointmentDetails
+                                                                .service
+                                                        }
+                                                    </div>
+                                                    <div className="date-time">
+                                                        {new Date(
+                                                            booking.appointmentDetails.date
+                                                        ).toLocaleDateString()}{" "}
+                                                        at{" "}
+                                                        {
+                                                            booking
+                                                                .appointmentDetails
+                                                                .time
+                                                        }
+                                                    </div>
+                                                    <div className="status">
+                                                        {booking.status ||
+                                                            "Pending"}
+                                                    </div>
                                                 </div>
-                                                <div className="date-time">
-                                                    {booking.date} at {booking.time}
-                                                </div>
-                                                <div className="status">
-                                                    {booking.status}
-                                                </div>
+                                                <button
+                                                    className="edit-booking"
+                                                    onClick={() =>
+                                                        updateBookingDetails(
+                                                            booking.bookingId,
+                                                            {
+                                                                service:
+                                                                    "Updated Service", // Example
+                                                            }
+                                                        )
+                                                    }
+                                                >
+                                                    Edit Details
+                                                </button>
                                             </div>
-                                            <button className="edit-booking">
-                                                Edit Details
-                                            </button>
-                                        </div>
-                                    ))}
+                                        ))
+                                    ) : (
+                                        <p>No current bookings available.</p>
+                                    )}
                                 </div>
-
                                 <div className="previous-bookings">
                                     <h3>Previous Bookings</h3>
-                                    {bookings.previous.map((booking) => (
-                                        <div
-                                            key={booking.id}
-                                            className="booking-card faded"
-                                        >
-                                            <div className="booking-info">
-                                                <div className="service">
-                                                    {booking.service}
-                                                </div>
-                                                <div className="date-time">
-                                                    {booking.date} at {booking.time}
-                                                </div>
-                                                <div className="status">
-                                                    {booking.status}
+                                    {bookings.previous.length > 0 ? (
+                                        bookings.previous.map((booking) => (
+                                            <div
+                                                key={booking.bookingId}
+                                                className="booking-card faded"
+                                            >
+                                                <div className="booking-info">
+                                                    <div className="service">
+                                                        {
+                                                            booking
+                                                                .appointmentDetails
+                                                                .service
+                                                        }
+                                                    </div>
+                                                    <div className="date-time">
+                                                        {new Date(
+                                                            booking.appointmentDetails.date
+                                                        ).toLocaleDateString()}{" "}
+                                                        at{" "}
+                                                        {
+                                                            booking
+                                                                .appointmentDetails
+                                                                .time
+                                                        }
+                                                    </div>
+                                                    <div className="status">
+                                                        {booking.status ||
+                                                            "Completed"}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        ))
+                                    ) : (
+                                        <p>No previous bookings available.</p>
+                                    )}
                                 </div>
                             </div>
                         )}

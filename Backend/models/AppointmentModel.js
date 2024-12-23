@@ -2,12 +2,11 @@ import mongoose from "mongoose";
 import Counter from "../utils/counter.js";
 
 const appointmentSchema = new mongoose.Schema({
-    userId: {type: Number, required: true, unique: true},
     bookingId: {type: Number, required: true, unique: true},
     firstName: { type: String, required: true },
     lastName: { type: String },
     dob: { type: Date, required: true },
-    email: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
     phone: { type: String, required: true },
     comments: { type: String },
 
@@ -31,11 +30,26 @@ appointmentModel.addAppointment = async function (appointmentData, successCallba
         );
         
         appointmentData.bookingId = bookingId;
-        const result = await this.insertOne(appointmentData);
+        const result = await appointmentModel.insertMany([appointmentData]);
 
         successCallback(result);
     } catch (error) {
         errorCallback(error);
     }
 };
+
+appointmentModel.getUserBookings = async function(req, successCallback, errorCallback){
+    const reqMail = req?.params?.email;
+
+    try {
+        const dbRes = await appointmentModel.find({email: reqMail});
+        if(!dbRes){
+            return errorCallback({status: 404, message: "Bookings not found"});
+        }
+        successCallback(dbRes);
+    } catch (error) {
+        console.error("GET | dbErr is: ", dbErr.message);
+        errorCallback({status: 500, message: "Database error"});
+    }
+}
 export default appointmentModel;

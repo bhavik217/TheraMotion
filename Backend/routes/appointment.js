@@ -1,4 +1,4 @@
-import express from "express";
+import express, { json } from "express";
 import AppointmentModel from "../models/AppointmentModel.js";
 
 const router = express.Router();
@@ -26,5 +26,29 @@ router.post("/", (req, res) => {
             res.send({ error: dbError.message });
         }
     );
+});
+
+router.get("/:email/current", (req, res) => {
+    AppointmentModel.getUserBookings(
+        req, 
+        (dbres) => {
+            res.status(200).json(dbres)
+        },
+        (dbErr) => {
+            res.status(dbErr.status || 500).json({ error: dbErr.message });
+        }
+    )
+});
+
+router.get("/:email/previous", (req, res) => {
+    AppointmentModel.getUserBookings(
+        req, 
+        (dbres) => {
+            res.status(200).json(dbres)
+        },
+        (dbErr) => {
+            res.status(dbErr.status || 500).json({ error: dbErr.message });
+        }
+    )
 });
 export default router;
