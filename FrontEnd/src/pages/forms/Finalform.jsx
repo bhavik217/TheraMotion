@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Needform from "../../components/NeedForm";
 import "./Finalform.css";
@@ -16,6 +16,15 @@ const Finalform = () => {
         phone: "",
         comments: "",
     });
+
+    useEffect(() => {
+        // Get email from localStorage and update formData
+        const storedEmail = localStorage.getItem("loggedInUserEmail") || "";
+        setFormData((prevData) => ({
+            ...prevData,
+            email: storedEmail,
+        }));
+    }, []);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -68,7 +77,6 @@ const Finalform = () => {
             form.reportValidity();
         }
     };
-
     return (
         <div className="fform">
             <div style={{ height: "15vh" }}></div>
@@ -129,14 +137,10 @@ const Finalform = () => {
                                         </i>
                                     </p>
                                     <p>Email Address</p>
-                                    <input
-                                        type="email"
-                                        className="in"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        required
-                                    />
+                                    <div className="email-box">
+                                        {localStorage.getItem("loggedInUserEmail")}
+                                    </div>
+
                                     <br />
                                     <p>Mobile phone</p>
                                     <input
@@ -183,4 +187,5 @@ const Finalform = () => {
         </div>
     );
 };
+
 export default Finalform;
