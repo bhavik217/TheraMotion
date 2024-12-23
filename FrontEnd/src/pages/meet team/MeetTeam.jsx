@@ -1,6 +1,6 @@
 import "./MeetTeam.css";
 import { useState } from "react";
-import Card from "../../components/elements/Card";
+import Card from "../../components/elements/Card/Card";
 import meetData from "../data/meetTeamData";
 
 function MeetTeam() {

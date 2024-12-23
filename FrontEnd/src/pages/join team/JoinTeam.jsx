@@ -1,7 +1,7 @@
 import "./JoinTeam.css";
 import joinTeamData from "../data/JoinTeamData";
 import { Link } from "react-router-dom";
-import IntroSection from "../../components/IntroSection";
+import IntroSection from "../../components/IntroSection/IntroSection";
 
 function JoinTeam() {
     const scrollFactor = window.innerWidth < 768 ? 3 : 2.25;

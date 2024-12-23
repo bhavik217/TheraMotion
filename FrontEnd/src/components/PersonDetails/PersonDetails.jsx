@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import MeetTeamData from "../pages/data/meetTeamData";
+import MeetTeamData from "../../pages/data/meetTeamData";
 import "./Persons.css";
 
 function PersonDetail() {
@@ -29,35 +29,31 @@ function PersonDetail() {
 
                     <div className="buttons">
                         <button
-                            className={`btn ${
-                                activeTab === "about" ? "active" : ""
-                            }`}
+                            className={`btn ${activeTab === "about" ? "active" : ""
+                                }`}
                             onClick={() => setActiveTab("about")}
                         >
                             About
                         </button>
                         <button
-                            className={`btn ${
-                                activeTab === "clinicalInterests"
+                            className={`btn ${activeTab === "clinicalInterests"
                                     ? "active"
                                     : ""
-                            }`}
+                                }`}
                             onClick={() => setActiveTab("clinicalInterests")}
                         >
                             Clinical Interests
                         </button>
                         <button
-                            className={`btn ${
-                                activeTab === "qualifications" ? "active" : ""
-                            }`}
+                            className={`btn ${activeTab === "qualifications" ? "active" : ""
+                                }`}
                             onClick={() => setActiveTab("qualifications")}
                         >
                             Qualifications
                         </button>
                         <button
-                            className={`btn ${
-                                activeTab === "locations" ? "active" : ""
-                            }`}
+                            className={`btn ${activeTab === "locations" ? "active" : ""
+                                }`}
                             onClick={() => setActiveTab("locations")}
                         >
                             Locations

@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import blogData from "../data/BlogData";
-import BlogBox from "../../components/Blogbox";
+import BlogBox from "../../components/Blogbox/Blogbox";
 import { Link } from "react-router-dom";
 import "./Blog.css";
 

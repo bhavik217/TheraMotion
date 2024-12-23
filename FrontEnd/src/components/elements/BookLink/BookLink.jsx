@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../elements/BookLink.css";
+import "./BookLink.css";
 
 function BookLink() {
     return (

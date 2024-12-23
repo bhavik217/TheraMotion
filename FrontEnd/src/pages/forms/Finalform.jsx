@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Needform from "../../components/NeedForm";
+import Needform from "../../components/NeedForm/NeedForm";
 import "./Finalform.css";
 
 const Finalform = () => {

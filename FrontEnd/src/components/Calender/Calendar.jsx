@@ -1,8 +1,8 @@
 import { useState } from "react";
 import "./Calendar.css";
 import { Link, useLocation } from "react-router-dom";
-import Needform from "./NeedForm";
-import Time from "./Time";
+import Needform from "../NeedForm/NeedForm";
+import Time from "../Time/Time";
 
 const Calendar = () => {
     const location = useLocation();

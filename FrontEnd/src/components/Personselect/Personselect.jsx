@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import Needform from "./NeedForm";
-import pdata from "../pages/data/personData";
-import PersonInfo from "./PersonInfo";
+import Needform from "../NeedForm/NeedForm";
+import pdata from "../../pages/data/personData";
+import PersonInfo from "../PersonInfo/PersonInfo";
 import "./Personselect.css";
 
 function Personselect() {

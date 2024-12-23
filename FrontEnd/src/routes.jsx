@@ -8,16 +8,16 @@ import Services from "./pages/services/Service.jsx";
 import Blog from "./pages/blog/Blog.jsx";
 import UserProfile from "./pages/user profile/UserProfile.jsx"
 import MeetTeamLayout from "./pages/meet team/MeetTeamLayout.jsx";
-import PersonDetail from "./components/PersonDetails";
-import { Outlet,Navigate, useNavigate } from "react-router-dom";
+import PersonDetail from "./components/PersonDetails/PersonDetails.jsx";
+import { Outlet, Navigate, useNavigate } from "react-router-dom";
 import BookAppt from "./pages//book appointment/BookAppt.jsx";
-import Personselect from "./components/Personselect.jsx";
-import Calendar from "./components/Calendar.jsx";
+import Personselect from "./components/Personselect/Personselect";
+import Calendar from "./components/Calender/Calendar";
 import Finalform from "./pages/forms/Finalform.jsx";
 import OrderDetail from "./pages/book appointment/OrderDetail.jsx";
 import PersonSelectLayout from "./pages/book appointment/PersonSelectLayout.jsx";
-import {jwtDecode} from "jwt-decode"; 
-import {useState, useEffect} from "react";
+import { jwtDecode } from "jwt-decode";
+import { useState, useEffect } from "react";
 
 export const authEvent = new EventTarget();
 
@@ -56,9 +56,9 @@ const ProtectedRoute = () => {
         };
 
         checkAuthToken();
-        const interval = setInterval(checkAuthToken, 5 * 60 * 1000); 
+        const interval = setInterval(checkAuthToken, 5 * 60 * 1000);
 
-        return () => clearInterval(interval); 
+        return () => clearInterval(interval);
     }, [navigate]);
 
     return isAuthenticated ? <Outlet /> : <Navigate to="/signin" replace />;

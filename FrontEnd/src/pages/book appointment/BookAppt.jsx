@@ -1,6 +1,6 @@
-import {useState } from "react";
-import Dropdown from "../../components/elements/Dropdown";
-import Needform from "../../components/NeedForm";
+import { useState } from "react";
+import Dropdown from "../../components/elements/Dropdown/Dropdown";
+import Needform from "../../components/NeedForm/NeedForm";
 import { BookApptData1, BookApptData2 } from "../../pages/data/BookApptData";
 import "./BookAppt.css";
 
@@ -38,19 +38,19 @@ const BookAppt = () => {
                         </div>
                         {btn
                             ? BookApptData1.map((data, index) => (
-                                  <Dropdown
-                                      key={index}
-                                      name={data.name}
-                                      arr={data.arr}
-                                  />
-                              ))
+                                <Dropdown
+                                    key={index}
+                                    name={data.name}
+                                    arr={data.arr}
+                                />
+                            ))
                             : BookApptData2.map((data, index) => (
-                                  <Dropdown
-                                      key={index}
-                                      name={data.name}
-                                      arr={data.arr}
-                                  />
-                              ))}
+                                <Dropdown
+                                    key={index}
+                                    name={data.name}
+                                    arr={data.arr}
+                                />
+                            ))}
                     </div>
 
                     <div className="col-md-4">

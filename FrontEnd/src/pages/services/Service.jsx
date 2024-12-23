@@ -1,5 +1,5 @@
-import IntroSection from "../../components/IntroSection";
-import ServiceBox from "../../components/Servicebox";
+import IntroSection from "../../components/IntroSection/IntroSection";
+import ServiceBox from "../../components/Servicebox/Servicebox";
 import serviceData from "./../data/serviceData";
 // import Bookappoint from '../Components/Bookappoint'
 

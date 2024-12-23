@@ -1,9 +1,9 @@
 import "./MainPage.css";
 import { Link } from "react-router-dom";
 
-import Carousel from "../../components/elements/Carousel";
-import Carousel2 from "../../components/elements/Carousel2";
-import IntroSection from "../../components/IntroSection";
+import Carousel from "../../components/elements/Carousel/Carousel";
+import Carousel2 from "../../components/elements/Carousel/Carousel2";
+import IntroSection from "../../components/IntroSection/IntroSection";
 // import Bookappoint from "../Components/Bookappoint";
 
 function MainPage() {
