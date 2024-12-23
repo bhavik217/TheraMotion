@@ -277,3 +277,64 @@
         width: 100%;
     }
 }
+
+.upload-photo-modal {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 8px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.upload-photo-modal input {
+    margin: 0;
+}
+
+.upload-photo-modal button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.upload-photo-modal button:hover {
+    background-color: #0056b3;
+}
+
+.info-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    font-size: 1.2em; /* Adjust icon size */
+}
+
+.tooltip {
+    visibility: hidden;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    padding: 8px;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    opacity: 0;
+    white-space: nowrap;
+    display: block;
+    max-width: 250px;
+    text-align: left;
+}
+
+.info-btn:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}

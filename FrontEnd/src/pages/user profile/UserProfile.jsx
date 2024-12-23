@@ -13,14 +13,15 @@ function UserProfile() {
     const [isEditing, setIsEditing] = useState({
         firstName: false,
         lastName: false,
-        email: false,
     });
 
     const [editedProfile, setEditedProfile] = useState({
         firstName: "",
         lastName: "",
-        email: "",
     });
+
+    const [isEditingPhoto, setIsEditingPhoto] = useState(false);
+    const [selectedPhoto, setSelectedPhoto] = useState(null);
 
     useEffect(() => {
         fetchUserData();
@@ -140,8 +141,6 @@ function UserProfile() {
 
     const [bookings, setBookings] = useState({ current: [], previous: [] });
 
-    console.log(bookings["current"][0]);
-
     const fetchBookings = async function () {
         try {
             const email = localStorage.getItem("loggedInUserEmail");
@@ -186,6 +185,59 @@ function UserProfile() {
         }
     };
 
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            setSelectedPhoto(file);
+        }
+    };
+    
+    const handleUploadPhoto = async () => {
+        if (!selectedPhoto) {
+            alert("Please select a photo to upload.");
+            return;
+        }
+    
+        const email = localStorage.getItem("loggedInUserEmail");
+        const formData = new FormData();
+        formData.append("photo", selectedPhoto);
+    
+        try {
+            const response = await fetch(
+                `http://localhost:8081/user/upload-photo`,
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                    },
+                    body: formData,
+                }
+            );
+    
+            if (response.ok) {
+                const data = await response.json();
+                setUserProfile((prev) => ({
+                    ...prev,
+                    photo: data.photoPath, // Assuming the backend returns the photo URL or path
+                }));
+                setIsEditingPhoto(false); // Close the modal after upload
+                alert("Profile photo updated successfully!");
+            } else {
+                console.error("Failed to upload photo:", response.statusText);
+                alert("Failed to upload photo. Please try again.");
+            }
+        } catch (err) {
+            console.error("Error uploading photo:", err);
+            alert("An error occurred while uploading your photo.");
+        }
+    };
+    
+    const handleCancelUpload = () => {
+        setIsEditingPhoto(false); // Close the modal
+        setSelectedPhoto(null); // Reset the selected photo
+    };
+    
+
     return (
         <div className="userprofile">
             <section className="section1">
@@ -210,14 +262,22 @@ function UserProfile() {
                     <div className="profile-sidebar">
                         <div className="photo-section">
                             <div className="profile-photo">
-                                <img src={userProfile.photo} alt="Profile" />
-                                <button className="edit-photo-btn">
+                                <img src={userProfile.photo || "/DefaultAvatar.png"} alt="Profile" />
+                                <button className="edit-photo-btn" onClick={() => setIsEditingPhoto(true)}>
                                     <i className="fa-solid fa-camera"></i>
                                 </button>
                             </div>
-                            <div className="profile-name">
-                                {`${userProfile.firstName} ${userProfile.lastName}`}
-                            </div>
+                            {isEditingPhoto && (
+                                <div className="upload-photo-modal">
+                                    <input type="file" onChange={handleFileChange} />
+                                    <button onClick={handleCancelUpload}>Cancel</button>
+                                    <button onClick={handleUploadPhoto}>Upload</button>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="profile-name">
+                            {`${userProfile.firstName} ${userProfile.lastName}`}
                         </div>
 
                         <div className="navigation-tabs">
@@ -341,43 +401,11 @@ function UserProfile() {
                                 <div className="info-row">
                                     <div className="info-label">Email</div>
                                     <div className="info-value">
-                                        {isEditing.email ? (
-                                            <>
-                                                <input
-                                                    type="email"
-                                                    value={editedProfile.email}
-                                                    onChange={(e) =>
-                                                        setEditedProfile(
-                                                            (prev) => ({
-                                                                ...prev,
-                                                                email: e.target
-                                                                    .value,
-                                                            })
-                                                        )
-                                                    }
-                                                />
-                                                <button
-                                                    className="save-btn"
-                                                    onClick={() =>
-                                                        handleSave("email")
-                                                    }
-                                                >
-                                                    Save
-                                                </button>
-                                            </>
-                                        ) : (
-                                            <>
-                                                <span>{userProfile.email}</span>
-                                                <button
-                                                    className="edit-btn"
-                                                    onClick={() =>
-                                                        handleEdit("email")
-                                                    }
-                                                >
-                                                    <i className="fa-solid fa-pencil"></i>
-                                                </button>
-                                            </>
-                                        )}
+                                        <span>{userProfile.email}</span>
+                                        <button className="info-btn" disabled>
+                                            <i className="fa-solid fa-info-circle"></i>
+                                            <span className="tooltip">This email is permanent and cannot be changed</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
