@@ -418,7 +418,7 @@ function UserProfile() {
                                         <button className="info-btn" disabled>
                                             <i className="fa-solid fa-info-circle"></i>
                                             <span className="tooltip">
-                                                This email is permanent and cannot be changed
+                                                Email is permanent and can't be changed
                                             </span>
                                         </button>
                                     </div>
