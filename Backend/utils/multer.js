@@ -5,33 +5,44 @@ import fs from "fs";
 // Define storage settings for Multer
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        const uploadDir = ".././FrontEnd/public/uploads"; // Directory to store files
-        // Check if the uploads directory exists, if not create it
-        if (!fs.existsSync(uploadDir)) {
-            fs.mkdirSync(uploadDir);
+        const uploadDir = ".././FrontEnd/public/uploads";
+        try {
+            if (!fs.existsSync(uploadDir)) {
+                fs.mkdirSync(uploadDir, { recursive: true });
+            }
+            cb(null, uploadDir);
+        } catch (error) {
+            console.error("Error creating upload directory:", error);
+            cb(error, null);
         }
-        cb(null, uploadDir); // Save files in the uploads directory
     },
     filename: (req, file, cb) => {
-        // Generate a unique filename using the original name and current timestamp
-        const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);
-        cb(null, file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname)); // Save with original file extension
+        try {
+            const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);
+            cb(null, file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname));
+        } catch (error) {
+            console.error("Error generating filename:", error);
+            cb(error, null);
+        }
     },
 });
 
-// Filter to allow only image files
+// Updated file filter with better error handling
 const fileFilter = (req, file, cb) => {
     const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+    console.log("Uploaded file type:", file.mimetype);
+    
     if (!allowedTypes.includes(file.mimetype)) {
-        return cb(new Error("Only .jpeg, .jpg, and .png files are allowed"), false);
+        const error = new Error("FILE_TYPE_ERROR");
+        console.log("File type not allowed:", file.mimetype);
+        return cb(error, false);
     }
-    cb(null, true); // Accept file
+    cb(null, true);
 };
 
-// Set up the multer upload middleware
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 10 * 1024 * 1024 }, // Limit file size to 10 MB
+    limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB
     fileFilter: fileFilter,
 });
 

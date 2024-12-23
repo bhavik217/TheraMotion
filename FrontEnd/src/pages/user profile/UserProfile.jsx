@@ -9,40 +9,35 @@ function UserProfile() {
         photo: "",
         email: "",
     });
-
     const [isEditing, setIsEditing] = useState({
         firstName: false,
         lastName: false,
     });
-
     const [editedProfile, setEditedProfile] = useState({
         firstName: "",
         lastName: "",
     });
-
     const [isEditingPhoto, setIsEditingPhoto] = useState(false);
     const [selectedPhoto, setSelectedPhoto] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [uploadError, setUploadError] = useState("");
+    const [bookings, setBookings] = useState({ current: [], previous: [] });
 
     useEffect(() => {
         fetchUserData();
         fetchBookings();
     }, []);
 
+    // Your existing fetch functions
     const fetchUserData = async () => {
         const email = localStorage.getItem("loggedInUserEmail");
         try {
-            const response = await fetch(
-                `http://localhost:8081/user/${email}/`,
-                {
-                    method: "GET",
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "authToken"
-                        )}`,
-                    },
-                }
-            );
-            console.log(response);
+            const response = await fetch(`http://localhost:8081/user/${email}/`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                },
+            });
 
             if (response.ok) {
                 const userDetails = await response.json();
@@ -58,13 +53,46 @@ function UserProfile() {
                     email: userDetails.email,
                 });
             } else {
-                console.error(
-                    "Failed to fetch user details:",
-                    response.statusText
-                );
+                console.error("Failed to fetch user details:", response.statusText);
             }
         } catch (err) {
             console.error("Error fetching user details:", err);
+        }
+    };
+
+    const fetchBookings = async () => {
+        try {
+            const email = localStorage.getItem("loggedInUserEmail");
+            const currentResponse = await fetch(
+                `http://localhost:8081/appointment/${email}/current`,
+                {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                    },
+                }
+            );
+
+            const previousResponse = await fetch(
+                `http://localhost:8081/appointment/${email}/previous`,
+                {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                    },
+                }
+            );
+
+            const currentBookings = currentResponse.ok ? await currentResponse.json() : [];
+            const previousBookings = previousResponse.ok ? await previousResponse.json() : [];
+
+            setBookings({
+                current: currentBookings || [],
+                previous: previousBookings || [],
+            });
+        } catch (err) {
+            console.error("Error fetching bookings:", err);
+            setBookings({ current: [], previous: [] });
         }
     };
 
@@ -77,19 +105,14 @@ function UserProfile() {
         };
 
         try {
-            const response = await fetch(
-                `http://localhost:8081/user/${email}/`,
-                {
-                    method: "PUT",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "authToken"
-                        )}`,
-                    },
-                    body: JSON.stringify(updatedData),
-                }
-            );
+            const response = await fetch(`http://localhost:8081/user/${email}/`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                },
+                body: JSON.stringify(updatedData),
+            });
 
             if (response.ok) {
                 const updatedUser = await response.json();
@@ -100,11 +123,9 @@ function UserProfile() {
                     email: updatedUser.email,
                 });
 
-                // Optionally reset edit mode after successful save
                 setIsEditing({
                     firstName: false,
                     lastName: false,
-                    email: false,
                 });
 
                 alert("Profile updated successfully!");
@@ -116,6 +137,77 @@ function UserProfile() {
             console.error("Error updating profile:", err);
             alert("An error occurred while updating your profile.");
         }
+    };
+
+    // Updated file handling functions
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const allowedTypes = ["image/jpeg", "image/png", "image/jpg"];
+            if (!allowedTypes.includes(file.type)) {
+                setUploadError("Only .jpeg, .jpg, and .png files are allowed");
+                event.target.value = '';
+                return;
+            }
+
+            const maxSize = 10 * 1024 * 1024; // 10MB
+            if (file.size > maxSize) {
+                setUploadError("File size must be less than 10MB");
+                event.target.value = '';
+                return;
+            }
+
+            setSelectedPhoto(file);
+            setUploadError("");
+        }
+    };
+
+    const handleUploadPhoto = async () => {
+        if (!selectedPhoto) {
+            setUploadError("Please select a photo to upload.");
+            return;
+        }
+
+        setIsLoading(true);
+        setUploadError("");
+
+        const formData = new FormData();
+        formData.append("photo", selectedPhoto);
+
+        try {
+            const response = await fetch(`http://localhost:8081/user/upload-photo`, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                },
+                body: formData,
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setUserProfile((prev) => ({
+                    ...prev,
+                    photo: data.photoPath,
+                }));
+                setIsEditingPhoto(false);
+                setSelectedPhoto(null);
+                alert("Profile photo updated successfully!");
+            } else {
+                setUploadError(data.message || "Failed to upload photo. Please try again.");
+            }
+        } catch (err) {
+            console.error("Error uploading photo:", err);
+            setUploadError("An error occurred while uploading your photo.");
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleCancelUpload = () => {
+        setIsEditingPhoto(false);
+        setSelectedPhoto(null);
+        setUploadError("");
     };
 
     const handleEdit = (field) => {
@@ -134,109 +226,8 @@ function UserProfile() {
             ...prev,
             [field]: false,
         }));
-
-        // Call the update function to save changes to the backend
         updateUserProfile();
     };
-
-    const [bookings, setBookings] = useState({ current: [], previous: [] });
-
-    const fetchBookings = async function () {
-        try {
-            const email = localStorage.getItem("loggedInUserEmail");
-            const currentResponse = await fetch(
-                `http://localhost:8081/appointment/${email}/current`,
-                {
-                    method: "GET",
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "authToken"
-                        )}`,
-                    },
-                }
-            );
-
-            const previousResponse = await fetch(
-                `http://localhost:8081/appointment/${email}/previous`,
-                {
-                    method: "GET",
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem(
-                            "authToken"
-                        )}`,
-                    },
-                }
-            );
-
-            const currentBookings = currentResponse.ok
-                ? await currentResponse.json()
-                : [];
-            const previousBookings = previousResponse.ok
-                ? await previousResponse.json()
-                : [];
-
-            setBookings({
-                current: currentBookings || [],
-                previous: previousBookings || [],
-            });
-        } catch (err) {
-            console.error("Error fetching bookings:", err);
-            setBookings({ current: [], previous: [] });
-        }
-    };
-
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        if (file) {
-            setSelectedPhoto(file);
-        }
-    };
-    
-    const handleUploadPhoto = async () => {
-        if (!selectedPhoto) {
-            alert("Please select a photo to upload.");
-            return;
-        }
-    
-        const email = localStorage.getItem("loggedInUserEmail");
-        const formData = new FormData();
-        formData.append("photo", selectedPhoto);
-    
-        try {
-            const response = await fetch(
-                `http://localhost:8081/user/upload-photo`,
-                {
-                    method: "POST",
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-                    },
-                    body: formData,
-                }
-            );
-    
-            if (response.ok) {
-                const data = await response.json();
-                setUserProfile((prev) => ({
-                    ...prev,
-                    photo: data.photoPath, // Assuming the backend returns the photo URL or path
-                }));
-                setIsEditingPhoto(false); // Close the modal after upload
-                alert("Profile photo updated successfully!");
-            } else {
-                console.error("Failed to upload photo:", response.statusText);
-                alert("Failed to upload photo. Please try again.");
-            }
-        } catch (err) {
-            console.error("Error uploading photo:", err);
-            alert("An error occurred while uploading your photo.");
-        }
-    };
-    
-    const handleCancelUpload = () => {
-        setIsEditingPhoto(false); // Close the modal
-        setSelectedPhoto(null); // Reset the selected photo
-    };
-    
 
     return (
         <div className="userprofile">
@@ -262,16 +253,64 @@ function UserProfile() {
                     <div className="profile-sidebar">
                         <div className="photo-section">
                             <div className="profile-photo">
-                                <img src={userProfile.photo || "/DefaultAvatar.png"} alt="Profile" />
-                                <button className="edit-photo-btn" onClick={() => setIsEditingPhoto(true)}>
+                                <img 
+                                    src={userProfile.photo} 
+                                    alt="Profile" 
+                                    onError={(e) => {
+                                        e.target.src = "/DefaultAvatar.png";
+                                    }}
+                                />
+                                <button 
+                                    className="edit-photo-btn" 
+                                    onClick={() => {
+                                        setIsEditingPhoto(true);
+                                        setUploadError("");
+                                    }}
+                                >
                                     <i className="fa-solid fa-camera"></i>
                                 </button>
                             </div>
+                            
                             {isEditingPhoto && (
                                 <div className="upload-photo-modal">
-                                    <input type="file" onChange={handleFileChange} />
-                                    <button onClick={handleCancelUpload}>Cancel</button>
-                                    <button onClick={handleUploadPhoto}>Upload</button>
+                                    <div className="upload-content">
+                                        <div className="file-input-container">
+                                            <input 
+                                                type="file" 
+                                                accept=".jpg,.jpeg,.png"
+                                                onChange={handleFileChange}
+                                                disabled={isLoading}
+                                            />
+                                            {selectedPhoto && (
+                                                <div className="selected-file">
+                                                    Selected: {selectedPhoto.name}
+                                                </div>
+                                            )}
+                                        </div>
+                                        
+                                        {uploadError && (
+                                            <div className="error-message">
+                                                {uploadError}
+                                            </div>
+                                        )}
+                                        
+                                        <div className="upload-buttons">
+                                            <button 
+                                                onClick={handleCancelUpload}
+                                                disabled={isLoading}
+                                                className="cancel-btn"
+                                            >
+                                                Cancel
+                                            </button>
+                                            <button 
+                                                onClick={handleUploadPhoto}
+                                                disabled={isLoading || !selectedPhoto}
+                                                className="upload-btn"
+                                            >
+                                                {isLoading ? "Uploading..." : "Upload"}
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -282,17 +321,13 @@ function UserProfile() {
 
                         <div className="navigation-tabs">
                             <button
-                                className={`tab-btn ${
-                                    activeTab === "profile" ? "active" : ""
-                                }`}
+                                className={`tab-btn ${activeTab === "profile" ? "active" : ""}`}
                                 onClick={() => setActiveTab("profile")}
                             >
                                 Profile
                             </button>
                             <button
-                                className={`tab-btn ${
-                                    activeTab === "bookings" ? "active" : ""
-                                }`}
+                                className={`tab-btn ${activeTab === "bookings" ? "active" : ""}`}
                                 onClick={() => setActiveTab("bookings")}
                             >
                                 Bookings
@@ -311,39 +346,27 @@ function UserProfile() {
                                             <>
                                                 <input
                                                     type="text"
-                                                    value={
-                                                        editedProfile.firstName
-                                                    }
+                                                    value={editedProfile.firstName}
                                                     onChange={(e) =>
-                                                        setEditedProfile(
-                                                            (prev) => ({
-                                                                ...prev,
-                                                                firstName:
-                                                                    e.target
-                                                                        .value,
-                                                            })
-                                                        )
+                                                        setEditedProfile((prev) => ({
+                                                            ...prev,
+                                                            firstName: e.target.value,
+                                                        }))
                                                     }
                                                 />
                                                 <button
                                                     className="save-btn"
-                                                    onClick={() =>
-                                                        handleSave("firstName")
-                                                    }
+                                                    onClick={() => handleSave("firstName")}
                                                 >
                                                     Save
                                                 </button>
                                             </>
                                         ) : (
                                             <>
-                                                <span>
-                                                    {userProfile.firstName}
-                                                </span>
+                                                <span>{userProfile.firstName}</span>
                                                 <button
                                                     className="edit-btn"
-                                                    onClick={() =>
-                                                        handleEdit("firstName")
-                                                    }
+                                                    onClick={() => handleEdit("firstName")}
                                                 >
                                                     <i className="fa-solid fa-pencil"></i>
                                                 </button>
@@ -351,6 +374,7 @@ function UserProfile() {
                                         )}
                                     </div>
                                 </div>
+
                                 <div className="info-row">
                                     <div className="info-label">Last Name</div>
                                     <div className="info-value">
@@ -358,39 +382,27 @@ function UserProfile() {
                                             <>
                                                 <input
                                                     type="text"
-                                                    value={
-                                                        editedProfile.lastName
-                                                    }
+                                                    value={editedProfile.lastName}
                                                     onChange={(e) =>
-                                                        setEditedProfile(
-                                                            (prev) => ({
-                                                                ...prev,
-                                                                lastName:
-                                                                    e.target
-                                                                        .value,
-                                                            })
-                                                        )
+                                                        setEditedProfile((prev) => ({
+                                                            ...prev,
+                                                            lastName: e.target.value,
+                                                        }))
                                                     }
                                                 />
                                                 <button
                                                     className="save-btn"
-                                                    onClick={() =>
-                                                        handleSave("lastName")
-                                                    }
+                                                    onClick={() => handleSave("lastName")}
                                                 >
                                                     Save
                                                 </button>
                                             </>
                                         ) : (
                                             <>
-                                                <span>
-                                                    {userProfile.lastName}
-                                                </span>
+                                                <span>{userProfile.lastName}</span>
                                                 <button
                                                     className="edit-btn"
-                                                    onClick={() =>
-                                                        handleEdit("lastName")
-                                                    }
+                                                    onClick={() => handleEdit("lastName")}
                                                 >
                                                     <i className="fa-solid fa-pencil"></i>
                                                 </button>
@@ -398,13 +410,16 @@ function UserProfile() {
                                         )}
                                     </div>
                                 </div>
+
                                 <div className="info-row">
                                     <div className="info-label">Email</div>
                                     <div className="info-value">
                                         <span>{userProfile.email}</span>
                                         <button className="info-btn" disabled>
                                             <i className="fa-solid fa-info-circle"></i>
-                                            <span className="tooltip">This email is permanent and cannot be changed</span>
+                                            <span className="tooltip">
+                                                This email is permanent and cannot be changed
+                                            </span>
                                         </button>
                                     </div>
                                 </div>
@@ -415,77 +430,39 @@ function UserProfile() {
                             <div className="bookings-section">
                                 <div className="current-bookings">
                                     <h3>Current Bookings</h3>
-                                    {bookings.current &&
-                                    bookings.current.length > 0 ? (
+                                    {bookings.current && bookings.current.length > 0 ? (
                                         bookings.current.map((booking) => (
-                                            <div
-                                                key={booking.bookingId}
-                                                className="booking-card"
-                                            >
+                                            <div key={booking.bookingId} className="booking-card">
                                                 <div className="booking-info">
                                                     <div className="service">
-                                                        {
-                                                            booking
-                                                                .appointmentDetails
-                                                                .service
-                                                        }
+                                                        {booking.appointmentDetails.service}
                                                     </div>
                                                     <div className="date-time">
-                                                        {new Date(
-                                                            booking.appointmentDetails.date
-                                                        ).toLocaleDateString()}{" "}
-                                                        at{" "}
-                                                        {
-                                                            booking
-                                                                .appointmentDetails
-                                                                .time
-                                                        }
+                                                        {new Date(booking.appointmentDetails.date).toLocaleDateString()}{" "}
+                                                        at {booking.appointmentDetails.time}
                                                     </div>
                                                     <div className="status">
-                                                        {booking.status ||
-                                                            "Pending"}
+                                                        {booking.status || "Pending"}
                                                     </div>
                                                 </div>
-                                                <button
-                                                    className="edit-booking"
-                                                    onClick={() =>
-                                                        updateBookingDetails(
-                                                            booking.bookingId,
-                                                            {
-                                                                service:
-                                                                    "Updated Service", // Example
-                                                            }
-                                                        )
-                                                    }
-                                                >
-                                                    Edit Details
-                                                </button>
                                             </div>
                                         ))
                                     ) : (
                                         <p>No current bookings available.</p>
                                     )}
                                 </div>
+
                                 <div className="previous-bookings">
                                     <h3>Previous Bookings</h3>
-                                    {bookings.previous.length > 0 ? (
+                                    {bookings.previous && bookings.previous.length > 0 ? (
                                         bookings.previous.map((booking) => (
-                                            <div
-                                                key={booking.bookingId}
-                                                className="booking-card faded"
-                                            >
+                                            <div key={booking.bookingId} className="booking-card faded">
                                                 <div className="booking-info">
                                                     <div className="service">
-                                                        {
-                                                            booking
-                                                                .appointmentDetails
-                                                                .service
-                                                        }
+                                                        {booking.appointmentDetails.service}
                                                     </div>
                                                     <div className="date-time">
-                                                        {new Date(
-                                                            booking.appointmentDetails.date
-                                                        ).toLocaleDateString()}{" "}
+                                                        {new Date(booking.appointmentDetails.date).toLocaleDateString()}{" "}
                                                         at{" "}
                                                         {
                                                             booking

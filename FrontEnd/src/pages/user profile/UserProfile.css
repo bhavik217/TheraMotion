@@ -1,43 +1,57 @@
-/* UserProfile.css */
 .userprofile {
     min-height: 100vh;
+    background-color: #f9fafb;
 }
 
-.userprofile .section1 {
+/* Header Section */
+.section1 {
     padding: 2vh;
     background-color: #ebecec;
 }
 
-.userprofile .section1 .container {
+.section1 .container {
     max-width: 1200px;
     background: url("/Background-icon-dark.png") no-repeat right;
     background-size: auto;
 }
 
-.userprofile .section1 .heading1 {
+.section1 .heading1 {
     color: #2b2e34;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
     line-height: 1.25;
+    margin-bottom: 1rem;
 }
 
-.userprofile .section1 .buttons a {
+.section1 .buttons {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.section1 .buttons a {
     color: #2b2e34;
     text-decoration: none;
-    margin-right: 5px;
-    font-size: 1rem;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
 }
 
+.section1 .buttons a:hover {
+    color: #4a4f5a;
+}
+
+/* Main Content Layout */
 .profile-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: clamp(1rem, 3vw, 2rem);
 }
 
 .profile-layout {
     display: flex;
-    gap: 2rem;
+    gap: clamp(1rem, 3vw, 2rem);
 }
 
+/* Sidebar Styles */
 .profile-sidebar {
     width: 280px;
     flex-shrink: 0;
@@ -46,9 +60,14 @@
 .photo-section {
     background: #fff;
     padding: 2rem;
-    border-radius: 8px;
+    border-radius: 12px;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.3s ease;
+}
+
+.photo-section:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 .profile-photo {
@@ -63,6 +82,7 @@
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
+    border: 2px solid #f3f4f6;
 }
 
 .edit-photo-btn {
@@ -79,14 +99,23 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.edit-photo-btn:hover {
+    transform: scale(1.1);
+    background: #404348;
 }
 
 .profile-name {
     font-size: 1.25rem;
-    font-weight: 500;
+    font-weight: 600;
     margin-top: 1rem;
+    color: #2b2e34;
+    text-align: center;
 }
 
+/* Navigation Tabs */
 .navigation-tabs {
     margin-top: 2rem;
     display: flex;
@@ -98,36 +127,40 @@
     padding: 1rem;
     text-align: left;
     background: none;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 8px;
     cursor: pointer;
     font-size: 1rem;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
 }
 
 .tab-btn:hover {
     background: #f3f4f6;
+    border-color: #e5e7eb;
 }
 
 .tab-btn.active {
     background: #2b2e34;
     color: white;
+    font-weight: 500;
 }
 
+/* Main Content Area */
 .main-content {
     flex: 1;
+    min-width: 0; /* Prevents flex item from overflowing */
 }
 
 .profile-info {
     background: #fff;
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
 .info-row {
     padding: 1rem 0;
-    border-bottom: 1px solid #ebecec;
+    border-bottom: 1px solid #f3f4f6;
 }
 
 .info-row:last-child {
@@ -138,6 +171,7 @@
     color: #6b7280;
     font-size: 0.875rem;
     margin-bottom: 0.5rem;
+    font-weight: 500;
 }
 
 .info-value {
@@ -145,48 +179,81 @@
     justify-content: space-between;
     align-items: center;
     font-size: 1rem;
+    color: #2b2e34;
 }
 
-.edit-btn {
+.info-value input {
+    padding: 0.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 300px;
+}
+
+.edit-btn, .save-btn {
     background: none;
     border: none;
     color: #6b7280;
     cursor: pointer;
     padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
 }
 
 .edit-btn:hover {
     color: #2b2e34;
+    background: #f3f4f6;
 }
 
+.save-btn {
+    background: #2b2e34;
+    color: white;
+    padding: 0.5rem 1rem;
+}
+
+.save-btn:hover {
+    background: #404348;
+}
+
+/* Bookings Section */
 .bookings-section {
     background: #fff;
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.bookings-section h2, .bookings-section h3 {
+    color: #2b2e34;
+    font-weight: 600;
 }
 
 .bookings-section h2 {
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
-    color: #2b2e34;
 }
 
 .bookings-section h3 {
     font-size: 1.25rem;
-    margin: 1rem 0;
-    color: #2b2e34;
+    margin: 1.5rem 0 1rem;
 }
 
 .booking-card {
     background: #fff;
-    border: 1px solid #ebecec;
-    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.booking-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .booking-card.faded {
@@ -195,8 +262,9 @@
 }
 
 .booking-info .service {
-    font-weight: 500;
+    font-weight: 600;
     margin-bottom: 0.25rem;
+    color: #2b2e34;
 }
 
 .booking-info .date-time {
@@ -208,91 +276,34 @@
     color: #059669;
     font-size: 0.875rem;
     margin-top: 0.25rem;
+    font-weight: 500;
 }
 
-.edit-booking {
-    background: #fff;
-    border: 1px solid #d1d5db;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.edit-booking:hover {
-    background: #f9fafb;
-}
-
-@media screen and (max-width: 768px) {
-    .profile-layout {
-        flex-direction: column;
-    }
-
-    .profile-sidebar {
-        width: 100%;
-    }
-
-    .navigation-tabs {
-        flex-direction: row;
-        justify-content: center;
-        gap: 1rem;
-    }
-
-    .tab-btn {
-        flex: 1;
-        text-align: center;
-    }
-}
-
-@media screen and (max-width: 527px) {
-    .userprofile .section1 {
-        padding: 40px 20px;
-    }
-
-    .userprofile .section1 .buttons {
-        display: flex;
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .userprofile .section1 .buttons a {
-        padding: 3px 10px;
-        font-size: small;
-    }
-
-    .userprofile .section1 .heading1 {
-        font-size: 1.5rem;
-    }
-
-    .profile-content {
-        padding: 1rem;
-    }
-
-    .booking-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    .edit-booking {
-        width: 100%;
-    }
-}
-
+/* Modal Styles */
 .upload-photo-modal {
-    position: absolute;
+    position: fixed;
+    inset: 0;
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 8px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
 }
 
-.upload-photo-modal input {
-    margin: 0;
+.upload-photo-modal .upload-content {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.upload-buttons{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
 }
 
 .upload-photo-modal button {
@@ -307,34 +318,86 @@
     background-color: #0056b3;
 }
 
+/* Tooltip */
 .info-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
     position: relative;
-    font-size: 1.2em; /* Adjust icon size */
+    font-size: 1.2em;
 }
 
 .tooltip {
     visibility: hidden;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    text-align: center;
-    border-radius: 5px;
-    padding: 8px;
     position: absolute;
-    bottom: 30px;
+    bottom: 100%;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 1;
-    opacity: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
     white-space: nowrap;
-    display: block;
-    max-width: 250px;
-    text-align: left;
+    opacity: 0;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .info-btn:hover .tooltip {
     visibility: visible;
     opacity: 1;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .profile-layout {
+        flex-direction: column;
+    }
+
+    .profile-sidebar {
+        width: 100%;
+    }
+
+    .navigation-tabs {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .tab-btn {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+    }
+    
+    .info-value {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .info-value input {
+        max-width: none;
+    }
+}
+
+@media screen and (max-width: 527px) {
+    .section1 {
+        padding: 1.5rem 1rem;
+    }
+
+    .section1 .buttons {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .section1 .heading1 {
+        font-size: 1.5rem;
+    }
+
+    .profile-content {
+        padding: 1rem;
+    }
+
+    .booking-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
 }

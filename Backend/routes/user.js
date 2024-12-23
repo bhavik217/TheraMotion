@@ -2,6 +2,7 @@ import express from "express";
 import UserModel from "../models/Usermodel.js";
 import { verifyToken } from "../utils/helpers.js";
 import upload from "../utils/multer.js";
+import multer from "multer";
 
 const router = express.Router();
 
@@ -69,6 +70,7 @@ router.post("/", (req, res) => {
         }
     );
 });
+
 router.post("/signin", (req, res) => {
     UserModel.signIn(
         req.body,
@@ -81,33 +83,78 @@ router.post("/signin", (req, res) => {
     );
 });
 
-// Upload profile photo
-router.post("/upload-photo", verifyToken, upload.single("photo"), async (req, res) => {
-    try {
-        if (!req.file) {
-            return res.status(400).send({ message: "No file uploaded" });
+router.post("/upload-photo", verifyToken, (req, res) => {
+    upload.single("photo")(req, res, async (err) => {
+        try {
+            // Handle multer-specific errors
+            if (err instanceof multer.MulterError) {
+                console.log("Multer error:", err);
+                return res.status(400).json({ 
+                    success: false,
+                    message: "Error uploading file: " + err.message 
+                });
+            } 
+            
+            // Handle file type error
+            if (err && err.message === "FILE_TYPE_ERROR") {
+                console.log("File type error:", err);
+                return res.status(400).json({ 
+                    success: false,
+                    message: "Only .jpeg, .jpg, and .png files are allowed" 
+                });
+            }
+            
+            // Handle other errors
+            if (err) {
+                console.log("Other upload error:", err);
+                return res.status(500).json({ 
+                    success: false,
+                    message: "Server error during upload" 
+                });
+            }
+
+            // Check if file exists
+            if (!req.file) {
+                return res.status(400).json({ 
+                    success: false,
+                    message: "No file uploaded" 
+                });
+            }
+
+            // Create photo path
+            const photoPath = `/uploads/${req.file.filename}`;
+            console.log("Photo path:", photoPath);
+            console.log("User email:", req.emailFromAuthToken);
+
+            // Update user photo
+            const updatedUser = await UserModel.findOneAndUpdate(
+                { email: req.emailFromAuthToken },
+                { photo: photoPath },
+                { new: true }
+            );
+
+            // Check if user was found and updated
+            if (!updatedUser) {
+                console.log("User not found for email:", req.emailFromAuthToken);
+                return res.status(404).json({ 
+                    success: false,
+                    message: "User not found" 
+                });
+            }
+
+            // Success response
+            return res.status(200).json({ 
+                success: true,
+                photoPath: updatedUser.photo 
+            });
+
+        } catch (error) {
+            console.error("Server error in upload route:", error);
+            return res.status(500).json({ 
+                success: false,
+                message: "Error uploading photo" 
+            });
         }
-
-        // Store the file path to the user's profile photo in the database
-        const photoPath = `/uploads/${req.file.filename}`;
-
-        // Update the user's photo in the database
-        const updatedUser = await UserModel.findOneAndUpdate(
-            { email: req.emailFromAuthToken },
-            { photo: photoPath },
-            { new: true }
-        );
-
-        if (!updatedUser) {
-            return res.status(404).send({ message: "User not found" });
-        }
-
-        // Return the updated user profile with the new photo
-        res.status(200).send({ photoPath: updatedUser.photo });
-    } catch (err) {
-        console.error("Error uploading photo:", err);
-        res.status(500).send({ message: "Error uploading photo" });
-    }
+    });
 });
-
 export default router;
