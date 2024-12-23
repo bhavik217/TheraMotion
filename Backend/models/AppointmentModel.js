@@ -6,7 +6,7 @@ const appointmentSchema = new mongoose.Schema({
     firstName: { type: String, required: true },
     lastName: { type: String },
     dob: { type: Date, required: true },
-    email: { type: String, required: true, unique: true },
+    email: { type: String, required: true },
     phone: { type: String, required: true },
     comments: { type: String },
 
@@ -43,12 +43,12 @@ appointmentModel.getUserBookings = async function(req, successCallback, errorCal
 
     try {
         const dbRes = await appointmentModel.find({email: reqMail});
-        if(!dbRes){
+        if(!dbRes || dbRes.length === 0){
             return errorCallback({status: 404, message: "Bookings not found"});
         }
         successCallback(dbRes);
     } catch (error) {
-        console.error("GET | dbErr is: ", dbErr.message);
+        console.error("GET | dbErr is: ", error.message);
         errorCallback({status: 500, message: "Database error"});
     }
 }

@@ -1,6 +1,7 @@
 import express from "express";
 import UserModel from "../models/Usermodel.js";
 import { verifyToken } from "../utils/helpers.js";
+import upload from "../utils/multer.js";
 
 const router = express.Router();
 
@@ -79,4 +80,34 @@ router.post("/signin", (req, res) => {
         }
     );
 });
+
+// Upload profile photo
+router.post("/upload-photo", verifyToken, upload.single("photo"), async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).send({ message: "No file uploaded" });
+        }
+
+        // Store the file path to the user's profile photo in the database
+        const photoPath = `/uploads/${req.file.filename}`;
+
+        // Update the user's photo in the database
+        const updatedUser = await UserModel.findOneAndUpdate(
+            { email: req.emailFromAuthToken },
+            { photo: photoPath },
+            { new: true }
+        );
+
+        if (!updatedUser) {
+            return res.status(404).send({ message: "User not found" });
+        }
+
+        // Return the updated user profile with the new photo
+        res.status(200).send({ photoPath: updatedUser.photo });
+    } catch (err) {
+        console.error("Error uploading photo:", err);
+        res.status(500).send({ message: "Error uploading photo" });
+    }
+});
+
 export default router;

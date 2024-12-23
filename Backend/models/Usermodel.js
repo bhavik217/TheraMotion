@@ -27,6 +27,10 @@ const userSchema = new mongoose.Schema(
             minLength: [6, "Password must be at least 6 characters"],
             required: [true, "Password is required"],
         },
+        photo: {
+            type: String, // URL or file path to the photo
+            default: "/DefaultAvatar.png", // Optional: default photo if none provided
+        },
     },
     { timestamps: true }
 );

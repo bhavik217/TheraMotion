@@ -22,7 +22,6 @@ const initializeCounter = async () => {
     }
 };
 
-
 app.use(express.json());
 
 app.use("*", (req, res, next) => {
