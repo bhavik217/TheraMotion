@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./UserProfile.css";
-import CustomDeleteModal from "../../components/CustomDelete/CustomDeleteModal";
+import CustomDeleteModal from "../../components/elements/Modals/CustomDeleteModal";
 
 function UserProfile() {
     const [activeTab, setActiveTab] = useState("profile");
