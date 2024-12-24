@@ -8,35 +8,40 @@
 
 ## Overview
 
-TheraMotion is a healthcare service providing platform that enables users to book healthcare services. Built with modern web technologies with features like join our team, meet our team, book an appointment, user authentication, and reading and adding blogs.
+TheraMotion is a healthcare service platform that enables users to book and manage healthcare services effortlessly. Built with modern web technologies, the platform provides features such as team recruitment, detailed team member profiles, seamless appointment booking, user authentication, and an engaging blog section.
+
+[Hosted Website](http://ec2-3-83-33-137.compute-1.amazonaws.com:8080/)
+
 
 ## Key Features
 
 - **Secure Authentication System**
-    - JWT-based authentication
-    - Protected routes
-    - Secure password hashing
-    - Session management
+    - JWT-based authentication for user security.
+    - Protected routes to safeguard sensitive actions and pages.
+    - Secure password hashing with bcrypt.
+    - Efficient session management for enhanced user experience.
 
 - **Join our Team**
-    - Practioners can join our team
+    - Healthcare practitioners can apply to join the team.
 
-- **Meet Team** - Learn about our highly qualified and experienced team members.
-    - All team members with photos and bios.
-    - Dedicated page for each Team member with all details.
+- **Meet Team** 
+    - Comprehensive details of highly qualified team members, including photos and bios.
+    - Individual pages for each team member with detailed profiles.
     - Filter options for quick search.
   
-- **Book an Appointment** - Easily schedule appointments with our seamless booking system.
-    - User-friendly interface for booking appointments.
-    - Real-time availability updates for services and providers.
-    - Appointment reminders via email or SMS.
-    - Integration with calendar systems
-    - Secure payment options for pre-booking services.
-    - Flexible cancellation and rescheduling policies. ########################### **Attention needed** ##############
+- **Book an Appointment** 
+    - Intuitive interface for booking healthcare services.
+    - Real-time updates on service and provider availability.
+    - Calendar integration for easy scheduling.
+    - Secure payment options by **Razorpay** for seamless pre-booking.
+    - Flexible cancellation and rescheduling policies. [**Attention needed**]
+
+- **Blogs**
+    - Engage with informative and interactive blogs on healthcare topics. 
 
 - **Modern UI/UX**
-    - Responsive design
-    - Intuitive navigation
+    - Fully responsive design ensures compatibility across devices.
+    - User-friendly navigation for a seamless experience.
 
 ## Tech Stack
 
@@ -54,6 +59,8 @@ TheraMotion is a healthcare service providing platform that enables users to boo
 - [MongoDB](https://www.mongodb.com/) - Database
 - [JWT](https://jwt.io/) - Authentication
 - [bcrypt](https://github.com/kelektiv/node.bcrypt.js) - Password hashing
+- [Multer](https://www.npmjs.com/package/multer) - Middleware for handling file uploads.
+- [Razorpay](https://razorpay.com/) - Integration for secure online payments.
 
 ## Quick Start
 
@@ -155,18 +162,26 @@ npm run dev
 
 1. **Authentication**
 
-   - User registration with email verification
-   - JWT-based authentication
-   - Protected route handling
+   - User registration with email verification.
+   - Secure login and logout system using JWT.
+   - Protected routes for sensitive operations.
   
 2. **Book an appointment**
-   - Enter you details
-   - Choose a therapist
-   - Select from available Date & Time
-   - Pay for your booking
+   - Enter you details.
+   - Choose a healthcare provider.
+   - Select from available Date & Time.
+   - Pay for your booking.
+
+3. **User Profile**
+   - You can uplod your profile picture
+   - Can edit your name and details
+   - Can also delete your account if required
 
 ## Acknowledgments
 
 - [React Documentation](https://reactjs.org/docs)
-- [Tailwind CSS](https://tailwindcss.com)
+- [Bootstrap](https://getbootstrap.com/)
+- [Font Awesome](https://fontawesome.com/)
 - [MongoDB Documentation](https://docs.mongodb.com)
+- [Multer](https://www.npmjs.com/package/multer)
+- [Razorpay](https://razorpay.com/)
