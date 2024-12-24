@@ -7,7 +7,7 @@ import AppointmentModel from "./AppointmentModel.js";
 
 dotenv.config();
 
-const hashSalt = parseInt(process.env.hashSalt, 10);
+const HashSalt = parseInt(process.env.HashSalt, 10);
 
 const userSchema = new mongoose.Schema(
     {
