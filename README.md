@@ -1,7 +1,7 @@
 # TheraMotion
 
 <div align="center">
-    ![Banner Image](./FrontEnd/public/logo.png)
+    <img src="http://ec2-3-83-33-137.compute-1.amazonaws.com:8080/logo.png" alt="Banner Image" />
     
     _Helping you moving move through life._
 </div>
