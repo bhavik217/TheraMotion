@@ -1,9 +1,9 @@
 # TheraMotion
 
 <div align="center">
-  Banner coming soon
-  
-  _Helping you moving move through life._
+    ![Banner Image](./FrontEnd/public/logo.png)
+    
+    _Helping you moving move through life._
 </div>
 
 ## Overview
