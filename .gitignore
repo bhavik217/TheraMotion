@@ -5,3 +5,4 @@ BackEnd/.gitignore
 BackEnd/.env
 FrontEnd/src/components/extra
 FrontEnd/public/uploads
+.vscode
