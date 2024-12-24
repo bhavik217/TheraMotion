@@ -11,7 +11,7 @@ const Calendar = () => {
     const currentDate = new Date();
     const [currentMonth, setCurrentMonth] = useState(currentDate.getMonth());
     const [currentYear, setCurrentYear] = useState(currentDate.getFullYear());
-    const [selecteddate, setselecteddate] = useState("");
+    const [selectedDate, setselectedDate] = useState("");
     const [dis, setdisplay] = useState(true);
 
     const monthNames = [
@@ -63,7 +63,7 @@ const Calendar = () => {
             month: "long",
             year: "numeric",
         });
-        setselecteddate(formattedDate);
+        setselectedDate(formattedDate);
         setdisplay(false);
     };
 
@@ -135,7 +135,7 @@ const Calendar = () => {
 
                     {!dis && (
                         <Time
-                            date={selecteddate}
+                            date={selectedDate}
                             setdisplay={setdisplay}
                             practitioner={name}
                             service={ser}
