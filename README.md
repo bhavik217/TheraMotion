@@ -72,20 +72,18 @@ npm install
 
 ```bash
 # Backend (.env)
-PORT=8081
 DB_CONNECTION_STRING=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
-
-# Frontend (.env)
-VITE_API_URL=http://localhost:8081
+HashSalt=your_hashsalt
 ```
+
 
 3. **Development**
 
 ```bash
 # Terminal 1 - Backend
 cd backend
-node start index.js
+nodemon index.js
 
 # Terminal 2 - Frontend
 cd frontend
@@ -95,18 +93,62 @@ npm run dev
 ## Project Structure
 
 ```
-📂 theramotion/
-├── 📂 backend/              # Backend source code
-│    │   ├── 📂 middleware/      # Authentication middleware
-│    │   ├── 📂 models/          # Database models
-│    │   └── 📂 routes/          # API routes
-└── 📂 frontend/             # Frontend source code
-        ├── 📂 public/           # Static assets
-        └── 📂 src/
-            ├── 📂 components/   # Reusable components
-            ├── 📂 pages/        # Page components
-            ├── 📄 Layout        # Layout of site
-            └── 📄 routes        # Route definitions
+📂 THERAMOTION/             # Root directory for the project
+├── 📂 Backend/             # Backend source code and configurations
+│    ├── 📂 config/         # Configuration files (e.g., database connection, environment variables)
+│    ├── 📂 models/         # Mongoose models for MongoDB collections (e.g., User, Appointment)
+│    ├── 📂 routes/         # API route handlers for backend endpoints (e.g., auth, appointments, team)
+│    ├── 📂 utils/          # Utility functions and helpers (e.g., email service, token generation, error handling)
+│    ├── 📄 index.js        # Entry point for the backend server
+│    └── 📄 package.json    # Backend project metadata and dependency management
+│
+├── 📂 Frontend/            # Frontend source code for the user interface
+│    ├── 📂 public/         # Publicly accessible assets (e.g., images, icons, favicon)
+│    └── 📂 src/            # Main source folder for React application
+│        ├── 📂 components/ # Reusable React components for the UI
+│        │   ├── 📂 Blogbox/ 
+│        │   ├── 📂 Calendar/ 
+│        │   ├── 📂 elements/ # Core reusable UI elements
+│        │   │   ├── 📂 BookLink/      # Links for booking actions
+│        │   │   ├── 📂 Card/          # UI card components
+│        │   │   ├── 📂 Carousel/      # Carousel/slider components
+│        │   │   ├── 📂 Dropdown/      # Dropdown menu components
+│        │   │   ├── 📂 Modals/        # Modal/dialog components
+│        │   │   ├── 📂 RoutingButton/ # Buttons for navigation with routing
+│        │   │   └── 📂 ScrollToTop/   # Component for scrolling to the top of the page
+│        │   ├── 📂 Footer/ 
+│        │   ├── 📂 Introsection/ 
+│        │   ├── 📂 Navbar/ 
+│        │   ├── 📂 NeedForm/ 
+│        │   ├── 📂 PersonDetails/    
+│        │   ├── 📂 PersonInfo/    
+│        │   ├── 📂 PersonSelect/    
+│        │   ├── 📂 ServiceBox/       
+│        │   └── 📂 Time/    
+│        ├── 📂 pages/      # Page-specific components representing views
+│        │   ├── 📂 Authentication/      
+│        │   ├── 📂 Blog/      
+│        │   ├── 📂 BookAppointment/      
+│        │   ├── 📂 data/      
+│        │   ├── 📂 forms/      
+│        │   ├── 📂 JoinTeam/      
+│        │   ├── 📂 MainPage/      
+│        │   ├── 📂 MeetTeam/      
+│        │   ├── 📂 Services/      
+│        │   └── 📂 UserProfile/      
+│        ├── 📄 App.jsx     # Main application component integrating all routes and layout
+│        ├── 📄 Layout.jsx  # Layout component for consistent UI structure (e.g., Navbar, Footer)
+│        ├── 📄 main.jsx    # Entry point for React app rendering
+│        └── 📄 routes.js   # Route definitions for navigation and page rendering
+│    ├── 📄 .gitignore      # Files and directories to be ignored by Git
+│    ├── 📄 eslint.config.js # ESLint configuration for code linting
+│    ├── 📄 index.html      # Main HTML template for the React application
+│    ├── 📄 package.json    # Frontend project metadata and dependency management
+│    └── 📄 vite.config.js  # Configuration file for Vite build tool
+│
+├── 📄 .gitignore           # Global Git ignore file for the entire project
+└── 📄 README.md            # Project documentation, setup, and usage instructions
+
 ```
 
 ## Application Flow
