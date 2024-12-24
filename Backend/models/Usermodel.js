@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { JWT_SECRET_KEY } from "../config/constants.js";
 import dotenv from "dotenv";
+import AppointmentModel from "./AppointmentModel.js";
 
 dotenv.config();
 
@@ -121,5 +122,39 @@ UserModel.addUser = async (user, successCallback, errorCallback) => {
         }
     }
 };
+
+UserModel.deleteUserAndBookings = async function(email, password) {
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    
+    try {
+        // Find and verify user
+        const user = await UserModel.findOne({ email });
+        if (!user) {
+            throw { status: 404, message: "User not found" };
+        }
+
+        // Verify password
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            throw { status: 401, message: "Invalid password" };
+        }
+
+        // Delete all related bookings
+        await AppointmentModel.deleteMany({ email }, { session });
+        
+        // Delete user
+        await UserModel.findOneAndDelete({ email }, { session });
+
+        await session.commitTransaction();
+        return true;
+    } catch (error) {
+        await session.abortTransaction();
+        throw error;
+    } finally {
+        session.endSession();
+    }
+};
+
 
 export default UserModel;

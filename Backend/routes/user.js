@@ -160,34 +160,34 @@ router.post("/upload-photo", verifyToken, (req, res) => {
 
 router.delete("/:email", verifyToken, async (req, res) => {
     const { email } = req.params;
+    const { password } = req.body;
     
-    // Verify the requesting user is the same as the account being deleted
+    if (!password) {
+        return res.status(400).json({
+            success: false,
+            message: "Password is required"
+        });
+    }
+    
     if (email !== req.emailFromAuthToken) {
-        return res.status(401).json({ 
-            success: false, 
-            message: "Unauthorized to delete this account" 
+        return res.status(401).json({
+            success: false,
+            message: "Unauthorized to delete this account"
         });
     }
 
     try {
-        const deletedUser = await UserModel.findOneAndDelete({ email });
+        await UserModel.deleteUserAndBookings(email, password);
         
-        if (!deletedUser) {
-            return res.status(404).json({ 
-                success: false, 
-                message: "User not found" 
-            });
-        }
-
-        res.status(200).json({ 
-            success: true, 
-            message: "Account successfully deleted" 
+        res.clearCookie('authToken');
+        res.status(200).json({
+            success: true,
+            message: "Account and all related bookings deleted"
         });
     } catch (error) {
-        console.error("Error deleting user:", error);
-        res.status(500).json({ 
-            success: false, 
-            message: "Error deleting account" 
+        res.status(error.status || 500).json({
+            success: false,
+            message: error.message || "Error deleting account"
         });
     }
 });

@@ -1,7 +1,23 @@
 import React, { useEffect } from 'react';
 import './DeleteModal.css';
+import { useState } from 'react';
 
 const CustomDeleteModal = ({ isOpen, onClose, onConfirm }) => {
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+
+    const handleDelete = async () => {
+        if (!password) {
+            setError('Password is required');
+            return;
+        }
+        try {
+            await onConfirm(password);
+        } catch (err) {
+            setError(err.message);
+        }
+    };
+
     useEffect(() => {
         const handleEscape = (e) => {
             if (e.key === 'Escape') onClose();
@@ -54,6 +70,16 @@ const CustomDeleteModal = ({ isOpen, onClose, onConfirm }) => {
                             <span>All your booking history will be deleted</span>
                         </li>
                     </ul>
+                    <div className="password-section">
+                        <label>Please enter your password to confirm:</label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                            className="password-input"
+                        />
+                        {error && <p className="error-message">{error}</p>}
+                    </div>
                 </div>
 
                 <div className="modal-footer">
@@ -61,7 +87,7 @@ const CustomDeleteModal = ({ isOpen, onClose, onConfirm }) => {
                         <i className="fa-solid fa-xmark"></i>
                         <span>Cancel</span>
                     </button>
-                    <button className="modal-btn modal-btn-delete" onClick={onConfirm}>
+                    <button className="modal-btn modal-btn-delete" onClick={handleDelete} disabled={!password}>
                         <i className="fa-solid fa-trash-can"></i>
                         <span>Delete Account</span>
                     </button>
