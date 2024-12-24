@@ -35,7 +35,6 @@ TheraMotion is a healthcare service providing platform that enables users to boo
     - Appointment reminders via email or SMS.
     - Calendar integration for easy scheduling.
     - Secure payment options for booking services.
-    - Flexible cancellation and rescheduling policies. #####################Attention needed##################
 
 - **Blogs**
     - Engage with informative and interactive blogs on healthcare topics. 
@@ -109,25 +108,25 @@ npm run dev
 │    ├── 📂 utils/          # Utility functions
 │    ├── 📄 index.js        # Entry point for the backend server
 │
-├── 📂 Frontend/        # Frontend source code
-│    ├── 📂 public/         # Global and Static assets
-│    └── 📂 src/            # Source folder for React app
-│        ├── 📂 components/ # Reusable React components
-│        ├── 📂 pages/      # Page-specific components representing views
-│        │   ├── 📂 Authentication/      
-│        │   ├── 📂 Blog/      
-│        │   ├── 📂 BookAppointment/      
-│        │   ├── 📂 data/      
-│        │   ├── 📂 forms/      
-│        │   ├── 📂 JoinTeam/      
-│        │   ├── 📂 MainPage/      
-│        │   ├── 📂 MeetTeam/      
-│        │   ├── 📂 Services/      
-│        │   └── 📂 UserProfile/      
-│        ├── 📄 App.jsx     # Main app component integrating all routes and layout
-│        ├── 📄 Layout.jsx  # Layout component for consistent UI structure
-│        ├── 📄 main.jsx    # Entry point for React app rendering
-│        └── 📄 routes.js   # Route definitions and page rendering
+└── 📂 Frontend/        # Frontend source code
+     ├── 📂 public/         # Global and Static assets
+     └── 📂 src/            # Source folder for React app
+         ├── 📂 components/ # Reusable React components
+         ├── 📂 pages/      # Page-specific components representing views
+         │   ├── 📂 Authentication/      
+         │   ├── 📂 Blog/      
+         │   ├── 📂 BookAppointment/      
+         │   ├── 📂 data/      
+         │   ├── 📂 forms/      
+         │   ├── 📂 JoinTeam/      
+         │   ├── 📂 MainPage/      
+         │   ├── 📂 MeetTeam/      
+         │   ├── 📂 Services/      
+         │   └── 📂 UserProfile/      
+         ├── 📄 App.jsx     # Main app component integrating all routes and layout
+         ├── 📄 Layout.jsx  # Layout component for consistent UI structure
+         ├── 📄 main.jsx    # Entry point for React app rendering
+         └── 📄 routes.js   # Route definitions and page rendering
 ```
 
 ## Application Flow

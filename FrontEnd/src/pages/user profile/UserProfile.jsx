@@ -231,26 +231,28 @@ function UserProfile() {
         updateUserProfile();
     };
 
-    const handleDeleteAccount = async () => {
+    const handleDeleteAccount = async (password) => {
         try {
             const email = localStorage.getItem("loggedInUserEmail");
             const response = await fetch(`http://localhost:8081/user/${email}`, {
                 method: "DELETE",
                 headers: {
+                    "Content-Type": "application/json",
                     Authorization: `Bearer ${localStorage.getItem("authToken")}`,
                 },
+                body: JSON.stringify({ password })
             });
     
-            if (response.ok) {
-                localStorage.removeItem("authToken");
-                localStorage.removeItem("loggedInUserEmail");
-                window.location.href = "/";
-            } else {
+            if (!response.ok) {
                 const data = await response.json();
-                console.error("Failed to delete account:", data.message);
+                throw new Error(data.message);
             }
+    
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("loggedInUserEmail");
+            window.location.href = "/";
         } catch (err) {
-            console.error("Error deleting account:", err);
+            throw err;
         }
     };
     
