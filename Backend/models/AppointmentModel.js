@@ -38,15 +38,33 @@ appointmentModel.addAppointment = async function (appointmentData, successCallba
     }
 };
 
-appointmentModel.getUserBookings = async function(req, successCallback, errorCallback){
+appointmentModel.getUserBookings = async function(type, req, successCallback, errorCallback){
     const reqMail = req?.params?.email;
 
     try {
-        const dbRes = await appointmentModel.find({email: reqMail});
+        const currentDateTime = new Date();
+        const dbRes = await appointmentModel.find({ email: reqMail });
+
         if(!dbRes || dbRes.length === 0){
             return errorCallback({status: 404, message: "Bookings not found"});
         }
-        successCallback(dbRes);
+
+        if(type == "current"){
+            const currentBookings = dbRes.filter((booking) => {
+                const bookingDateTime = new Date(booking.appointmentDetails.date);
+                console.log("Booking Date:", bookingDateTime, "Current Date:", currentDateTime); // Debug
+                return bookingDateTime > currentDateTime;
+            });
+            successCallback(currentBookings);
+        }
+        else if(type == "previous"){
+            const previousBookings = dbRes.filter((booking) => {
+                const bookingDateTime = new Date(booking.appointmentDetails.date);
+                console.log("Booking Date:", bookingDateTime, "Current Date:", currentDateTime); // Debug
+                return bookingDateTime <= currentDateTime;
+            })
+            successCallback(previousBookings);
+        }
     } catch (error) {
         console.error("GET | dbErr is: ", error.message);
         errorCallback({status: 500, message: "Database error"});
