@@ -38,41 +38,47 @@ appointmentModel.addAppointment = async function (appointmentData, successCallba
     }
 };
 
-appointmentModel.getUserBookings = async function(type, req, successCallback, errorCallback) {
+appointmentModel.getUserBookings = async function(type, req, successCallback, errorCallback){
     const reqMail = req?.params?.email;
 
     try {
-        const currentDateTime = new Date(); // Current date and time
+        const currentDateTime = new Date();
         const dbRes = await appointmentModel.find({ email: reqMail });
 
-        if (!dbRes || dbRes.length === 0) {
-            return errorCallback({ status: 404, message: "Bookings not found" });
+        if(!dbRes || dbRes.length === 0){
+            return errorCallback({status: 404, message: "Bookings not found"});
         }
 
-        if (type === "current") {
+        if(type == "current"){
             const currentBookings = dbRes.filter((booking) => {
                 const bookingDate = new Date(booking.appointmentDetails.date);
-                const bookingTime = booking.appointmentDetails.time.split(":");
-                bookingDate.setHours(Number(bookingTime[0]), Number(bookingTime[1]), 0, 0); // Set booking time
-
-                return bookingDate > currentDateTime; // Check if the booking is in the future
+                const [hours, minutes] = booking.appointmentDetails.time.split(':').map(Number);
+                
+                // Set the hours and minutes from the appointment time
+                const bookingDateTime = new Date(bookingDate);
+                bookingDateTime.setHours(hours, minutes, 0, 0);
+                
+                return bookingDateTime > currentDateTime;
             });
             successCallback(currentBookings);
-        } else if (type === "previous") {
+        }
+        else if(type == "previous"){
             const previousBookings = dbRes.filter((booking) => {
                 const bookingDate = new Date(booking.appointmentDetails.date);
-                const bookingTime = booking.appointmentDetails.time.split(":");
-                bookingDate.setHours(Number(bookingTime[0]), Number(bookingTime[1]), 0, 0); // Set booking time
-
-                return bookingDate <= currentDateTime; // Check if the booking is in the past
+                const [hours, minutes] = booking.appointmentDetails.time.split(':').map(Number);
+                
+                // Set the hours and minutes from the appointment time
+                const bookingDateTime = new Date(bookingDate);
+                bookingDateTime.setHours(hours, minutes, 0, 0);
+                
+                return bookingDateTime <= currentDateTime;
             });
             successCallback(previousBookings);
         }
     } catch (error) {
         console.error("GET | dbErr is: ", error.message);
-        errorCallback({ status: 500, message: "Database error" });
+        errorCallback({status: 500, message: "Database error"});
     }
-};
-
+}
 
 export default appointmentModel;
