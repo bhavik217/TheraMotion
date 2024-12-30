@@ -12,41 +12,20 @@ function Needform() {
             </p>
             <div className="call">
                 <p>
-                    <i className="fa-solid fa-mobile"></i>
-                    &nbsp;&nbsp;&nbsp;0019&nbsp;902&nbsp;543
+                    <a href="tel:0019902543" className="contact-link">
+                        <i className="fa-solid fa-mobile"></i>
+                        &nbsp;&nbsp;&nbsp;0019&nbsp;902&nbsp;543
+                    </a>
                 </p>
             </div>
             <div className="email">
                 <p>
-                    <i className="fa-solid fa-envelope"></i>
-                    &nbsp;&nbsp;&nbsp;admin@TheraMotion.com
+                    <a href="mailto:admin@TheraMotion.com" className="contact-link">
+                        <i className="fa-solid fa-envelope"></i>
+                        &nbsp;&nbsp;&nbsp;admin@TheraMotion.com
+                    </a>
                 </p>
             </div>
-            <form>
-                <div className="inp1">
-                    <div className="namee">
-                        <h5>Name</h5>
-                        <input type="text" className="inp" placeholder="Your name" />
-                    </div>
-                    <div className="phone">
-                        <h5>Phone</h5>
-                        <input type="text" className="inp" placeholder="Your phone number" />
-                    </div>
-                </div>
-                <div className="emai">
-                    <h5>Email</h5>
-                    <input type="email" className="inp" placeholder="Your email address" />
-                </div>
-                <div className="mess">
-                    <h5>Message</h5>
-                    <textarea className="inp" placeholder="How can we help you?" />
-                </div>
-                <div className="submit">
-                    <button className="bsub" type="submit">
-                        SUBMIT
-                    </button>
-                </div>
-            </form>
         </div>
     );
 }

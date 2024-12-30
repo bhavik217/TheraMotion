@@ -29,107 +29,24 @@
 
 .needformo .call p,
 .needformo .email p {
+    margin: 0;
+}
+
+.contact-link {
+    text-decoration: none;
+    color: #333;
     display: flex;
     align-items: center;
-    margin: 0;
     font-size: 1rem;
-    color: #333;
+    transition: color 0.2s;
+}
+
+.contact-link:hover {
+    color: #007bff;
 }
 
 .needformo .fa-mobile,
 .needformo .fa-envelope {
     margin-right: 0.5rem;
     color: #2b2e34;
-}
-
-.needformo form {
-    margin-top: 2rem;
-}
-
-.needformo .inp1 {
-    display: flex;
-    gap: 2rem;
-    margin-bottom: 1.5rem;
-}
-
-@media (max-width: 768px) {
-    .needformo .inp1 {
-        flex-direction: column;
-        gap: 1rem;
-    }
-}
-
-.needformo h5 {
-    font-size: 1rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    color: #333;
-}
-
-.needformo .inp {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.2s;
-}
-
-.needformo .inp:focus {
-    outline: none;
-    border-color: #2b2e34;;
-    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
-}
-
-.needformo .inp::placeholder {
-    color: #999;
-}
-
-.needformo .namee,
-.needformo .phone {
-    flex: 1;
-}
-
-.needformo .emai {
-    margin-bottom: 1.5rem;
-}
-
-.needformo .mess textarea {
-    height: 160px;
-    resize: vertical;
-}
-
-.needformo .submit {
-    margin-top: 2rem;
-}
-
-.needformo .bsub {
-    width: 100%;
-    padding: 0.5rem;
-    background-color: #2b2e34;;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.needformo .bsub:hover {
-    background-color: #383a3c;;
-}
-
-@media (max-width: 576px) {
-    .needformo {
-        padding: 1rem;
-    }
-
-    .needformo .inp1 {
-        gap: 1rem;
-    }
-
-    .needformo h4 {
-        font-size: 1.25rem;
-    }
 }
