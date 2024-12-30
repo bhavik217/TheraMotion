@@ -52,7 +52,6 @@ appointmentModel.getUserBookings = async function(type, req, successCallback, er
         if(type == "current"){
             const currentBookings = dbRes.filter((booking) => {
                 const bookingDateTime = new Date(booking.appointmentDetails.date);
-                console.log("Booking Date:", bookingDateTime, "Current Date:", currentDateTime); // Debug
                 return bookingDateTime > currentDateTime;
             });
             successCallback(currentBookings);
@@ -60,7 +59,6 @@ appointmentModel.getUserBookings = async function(type, req, successCallback, er
         else if(type == "previous"){
             const previousBookings = dbRes.filter((booking) => {
                 const bookingDateTime = new Date(booking.appointmentDetails.date);
-                console.log("Booking Date:", bookingDateTime, "Current Date:", currentDateTime); // Debug
                 return bookingDateTime <= currentDateTime;
             })
             successCallback(previousBookings);
