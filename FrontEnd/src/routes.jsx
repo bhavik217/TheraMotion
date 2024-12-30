@@ -115,33 +115,33 @@ export const routes = [
                         path: "/profile",
                         element: <UserProfile />,
                     },
-                ],
-            },
-            {
-                path: "/book-appointment",
-                element: <BookAppt />,
-            },
-            {
-                path: "/person",
-                element: <PersonSelectLayout />,
-                children: [
                     {
-                        index: true,
-                        element: <Personselect />,
+                        path: "/book-appointment",
+                        element: <BookAppt />,
                     },
                     {
-                        path: "calendar",
-                        element: <Calendar />,
+                        path: "/person",
+                        element: <PersonSelectLayout />,
+                        children: [
+                            {
+                                index: true,
+                                element: <Personselect />,
+                            },
+                            {
+                                path: "calendar",
+                                element: <Calendar />,
+                            },
+                        ],
+                    },
+                    {
+                        path: "/form",
+                        element: <Finalform />,
+                    },
+                    {
+                        path: "/order",
+                        element: <OrderDetail />,
                     },
                 ],
-            },
-            {
-                path: "/form",
-                element: <Finalform />,
-            },
-            {
-                path: "/order",
-                element: <OrderDetail />,
             },
         ],
     },
