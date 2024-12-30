@@ -5,11 +5,16 @@ import dotenv from "dotenv";
 import appointmentRoutes from "./routes/appointment.js";
 import Counter from "./utils/counter.js";
 import path from "path";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 dotenv.config();
 
 const app = express();
 const port = "8081";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const initializeCounter = async () => {
     try {
@@ -35,17 +40,17 @@ app.use("*", (req, res, next) => {
     next();
 });
 
-app.use(express.static("./../frontend/dist"))
-app.get("*", (req, res) => {
-    res.sendFile(path.resolve("./../frontend/dist/index.html"));
-});
-
 app.get("/", (req, res) => {
     res.send("hello world again");
 });
 app.use("/user", userRoutes);
 app.use("/appointment", appointmentRoutes);
 
+app.use(express.static(path.join(__dirname, "../FrontEnd/dist")));
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
 
 connectDB()
     .then(() => {
