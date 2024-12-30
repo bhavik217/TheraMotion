@@ -4,6 +4,8 @@ import { connectDB } from "./config/db.js";
 import dotenv from "dotenv";
 import appointmentRoutes from "./routes/appointment.js";
 import Counter from "./utils/counter.js";
+import path from 'path';
+
 
 dotenv.config();
 
