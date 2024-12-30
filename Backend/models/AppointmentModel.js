@@ -20,6 +20,20 @@ const appointmentSchema = new mongoose.Schema({
 
 const appointmentModel = mongoose.model("AppointmentModel", appointmentSchema);
 
+// Helper function to convert 12-hour time to 24-hour format
+function convertTo24Hour(timeStr) {
+    const [time, period] = timeStr.toLowerCase().split(' ');
+    let [hours, minutes] = time.split(':').map(Number);
+    
+    if (period === 'pm' && hours !== 12) {
+        hours += 12;
+    } else if (period === 'am' && hours === 12) {
+        hours = 0;
+    }
+    
+    return { hours, minutes };
+}
+
 appointmentModel.addAppointment = async function (appointmentData, successCallback, errorCallback) {
     try {
         // Generate a new bookingId
@@ -49,31 +63,42 @@ appointmentModel.getUserBookings = async function(type, req, successCallback, er
             return errorCallback({status: 404, message: "Bookings not found"});
         }
 
-        if(type == "current"){
+        if(type === "current"){
             const currentBookings = dbRes.filter((booking) => {
+                // Get the appointment date
                 const bookingDate = new Date(booking.appointmentDetails.date);
-                const [hours, minutes] = booking.appointmentDetails.time.split(':').map(Number);
                 
-                // Set the hours and minutes from the appointment time
+                // Convert appointment time to 24-hour format
+                const { hours, minutes } = convertTo24Hour(booking.appointmentDetails.time);
+                
+                // Create a new date object with the appointment date and time
                 const bookingDateTime = new Date(bookingDate);
                 bookingDateTime.setHours(hours, minutes, 0, 0);
                 
                 return bookingDateTime > currentDateTime;
             });
+            
             successCallback(currentBookings);
         }
-        else if(type == "previous"){
+        else if(type === "previous"){
             const previousBookings = dbRes.filter((booking) => {
+                // Get the appointment date
                 const bookingDate = new Date(booking.appointmentDetails.date);
-                const [hours, minutes] = booking.appointmentDetails.time.split(':').map(Number);
                 
-                // Set the hours and minutes from the appointment time
+                // Convert appointment time to 24-hour format
+                const { hours, minutes } = convertTo24Hour(booking.appointmentDetails.time);
+                
+                // Create a new date object with the appointment date and time
                 const bookingDateTime = new Date(bookingDate);
                 bookingDateTime.setHours(hours, minutes, 0, 0);
                 
                 return bookingDateTime <= currentDateTime;
             });
+            
             successCallback(previousBookings);
+        }
+        else {
+            errorCallback({status: 400, message: "Invalid booking type"});
         }
     } catch (error) {
         console.error("GET | dbErr is: ", error.message);
