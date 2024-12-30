@@ -20,8 +20,8 @@ const appointmentSchema = new mongoose.Schema({
 
 const appointmentModel = mongoose.model("AppointmentModel", appointmentSchema);
 
-// Helper function to convert 12-hour time to 24-hour format
-function convertTo24Hour(timeStr) {
+// Helper function to convert 12-hour time to minutes since midnight
+function timeToMinutes(timeStr) {
     const [time, period] = timeStr.toLowerCase().split(' ');
     let [hours, minutes] = time.split(':').map(Number);
     
@@ -31,34 +31,17 @@ function convertTo24Hour(timeStr) {
         hours = 0;
     }
     
-    return { hours, minutes };
+    return hours * 60 + minutes;
 }
 
-// Helper function to get current IST datetime
-function getCurrentISTDateTime() {
+// Helper function to get current time in minutes
+function getCurrentTimeInMinutes() {
     const now = new Date();
-    const istOffset = 5.5 * 60 * 60 * 1000; // IST offset in milliseconds (UTC+5:30)
-    return new Date(now.getTime() + istOffset);
-}
-
-// Helper function to create a consistent IST date-time object
-function createISTBookingDateTime(date, timeStr) {
-    // Create date object from the appointment date
-    const bookingDate = new Date(date);
-    
-    // Convert the time string to 24-hour format
-    const { hours, minutes } = convertTo24Hour(timeStr);
-    
-    // Set the time components for IST
-    const istDateTime = new Date(bookingDate);
-    istDateTime.setHours(hours, minutes, 0, 0);
-    
-    return istDateTime;
+    return now.getHours() * 60 + now.getMinutes();
 }
 
 appointmentModel.addAppointment = async function (appointmentData, successCallback, errorCallback) {
     try {
-        // Generate a new bookingId
         const { sequenceValue: bookingId } = await Counter.findByIdAndUpdate(
             { _id: "bookingId" },
             { $inc: { sequenceValue: 1 } },
@@ -78,9 +61,13 @@ appointmentModel.getUserBookings = async function(type, req, successCallback, er
     const reqMail = req?.params?.email;
 
     try {
-        // Get current IST date-time
-        const currentISTDateTime = getCurrentISTDateTime();
-        console.log('Current IST DateTime:', currentISTDateTime.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }));
+        const currentDate = new Date();
+        // Reset hours to compare just the date
+        const currentDateOnly = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+        const currentTimeMinutes = getCurrentTimeInMinutes();
+
+        console.log('Current date:', currentDateOnly);
+        console.log('Current time in minutes:', currentTimeMinutes);
 
         const dbRes = await appointmentModel.find({ email: reqMail });
 
@@ -90,44 +77,40 @@ appointmentModel.getUserBookings = async function(type, req, successCallback, er
 
         if(type === "current"){
             const currentBookings = dbRes.filter((booking) => {
-                const bookingISTDateTime = createISTBookingDateTime(
-                    booking.appointmentDetails.date,
-                    booking.appointmentDetails.time
-                );
+                const bookingDate = new Date(booking.appointmentDetails.date);
+                const bookingDateOnly = new Date(bookingDate.getFullYear(), bookingDate.getMonth(), bookingDate.getDate());
+                const bookingTimeMinutes = timeToMinutes(booking.appointmentDetails.time);
 
-                console.log('Comparing booking:', {
-                    date: booking.appointmentDetails.date,
-                    time: booking.appointmentDetails.time,
-                    bookingDateTime: bookingISTDateTime.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-                    currentDateTime: currentISTDateTime.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-                    isCurrent: bookingISTDateTime >= currentISTDateTime
-                });
-
-                return bookingISTDateTime >= currentISTDateTime;
+                // If booking date is in future, it's a current booking
+                if (bookingDateOnly > currentDateOnly) {
+                    return true;
+                }
+                // If it's today, compare times
+                if (bookingDateOnly.getTime() === currentDateOnly.getTime()) {
+                    return bookingTimeMinutes >= currentTimeMinutes;
+                }
+                return false;
             });
             
-            console.log(`Found ${currentBookings.length} current bookings`);
             successCallback(currentBookings);
         }
         else if(type === "previous"){
             const previousBookings = dbRes.filter((booking) => {
-                const bookingISTDateTime = createISTBookingDateTime(
-                    booking.appointmentDetails.date,
-                    booking.appointmentDetails.time
-                );
+                const bookingDate = new Date(booking.appointmentDetails.date);
+                const bookingDateOnly = new Date(bookingDate.getFullYear(), bookingDate.getMonth(), bookingDate.getDate());
+                const bookingTimeMinutes = timeToMinutes(booking.appointmentDetails.time);
 
-                console.log('Comparing booking:', {
-                    date: booking.appointmentDetails.date,
-                    time: booking.appointmentDetails.time,
-                    bookingDateTime: bookingISTDateTime.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-                    currentDateTime: currentISTDateTime.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-                    isPrevious: bookingISTDateTime < currentISTDateTime
-                });
-
-                return bookingISTDateTime < currentISTDateTime;
+                // If booking date is in past, it's a previous booking
+                if (bookingDateOnly < currentDateOnly) {
+                    return true;
+                }
+                // If it's today, compare times
+                if (bookingDateOnly.getTime() === currentDateOnly.getTime()) {
+                    return bookingTimeMinutes < currentTimeMinutes;
+                }
+                return false;
             });
             
-            console.log(`Found ${previousBookings.length} previous bookings`);
             successCallback(previousBookings);
         }
         else {
