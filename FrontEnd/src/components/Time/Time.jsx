@@ -97,7 +97,7 @@ const Time = ({ date, setdisplay, practitioner, service }) => {
                                 practitioner,
                                 service,
                                 date,
-                                time: "5:30 am",
+                                time: "5:30 pm",
                             }}
                         >
                             <button className="ti">5:30 pm </button>
@@ -110,7 +110,7 @@ const Time = ({ date, setdisplay, practitioner, service }) => {
                                 practitioner,
                                 service,
                                 date,
-                                time: "6:30 am",
+                                time: "6:30 pm",
                             }}
                         >
                             <button className="ti">6:30 pm </button>
