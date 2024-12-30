@@ -38,34 +38,34 @@ appointmentModel.addAppointment = async function (appointmentData, successCallba
     }
 };
 
-appointmentModel.getUserBookings = async function(type, req, successCallback, errorCallback){
+appointmentModel.getUserBookings = async function(type, req, successCallback, errorCallback) {
     const reqMail = req?.params?.email;
 
     try {
         const currentDateTime = new Date();
         const dbRes = await appointmentModel.find({ email: reqMail });
 
-        if(!dbRes || dbRes.length === 0){
-            return errorCallback({status: 404, message: "Bookings not found"});
+        if (!dbRes || dbRes.length === 0) {
+            return errorCallback({ status: 404, message: "Bookings not found" });
         }
 
-        if(type == "current"){
+        if (type === "current") {
             const currentBookings = dbRes.filter((booking) => {
-                const bookingDateTime = new Date(booking.appointmentDetails.date);
+                const bookingDateTime = new Date(`${booking.appointmentDetails.date}T${booking.appointmentDetails.time}`);
                 return bookingDateTime > currentDateTime;
             });
-            successCallback(currentBookings);
-        }
-        else if(type == "previous"){
+            return successCallback(currentBookings);
+        } else if (type === "previous") {
             const previousBookings = dbRes.filter((booking) => {
-                const bookingDateTime = new Date(booking.appointmentDetails.date);
+                const bookingDateTime = new Date(`${booking.appointmentDetails.date}T${booking.appointmentDetails.time}`);
                 return bookingDateTime <= currentDateTime;
-            })
-            successCallback(previousBookings);
+            });
+            return successCallback(previousBookings);
         }
     } catch (error) {
         console.error("GET | dbErr is: ", error.message);
-        errorCallback({status: 500, message: "Database error"});
+        return errorCallback({ status: 500, message: "Database error" });
     }
-}
+};
+
 export default appointmentModel;
