@@ -42,7 +42,7 @@ appointmentModel.getUserBookings = async function(type, req, successCallback, er
     const reqMail = req?.params?.email;
 
     try {
-        const currentDateTime = new Date();
+        const currentDateTime = new Date(); // Current date and time
         const dbRes = await appointmentModel.find({ email: reqMail });
 
         if (!dbRes || dbRes.length === 0) {
@@ -51,21 +51,28 @@ appointmentModel.getUserBookings = async function(type, req, successCallback, er
 
         if (type === "current") {
             const currentBookings = dbRes.filter((booking) => {
-                const bookingDateTime = new Date(`${booking.appointmentDetails.date}T${booking.appointmentDetails.time}`);
-                return bookingDateTime > currentDateTime;
+                const bookingDate = new Date(booking.appointmentDetails.date);
+                const bookingTime = booking.appointmentDetails.time.split(":");
+                bookingDate.setHours(Number(bookingTime[0]), Number(bookingTime[1]), 0, 0); // Set booking time
+
+                return bookingDate > currentDateTime; // Check if the booking is in the future
             });
-            return successCallback(currentBookings);
+            successCallback(currentBookings);
         } else if (type === "previous") {
             const previousBookings = dbRes.filter((booking) => {
-                const bookingDateTime = new Date(`${booking.appointmentDetails.date}T${booking.appointmentDetails.time}`);
-                return bookingDateTime <= currentDateTime;
+                const bookingDate = new Date(booking.appointmentDetails.date);
+                const bookingTime = booking.appointmentDetails.time.split(":");
+                bookingDate.setHours(Number(bookingTime[0]), Number(bookingTime[1]), 0, 0); // Set booking time
+
+                return bookingDate <= currentDateTime; // Check if the booking is in the past
             });
-            return successCallback(previousBookings);
+            successCallback(previousBookings);
         }
     } catch (error) {
         console.error("GET | dbErr is: ", error.message);
-        return errorCallback({ status: 500, message: "Database error" });
+        errorCallback({ status: 500, message: "Database error" });
     }
 };
+
 
 export default appointmentModel;
