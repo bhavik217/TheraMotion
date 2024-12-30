@@ -34,12 +34,14 @@ function UserProfile() {
     const fetchUserData = async () => {
         const email = localStorage.getItem("loggedInUserEmail");
         try {
-            const response = await fetch(`http://localhost:8081/user/${email}/`, {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-                },
-            });
+            const response = await fetch(
+                `${import.meta.env.BACKEND_URL}/user/${email}`,
+                {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                    },
+                });
 
             if (response.ok) {
                 const userDetails = await response.json();
@@ -66,7 +68,7 @@ function UserProfile() {
         try {
             const email = localStorage.getItem("loggedInUserEmail");
             const currentResponse = await fetch(
-                `http://localhost:8081/appointment/${email}/current`,
+                `${import.meta.env.BACKEND_URL}/appointment/${email}/current`,
                 {
                     method: "GET",
                     headers: {
@@ -76,7 +78,7 @@ function UserProfile() {
             );
 
             const previousResponse = await fetch(
-                `http://localhost:8081/appointment/${email}/previous`,
+                `${import.meta.env.BACKEND_URL}/appointment/${email}/previous`,
                 {
                     method: "GET",
                     headers: {
@@ -107,14 +109,16 @@ function UserProfile() {
         };
 
         try {
-            const response = await fetch(`http://localhost:8081/user/${email}/`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-                },
-                body: JSON.stringify(updatedData),
-            });
+            const response = await fetch(
+                `${import.meta.env.BACKEND_URL}/user/${email}`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                    },
+                    body: JSON.stringify(updatedData),
+                });
 
             if (response.ok) {
                 const updatedUser = await response.json();
@@ -177,13 +181,15 @@ function UserProfile() {
         formData.append("photo", selectedPhoto);
 
         try {
-            const response = await fetch(`http://localhost:8081/user/upload-photo`, {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-                },
-                body: formData,
-            });
+            const response = await fetch(
+                `${import.meta.env.BACKEND_URL}/user/upload-photo`,
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                    },
+                    body: formData,
+                });
 
             const data = await response.json();
 
@@ -234,20 +240,22 @@ function UserProfile() {
     const handleDeleteAccount = async (password) => {
         try {
             const email = localStorage.getItem("loggedInUserEmail");
-            const response = await fetch(`http://localhost:8081/user/${email}`, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${localStorage.getItem("authToken")}`,
-                },
-                body: JSON.stringify({ password })
-            });
-    
+            const response = await fetch(
+                `${import.meta.env.BACKEND_URL}/user/${email}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+                    },
+                    body: JSON.stringify({ password })
+                });
+
             if (!response.ok) {
                 const data = await response.json();
                 throw new Error(data.message);
             }
-    
+
             localStorage.removeItem("authToken");
             localStorage.removeItem("loggedInUserEmail");
             window.location.href = "/";
@@ -255,7 +263,7 @@ function UserProfile() {
             throw err;
         }
     };
-    
+
 
     return (
         <div className="userprofile">

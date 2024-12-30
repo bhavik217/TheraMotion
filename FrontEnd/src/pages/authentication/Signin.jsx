@@ -8,7 +8,7 @@ export function SignIn() {
     const passwordRef = useRef(null);
     const [signInError, setSignInError] = useState(location.state?.message || "");
     const [signInSuccess, setSignInSuccess] = useState(false);
-    
+
 
     useEffect(() => {
         if (signInSuccess) {
@@ -18,7 +18,7 @@ export function SignIn() {
 
     const signInHandler = async (event) => {
         event.preventDefault();
-        setSignInError(""); 
+        setSignInError("");
 
         const formValuesObject = {
             email: emailRef.current.value.trim(),
@@ -28,7 +28,7 @@ export function SignIn() {
         if (formValuesObject.email && formValuesObject.password) {
             try {
                 const signInResponse = await fetch(
-                    "http://localhost:8081/user/signin",
+                    `${import.meta.env.BACKEND_URL}/user/signin`,
                     {
                         method: "POST",
                         body: JSON.stringify(formValuesObject),
@@ -65,7 +65,7 @@ export function SignIn() {
 
         try {
             const productsResponse = await fetch(
-                `http://localhost:8081/user/${email}`,
+                `${import.meta.env.BACKEND_URL}/user/${email}`,
                 {
                     method: "GET",
                     headers: {

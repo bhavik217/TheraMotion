@@ -28,11 +28,13 @@ function SignUp() {
             formValuesObject.password
         ) {
             try {
-                const response = await fetch("http://localhost:8081/user", {
-                    method: "POST",
-                    body: JSON.stringify(formValuesObject),
-                    headers: { "Content-Type": "application/json" },
-                });
+                const response = await fetch(
+                    `${import.meta.env.BACKEND_URL}/user`,
+                    {
+                        method: "POST",
+                        body: JSON.stringify(formValuesObject),
+                        headers: { "Content-Type": "application/json" },
+                    });
 
                 const responseData = await response.json();
 
