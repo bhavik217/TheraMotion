@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "./UserProfile.css";
 import CustomDeleteModal from "../../components/elements/Modals/CustomDeleteModal";
+import { useNavigate } from "react-router-dom";
 
 function UserProfile() {
     const [activeTab, setActiveTab] = useState("profile");
@@ -24,6 +25,7 @@ function UserProfile() {
     const [uploadError, setUploadError] = useState("");
     const [bookings, setBookings] = useState({ current: [], previous: [] });
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchUserData();
@@ -258,7 +260,8 @@ function UserProfile() {
 
             localStorage.removeItem("authToken");
             localStorage.removeItem("loggedInUserEmail");
-            window.location.href = "/";
+            // window.location.href = "/";
+            navigate("/");
         } catch (err) {
             throw err;
         }

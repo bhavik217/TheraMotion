@@ -49,7 +49,7 @@ app.use("/appointment", appointmentRoutes);
 app.use(express.static(path.join(__dirname, "../FrontEnd/dist")));
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+    res.sendFile(path.join(__dirname, "../FrontEnd/dist/index.html"));
 });
 
 connectDB()

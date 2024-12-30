@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function SignIn() {
     const location = useLocation();
@@ -8,6 +9,7 @@ export function SignIn() {
     const passwordRef = useRef(null);
     const [signInError, setSignInError] = useState(location.state?.message || "");
     const [signInSuccess, setSignInSuccess] = useState(false);
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -46,7 +48,8 @@ export function SignIn() {
                         formValuesObject.email
                     );
                     setSignInSuccess(true);
-                    window.location.href = "/profile";
+                    // window.location.href = "/profile";
+                    navigate("/profile");
                 } else {
                     const errorData = await signInResponse.json();
                     setSignInError(errorData?.message || "Sign-in failed");
