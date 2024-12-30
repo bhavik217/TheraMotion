@@ -175,40 +175,40 @@ function UserProfile() {
             setUploadError("Please select a photo to upload.");
             return;
         }
-
+        
         setIsLoading(true);
         setUploadError("");
-
+        
         const formData = new FormData();
         formData.append("photo", selectedPhoto);
-
+        
         try {
             const response = await fetch(
                 `${import.meta.env.VITE_BACKEND_URL}/user/upload-photo`,
                 {
-                    method: "POST",
+                    method: "POST", 
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("authToken")}`,
                     },
                     body: formData,
                 });
-
+                
             const data = await response.json();
-
+            
             if (response.ok) {
                 setUserProfile((prev) => ({
                     ...prev,
-                    photo: data.photoPath,
+                    photo: data.secure_url, // Updated to use Cloudinary URL
                 }));
                 setIsEditingPhoto(false);
                 setSelectedPhoto(null);
                 alert("Profile photo updated successfully!");
             } else {
-                setUploadError(data.message || "Failed to upload photo. Please try again.");
+                setUploadError(data.message || "Failed to upload photo");
             }
         } catch (err) {
             console.error("Error uploading photo:", err);
-            setUploadError("An error occurred while uploading your photo.");
+            setUploadError("An error occurred while uploading");
         } finally {
             setIsLoading(false);
         }

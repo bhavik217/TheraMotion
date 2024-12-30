@@ -86,73 +86,57 @@ router.post("/signin", (req, res) => {
 router.post("/upload-photo", verifyToken, (req, res) => {
     upload.single("photo")(req, res, async (err) => {
         try {
-            // Handle multer-specific errors
             if (err instanceof multer.MulterError) {
-                console.log("Multer error:", err);
-                return res.status(400).json({ 
+                return res.status(400).json({
                     success: false,
-                    message: "Error uploading file: " + err.message 
-                });
-            } 
-            
-            // Handle file type error
-            if (err && err.message === "FILE_TYPE_ERROR") {
-                console.log("File type error:", err);
-                return res.status(400).json({ 
-                    success: false,
-                    message: "Only .jpeg, .jpg, and .png files are allowed" 
+                    message: "Error uploading file: " + err.message
                 });
             }
             
-            // Handle other errors
+            if (err?.message === "FILE_TYPE_ERROR") {
+                return res.status(400).json({
+                    success: false,
+                    message: "Only .jpeg, .jpg, and .png files are allowed"
+                });
+            }
+            
             if (err) {
-                console.log("Other upload error:", err);
-                return res.status(500).json({ 
+                return res.status(500).json({
                     success: false,
-                    message: "Server error during upload" 
+                    message: "Server error during upload"
                 });
             }
 
-            // Check if file exists
             if (!req.file) {
-                return res.status(400).json({ 
+                return res.status(400).json({
                     success: false,
-                    message: "No file uploaded" 
+                    message: "No file uploaded"
                 });
             }
 
-            // Create photo path
-            const photoPath = `/uploads/${req.file.filename}`;
-            console.log("Photo path:", photoPath);
-            console.log("User email:", req.emailFromAuthToken);
-
-            // Update user photo
             const updatedUser = await UserModel.findOneAndUpdate(
                 { email: req.emailFromAuthToken },
-                { photo: photoPath },
+                { photo: req.file.path }, // Cloudinary URL
                 { new: true }
             );
 
-            // Check if user was found and updated
             if (!updatedUser) {
-                console.log("User not found for email:", req.emailFromAuthToken);
-                return res.status(404).json({ 
+                return res.status(404).json({
                     success: false,
-                    message: "User not found" 
+                    message: "User not found"
                 });
             }
 
-            // Success response
-            return res.status(200).json({ 
+            return res.status(200).json({
                 success: true,
-                photoPath: updatedUser.photo 
+                secure_url: req.file.path
             });
 
         } catch (error) {
-            console.error("Server error in upload route:", error);
-            return res.status(500).json({ 
+            console.error("Server error:", error);
+            return res.status(500).json({
                 success: false,
-                message: "Error uploading photo" 
+                message: "Error uploading photo"
             });
         }
     });
