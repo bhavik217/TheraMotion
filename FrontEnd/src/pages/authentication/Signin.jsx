@@ -52,7 +52,7 @@ export function SignIn() {
                     navigate("/profile");
                 } else {
                     const errorData = await signInResponse.json();
-                    setSignInError(errorData?.message || "Sign-in failed");
+                    setSignInError(errorData?.message || "Either email or password is incorrect.");
                 }
             } catch (error) {
                 console.error("Sign-in error:", error);
