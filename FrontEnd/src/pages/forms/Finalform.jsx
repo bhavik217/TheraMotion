@@ -34,9 +34,19 @@ const Finalform = () => {
         });
     };
 
+    const validatePhone = (phone) => {
+        const phoneRegex = /^\d{10}$/; // Allows exactly 10 digits
+        return phoneRegex.test(phone);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target;
+
+        if (!validatePhone(formData.phone)) {
+            alert("Please enter a valid 10-digit mobile number.");
+            return;
+        }
 
         if (form.checkValidity()) {
             try {
