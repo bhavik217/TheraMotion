@@ -37,8 +37,13 @@ function timeToMinutes(timeStr) {
 // Helper function to get current time in minutes
 function getCurrentTimeInMinutes() {
     const now = new Date();
-    return now.getHours() * 60 + now.getMinutes();
+    const istOffset = 5 * 60 + 30; 
+    const utcMinutes = now.getUTCHours() * 60 + now.getUTCMinutes(); 
+    const istMinutes = utcMinutes + istOffset;
+
+    return istMinutes % 1440;
 }
+
 
 appointmentModel.addAppointment = async function (appointmentData, successCallback, errorCallback) {
     try {
