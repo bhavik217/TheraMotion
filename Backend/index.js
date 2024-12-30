@@ -4,6 +4,7 @@ import { connectDB } from "./config/db.js";
 import dotenv from "dotenv";
 import appointmentRoutes from "./routes/appointment.js";
 import Counter from "./utils/counter.js";
+import path from "path";
 
 dotenv.config();
 
@@ -34,7 +35,10 @@ app.use("*", (req, res, next) => {
     next();
 });
 
-app.use("/", express.static("./../frontend/dist"))
+app.use(express.static("./../frontend/dist"))
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve("./../frontend/dist/index.html"));
+});
 
 app.get("/", (req, res) => {
     res.send("hello world again");
