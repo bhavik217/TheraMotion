@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { authEvent } from "../../routes";
 
 export function SignIn() {
     const location = useLocation();
@@ -48,6 +49,7 @@ export function SignIn() {
                         formValuesObject.email
                     );
                     setSignInSuccess(true);
+                    authEvent.dispatchEvent(new Event('authStateChanged'));
                     // window.location.href = "/profile";
                     navigate("/profile");
                 } else {
