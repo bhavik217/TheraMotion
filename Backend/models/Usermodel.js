@@ -95,7 +95,7 @@ UserModel.addUser = async (user, successCallback, errorCallback) => {
 
     let encryptedPassword = "";
     try {
-        encryptedPassword = bcrypt.hashSync(user.password, hashSalt);
+        encryptedPassword = bcrypt.hashSync(user.password, HashSalt);
     } catch (err) {
         console.error("Error hashing password: ", err);
         errorCallback({ message: "Error encrypting password." });
