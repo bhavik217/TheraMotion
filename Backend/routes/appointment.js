@@ -30,6 +30,7 @@ router.post("/", (req, res) => {
 
 router.get("/:email/current", (req, res) => {
     AppointmentModel.getUserBookings(
+        "current",
         req, 
         (dbres) => {
             res.status(200).json(dbres)
@@ -42,6 +43,7 @@ router.get("/:email/current", (req, res) => {
 
 router.get("/:email/previous", (req, res) => {
     AppointmentModel.getUserBookings(
+        "previous",
         req, 
         (dbres) => {
             res.status(200).json(dbres)
