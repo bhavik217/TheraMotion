@@ -42,7 +42,7 @@ const Finalform = () => {
             try {
                 // Make request to server to send Form-Data
                 const response = await fetch(
-                    `${import.meta.env.BACKEND_URL}/appointment`,
+                    `${import.meta.env.VITE_BACKEND_URL}/appointment`,
                     {
                         method: "POST",
                         headers: {

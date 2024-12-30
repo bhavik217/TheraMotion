@@ -35,7 +35,7 @@ function UserProfile() {
         const email = localStorage.getItem("loggedInUserEmail");
         try {
             const response = await fetch(
-                `${import.meta.env.BACKEND_URL}/user/${email}`,
+                `${import.meta.env.VITE_BACKEND_URL}/user/${email}`,
                 {
                     method: "GET",
                     headers: {
@@ -68,7 +68,7 @@ function UserProfile() {
         try {
             const email = localStorage.getItem("loggedInUserEmail");
             const currentResponse = await fetch(
-                `${import.meta.env.BACKEND_URL}/appointment/${email}/current`,
+                `${import.meta.env.VITE_BACKEND_URL}/appointment/${email}/current`,
                 {
                     method: "GET",
                     headers: {
@@ -78,7 +78,7 @@ function UserProfile() {
             );
 
             const previousResponse = await fetch(
-                `${import.meta.env.BACKEND_URL}/appointment/${email}/previous`,
+                `${import.meta.env.VITE_BACKEND_URL}/appointment/${email}/previous`,
                 {
                     method: "GET",
                     headers: {
@@ -110,7 +110,7 @@ function UserProfile() {
 
         try {
             const response = await fetch(
-                `${import.meta.env.BACKEND_URL}/user/${email}`,
+                `${import.meta.env.VITE_BACKEND_URL}/user/${email}`,
                 {
                     method: "PUT",
                     headers: {
@@ -182,7 +182,7 @@ function UserProfile() {
 
         try {
             const response = await fetch(
-                `${import.meta.env.BACKEND_URL}/user/upload-photo`,
+                `${import.meta.env.VITE_BACKEND_URL}/user/upload-photo`,
                 {
                     method: "POST",
                     headers: {
@@ -241,7 +241,7 @@ function UserProfile() {
         try {
             const email = localStorage.getItem("loggedInUserEmail");
             const response = await fetch(
-                `${import.meta.env.BACKEND_URL}/user/${email}`,
+                `${import.meta.env.VITE_BACKEND_URL}/user/${email}`,
                 {
                     method: "DELETE",
                     headers: {

@@ -28,7 +28,7 @@ export function SignIn() {
         if (formValuesObject.email && formValuesObject.password) {
             try {
                 const signInResponse = await fetch(
-                    `${import.meta.env.BACKEND_URL}/user/signin`,
+                    `${import.meta.env.VITE_BACKEND_URL}/user/signin`,
                     {
                         method: "POST",
                         body: JSON.stringify(formValuesObject),
@@ -65,7 +65,7 @@ export function SignIn() {
 
         try {
             const productsResponse = await fetch(
-                `${import.meta.env.BACKEND_URL}/user/${email}`,
+                `${import.meta.env.VITE_BACKEND_URL}/user/${email}`,
                 {
                     method: "GET",
                     headers: {

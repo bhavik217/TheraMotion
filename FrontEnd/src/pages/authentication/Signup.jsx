@@ -29,7 +29,7 @@ function SignUp() {
         ) {
             try {
                 const response = await fetch(
-                    `${import.meta.env.BACKEND_URL}/user`,
+                    `${import.meta.env.VITE_BACKEND_URL}/user`,
                     {
                         method: "POST",
                         body: JSON.stringify(formValuesObject),
