@@ -58,11 +58,7 @@ const Calendar = () => {
 
     const selectDate = (day) => {
         const selectedDate = new Date(currentYear, currentMonth, day);
-        const formattedDate = selectedDate.toLocaleDateString("en-US", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-        });
+        const formattedDate = `${selectedDate.getMonth() + 1}/${selectedDate.getDate()}/${selectedDate.getFullYear()}`;
         setselectedDate(formattedDate);
         setdisplay(false);
     };
