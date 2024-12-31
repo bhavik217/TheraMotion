@@ -44,18 +44,6 @@ appointmentModel.getUserBookings = async function(type, req, successCallback, er
     try {
         const currentDateTime = new Date();
 
-        // const date = new Date();
-        // const options = { 
-        // timeZone: "Asia/Kolkata", 
-        // hour: "2-digit", 
-        // minute: "2-digit", 
-        // second: "2-digit", 
-        // hour12: false 
-        // };
-
-        // const indianTime = date.toLocaleString("en-US", options);
-        // console.log(indianTime);
-
         const dbRes = await appointmentModel.find({ email: reqMail });
 
         if(!dbRes || dbRes.length === 0){
