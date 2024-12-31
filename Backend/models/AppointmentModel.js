@@ -23,38 +23,6 @@ const appointmentSchema = new mongoose.Schema(
 
 const appointmentModel = mongoose.model("AppointmentModel", appointmentSchema);
 
-// Helper function to convert 12-hour time to minutes since midnight
-function timeToMinutes(timeStr) {
-    if (!timeStr || typeof timeStr !== "string") {
-        throw new Error("Invalid time string");
-    }
-
-    const [time, period] = timeStr.toLowerCase().split(" ");
-    if (!time || !period || (period !== "am" && period !== "pm")) {
-        throw new Error("Time format must be 'hh:mm AM/PM'");
-    }
-
-    let [hours, minutes] = time.split(":").map(Number);
-    if (
-        isNaN(hours) ||
-        isNaN(minutes) ||
-        hours < 0 ||
-        hours > 12 ||
-        minutes < 0 ||
-        minutes >= 60
-    ) {
-        throw new Error("Invalid time values");
-    }
-
-    if (period === "pm" && hours !== 12) {
-        hours += 12;
-    } else if (period === "am" && hours === 12) {
-        hours = 0;
-    }
-
-    return hours * 60 + minutes;
-}
-
 // Helper function to get current time in minutes
 function getCurrentTimeInMinutes() {
     const now = new Date();
