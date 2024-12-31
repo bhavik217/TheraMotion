@@ -23,21 +23,6 @@ const appointmentSchema = new mongoose.Schema(
 
 const appointmentModel = mongoose.model("AppointmentModel", appointmentSchema);
 
-// Helper function to get current time in minutes
-function getCurrentTimeInMinutes() {
-    const now = new Date();
-
-    // Get the UTC time in minutes
-    const utcMinutes = now.getUTCHours() * 60 + now.getUTCMinutes();
-
-    // Add IST offset (5 hours and 30 minutes)
-    const istOffset = 5 * 60 + 30;
-    const istMinutes = (utcMinutes + istOffset + 1440) % 1440; // Ensure result is always positive
-
-    return istMinutes;
-}
-
-
 appointmentModel.addAppointment = async function (
     appointmentData,
     successCallback,
