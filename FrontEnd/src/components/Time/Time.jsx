@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import "./Time.css";
 
 const Time = ({ date, setdisplay, practitioner, service }) => {
-    console.log(practitioner, service, date);
     const changedis = () => {
         setdisplay(true);
     };
@@ -28,10 +27,10 @@ const Time = ({ date, setdisplay, practitioner, service }) => {
                                 practitioner,
                                 service,
                                 date,
-                                time: "9:00 am",
+                                time: "09:00:00",
                             }}
                         >
-                            <button className="ti">9:00 am </button>
+                            <button className="ti">9:00 am</button>
                             <br />
                             <br />
                         </Link>
@@ -41,10 +40,10 @@ const Time = ({ date, setdisplay, practitioner, service }) => {
                                 practitioner,
                                 service,
                                 date,
-                                time: "10:00 am",
+                                time: "10:00:00",
                             }}
                         >
-                            <button className="ti">10:00 am </button>
+                            <button className="ti">10:00 am</button>
                             <br />
                             <br />
                         </Link>
@@ -54,10 +53,10 @@ const Time = ({ date, setdisplay, practitioner, service }) => {
                                 practitioner,
                                 service,
                                 date,
-                                time: "11:00 am",
+                                time: "11:00:00",
                             }}
                         >
-                            <button className="ti">11:00 am </button>
+                            <button className="ti">11:00 am</button>
                         </Link>
                     </div>
                     <div className="t">
@@ -69,10 +68,10 @@ const Time = ({ date, setdisplay, practitioner, service }) => {
                                 practitioner,
                                 service,
                                 date,
-                                time: "1:00 pm",
+                                time: "13:00:00",
                             }}
                         >
-                            <button className="ti">1:00 pm </button>
+                            <button className="ti">1:00 pm</button>
                             <br />
                             <br />
                         </Link>
@@ -82,10 +81,10 @@ const Time = ({ date, setdisplay, practitioner, service }) => {
                                 practitioner,
                                 service,
                                 date,
-                                time: "2:00 pm",
+                                time: "14:00:00",
                             }}
                         >
-                            <button className="ti">2:00 pm </button>
+                            <button className="ti">2:00 pm</button>
                         </Link>
                     </div>
                     <div className="t">
@@ -97,10 +96,10 @@ const Time = ({ date, setdisplay, practitioner, service }) => {
                                 practitioner,
                                 service,
                                 date,
-                                time: "5:30 pm",
+                                time: "17:30:00",
                             }}
                         >
-                            <button className="ti">5:30 pm </button>
+                            <button className="ti">5:30 pm</button>
                             <br />
                             <br />
                         </Link>
@@ -110,7 +109,7 @@ const Time = ({ date, setdisplay, practitioner, service }) => {
                                 practitioner,
                                 service,
                                 date,
-                                time: "6:30 pm",
+                                time: "18:30:00",
                             }}
                         >
                             <button className="ti">6:30 pm </button>
