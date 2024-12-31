@@ -497,8 +497,9 @@ function UserProfile() {
                                                         {booking.appointmentDetails.service}
                                                     </div>
                                                     <div className="date-time">
-                                                        {new Date(booking.appointmentDetails.date).toLocaleDateString()}{" "}
-                                                        at {booking.appointmentDetails.time}
+                                                        {booking.appointmentDetails.date}
+                                                        {" "}at{" "}
+                                                        {booking.appointmentDetails.time}
                                                     </div>
                                                     <div className="status">
                                                         {booking.status || "Pending"}
@@ -521,13 +522,9 @@ function UserProfile() {
                                                         {booking.appointmentDetails.service}
                                                     </div>
                                                     <div className="date-time">
-                                                        {new Date(booking.appointmentDetails.date).toLocaleDateString()}{" "}
-                                                        at{" "}
-                                                        {
-                                                            booking
-                                                                .appointmentDetails
-                                                                .time
-                                                        }
+                                                        {booking.appointmentDetails.date}
+                                                        {" "}at{" "}
+                                                        {booking.appointmentDetails.time}
                                                     </div>
                                                     <div className="status">
                                                         {booking.status ||
