@@ -22,12 +22,23 @@ const appointmentModel = mongoose.model("AppointmentModel", appointmentSchema);
 
 appointmentModel.addAppointment = async function (appointmentData, successCallback, errorCallback) {
     try {
-        // Generate a new bookingId
         const { sequenceValue: bookingId } = await Counter.findByIdAndUpdate(
             { _id: "bookingId" },
             { $inc: { sequenceValue: 1 } },
             { new: true, upsert: true }
         );
+
+        // Format validation for date and time
+        const dateRegex = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
+        const timeRegex = /^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/;
+
+        if (!dateRegex.test(appointmentData.appointmentDetails.date)) {
+            throw new Error('Invalid date format. Use MM/DD/YYYY');
+        }
+
+        if (!timeRegex.test(appointmentData.appointmentDetails.time)) {
+            throw new Error('Invalid time format. Use HH:MM:SS in 24-hour format');
+        }
         
         appointmentData.bookingId = bookingId;
         const result = await appointmentModel.insertMany([appointmentData]);
